@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="815.0" prefWidth="1279.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Abyss.View.MainController">
+   <children>
+      <Button fx:id="clickme" layoutX="526.0" layoutY="292.0" mnemonicParsing="false" onAction="#generateRandom" text="Click me " />
+      <Label fx:id="myMessage" layoutX="544.0" layoutY="206.0" prefHeight="47.0" prefWidth="144.0" text="Label" />
+   </children>
+</AnchorPane>
