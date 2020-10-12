@@ -1,0 +1,7 @@
+#myMessage {
+    -fx-text-fill: rgba(212, 11, 11, 0.8);
+}
+
+.button {
+    -fx-background-color : rgba(212, 11, 11, 0.8);
+}
