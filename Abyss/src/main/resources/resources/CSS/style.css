@@ -1,7 +1,18 @@
-#myMessage {
-    -fx-text-fill: rgba(212, 11, 11, 0.8);
-}
+#clickme {
+		-fx-font-size: 30px;
+		-fx-background-color: rgba(255,255,255, .80);
+		-fx-text-fill: blue;
+		-fx-padding: 6 6 6 6;
+		-fx-border-radius: 8;
+		-fx-font-weight: bold;
 
-.button {
-    -fx-background-color : rgba(212, 11, 11, 0.8);
+}
+#myMessage {
+		-fx-font-size: 30px;
+		-fx-background-color: rgba(255,255,255, .80);
+		-fx-text-fill: blue;
+		-fx-padding: 6 6 6 6;
+		-fx-border-radius: 8;
+		-fx-font-weight: bold;
+
 }

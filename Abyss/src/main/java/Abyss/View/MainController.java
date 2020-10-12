@@ -15,3 +15,4 @@ public class MainController {
 		myMessage.setText(Integer.toString(myrand));
 	}
 }
+
