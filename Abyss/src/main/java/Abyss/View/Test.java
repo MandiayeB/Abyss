@@ -23,11 +23,10 @@ public class Test extends Application {
 		Button btn = new Button("Click me");
 		Button exit = new Button("Exit");
 		exit.setOnAction(e -> System.exit(0));
-		exit.setOnAction(e -> {
-			System.out.println("Bye!");
-			System.exit(0);
-		
-		});
+//		exit.setOnAction(e -> {
+//			System.out.println("Bye!");
+//			System.exit(0);
+//		});
 
 		btn.setOnAction(new EventHandler<ActionEvent>(	) {
 			
@@ -45,6 +44,5 @@ public class Test extends Application {
 		primaryStage.show();
 		
 	}
-	
 
 }
