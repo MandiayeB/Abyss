@@ -1,5 +1,6 @@
 package Abyss.View;
 
+import Game.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,14 +10,20 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public static void main(String[] args) {
-
-			launch(args);
 		
+		Game g = new Game();
+		g.deck();
+		g.pioche();
+		g.jouer();
+		
+
+		launch(args);
+
 	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
+
 //		Button btn = new Button("Click me");
 //		Button exit = new Button("Exit");
 //		exit.setOnAction(e -> System.exit(0));
@@ -36,20 +43,20 @@ public class Main extends Application {
 //		VBox root = new VBox();
 //		root.getChildren().addAll(btn, exit);
 		try {
-			
+
 			Parent root = FXMLLoader.load(getClass().getResource("/resources/FXML/FXML.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/resources/CSS/style.css").toExternalForm());
 			primaryStage.setTitle("My title");
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
-			
+
 		}
-		
+
 	}
 
 }
