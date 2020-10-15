@@ -16,3 +16,6 @@
 		-fx-font-weight: bold;
 
 }
+#test {
+	-fx-background-image : url("kirito.png");
+}

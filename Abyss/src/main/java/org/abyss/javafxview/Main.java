@@ -38,6 +38,7 @@ public class Main extends Application {
 		try {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("/resources/FXML/FXML.fxml"));
+			root.setId("test");
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/resources/CSS/style.css").toExternalForm());
 			primaryStage.setTitle("My title");

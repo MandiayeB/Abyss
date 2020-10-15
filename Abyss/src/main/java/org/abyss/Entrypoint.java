@@ -12,7 +12,7 @@ public class Entrypoint {
 		MainController m = new MainController();
 		CardsUtils c = new CardsUtils();
 
-		m.pioche();
+		m.piocher();
 		
 	}
 

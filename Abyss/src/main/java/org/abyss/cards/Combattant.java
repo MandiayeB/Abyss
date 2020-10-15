@@ -9,7 +9,9 @@ public class Combattant extends Cards {
 	private String element;
 	
 	public int getAtt() {
+		
 		return att;
+		
 	}
 	public Combattant(String name, ImageView image, int att, int hp, String element) {
 		// Constructeur de la carte Combattant
