@@ -19,16 +19,45 @@ public class MainController implements Initializable {
 	private List<Cards> deck;
 	@FXML
 	private ImageView imageZoom;
+	@FXML
+	private ImageView carte0;
+	@FXML
+	private ImageView carte1;
+	@FXML
+	private ImageView carte2;
+	@FXML
+	private ImageView carte3;
+	@FXML
+	private ImageView carte4;
+	@FXML
+	private ImageView ennemyCard0;
+	@FXML
+	private ImageView ennemyCard1;
+	@FXML
+	private ImageView ennemyCard2;
+	@FXML
+	private ImageView ennemyCard3;
+	@FXML
+	private ImageView ennemyCard4;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		deck = CardsUtils.getCardsGame();
 		hand = new ArrayList<>();
-		imageZoom = new ImageView();
+		imageZoom.setImage(new Image("/resources/CSS/yugi.jpg"));
+		carte0.setImage(new Image("/resources/CSS/yugi.jpg"));
+		carte1.setImage(new Image("/resources/CSS/yugi1.jpg"));
+		carte2.setImage(new Image("/resources/CSS/yugi2.jpg"));
+		carte3.setImage(new Image("/resources/CSS/yugi3.jpg"));
+		carte4.setImage(new Image("/resources/CSS/yugi4.jpg"));
+		ennemyCard0.setImage(new Image("/resources/CSS/dos.jpg"));
+		ennemyCard1.setImage(new Image("/resources/CSS/dos.jpg"));
+		ennemyCard2.setImage(new Image("/resources/CSS/dos.jpg"));
+		ennemyCard3.setImage(new Image("/resources/CSS/dos.jpg"));
+		ennemyCard4.setImage(new Image("/resources/CSS/dos.jpg"));
+
 	
-//		"/../../../../resources/resources/CSS/kirito.png"
-		
 	}
 
 	public void piocher() {
@@ -56,10 +85,5 @@ public class MainController implements Initializable {
 		}
 		
 	}
-
-//	public void fillHand() {
-//		hand.add(allCardsGame.get(0));
-//		myMessage.setText(allCardsGame.get(0).getName() + "piochée");
-//	}
 
 }
