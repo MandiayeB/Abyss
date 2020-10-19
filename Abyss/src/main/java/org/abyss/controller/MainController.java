@@ -9,6 +9,7 @@ import org.abyss.cards.Cards;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -61,6 +62,8 @@ public class MainController implements Initializable {
 	private ImageView ally3;
 	@FXML
 	private ImageView ally4;
+	@FXML
+	private Label allyHP;
 	
 	private List<Cards> allyBoard;
 	private List<Cards> ennemyBoard;
