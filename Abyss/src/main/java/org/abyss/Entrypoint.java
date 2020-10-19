@@ -10,10 +10,8 @@ public class Entrypoint {
 	public static void main(String[] args) {
 		
 		MainController m = new MainController();
-		CardsUtils c = new CardsUtils();
 
-		m.piocher();
-		
+		m.tour();
 	}
 
 }
