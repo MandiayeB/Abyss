@@ -56,7 +56,7 @@
             </GridPane>
          </center>
          <left>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Fin de tour" BorderPane.alignment="CENTER">
+            <Button fx:id="phase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tour" prefHeight="50.0" prefWidth="200.0" text="Commencer !" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="50.0" right="45.0" />
                </BorderPane.margin>
