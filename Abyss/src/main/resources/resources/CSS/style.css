@@ -19,3 +19,7 @@
 #test {
 	-fx-background-image : url("kirito.png");
 }
+
+#board {
+	-fx-background-image : url("board.jpg");
+}
