@@ -1,6 +1,6 @@
 package org.abyss.cards;
 
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 public class Combattant extends Cards {
 	
@@ -13,7 +13,8 @@ public class Combattant extends Cards {
 		return att;
 		
 	}
-	public Combattant(String name, ImageView image, int att, int hp, String element) {
+	
+	public Combattant(String name, Image image, int att, int hp, String element) {
 		// Constructeur de la carte Combattant
 		
 		super("combattant", name, image);
