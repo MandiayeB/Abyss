@@ -24,16 +24,6 @@ import javafx.scene.paint.Color;
 public class MainController implements Initializable {
 
 	@FXML
-	private List<Cards> hand;
-	@FXML
-	private List<Cards> ennemyHand;
-	@FXML
-	private List<Cards> ennemyDeck;
-	@FXML
-	private List<Cards> deck;
-	@FXML
-	private Phase moment;
-	@FXML
 	private Button phase;
 	@FXML
 	private ImageView imageZoom;
@@ -72,26 +62,62 @@ public class MainController implements Initializable {
 	@FXML
 	private ImageView ally4;
 	@FXML
-	private Label allyHP;
-	
+	private Label allyHp;
+	@FXML
+	private Label ennemyHp;
+
+	private List<Cards> hand;
+	private List<Cards> ennemyHand;
+	private List<Cards> ennemyDeck;
+	private List<Cards> deck;
+	private Phase tour;
 	private List<Cards> allyBoard;
 	private List<Cards> ennemyBoard;
 	private Cards draggedCard;
+	private int draggedNumber;
+	private int allyPv;
+	private int ennemyPv;
+	ArrayList<ImageView> listImage;
+	ArrayList<ImageView> listImage2;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		deck = CardsUtils.getCardsGame();
+		ennemyDeck = CardsUtils.getCardsGame();
 		hand = new ArrayList<>();
-		moment = Phase.TourEnnemie;
+		ennemyHand = new ArrayList<>();
+		tour = Phase.TourEnnemi;
 		allyBoard = CardsUtils.fillBoard();
 		ennemyBoard = CardsUtils.fillBoard();
+		allyPv = 100;
+		ennemyPv = 100;
+		listImage = new ArrayList<>();
+		listImage.add(carte0);
+		listImage.add(carte1);
+		listImage.add(carte2);
+		listImage.add(carte3);
+		listImage.add(carte4);
+		listImage2 = new ArrayList<>();
+		listImage2.add(ennemyCard0);
+		listImage2.add(ennemyCard1);
+		listImage2.add(ennemyCard2);
+		listImage2.add(ennemyCard3);
+		listImage2.add(ennemyCard4);
+		
 
 		deckAlly.setImage(new Image("/resources/CSS/dos.jpg"));
 		deckEnnemy.setImage(new Image("/resources/CSS/dos.jpg"));
 
 		piocher();
 		afficherHand();
+		afficherHp();
+	}
+
+	public void afficherHp() {
+
+		allyHp.setText(Integer.toString(allyPv));
+		ennemyHp.setText(Integer.toString(ennemyPv));
 
 	}
 
@@ -101,31 +127,30 @@ public class MainController implements Initializable {
 
 			hand.add(deck.get(0)); // pioche la première carte du deck
 			deck.remove(0);
+			
 		}
-	}
+		
+		while (ennemyHand.size() < 5) { // Pioche jusqu'à ce que la main soit pleine
 
-	public void jouer() {
-
-		for (int i = 0; i < 4; i++) {
-
-			System.out.println("joue ca : " + hand.get(i));
-
+			ennemyHand.add(ennemyDeck.get(0)); // pioche la première carte du deck
+			ennemyDeck.remove(0);
+			
 		}
-
+		
 	}
 
 	public void afficherHand() {
 
-		carte0.setImage(hand.get(0).getImage());
-		carte1.setImage(hand.get(1).getImage());
-		carte2.setImage(hand.get(2).getImage());
-		carte3.setImage(hand.get(3).getImage());
-		carte4.setImage(hand.get(4).getImage());
-		ennemyCard0.setImage(new Image("/resources/CSS/dos.jpg"));
-		ennemyCard1.setImage(new Image("/resources/CSS/dos.jpg"));
-		ennemyCard2.setImage(new Image("/resources/CSS/dos.jpg"));
-		ennemyCard3.setImage(new Image("/resources/CSS/dos.jpg"));
-		ennemyCard4.setImage(new Image("/resources/CSS/dos.jpg"));
+		int index = 0;
+		for (ImageView v : listImage) {
+			v.setImage(hand.get(index).getImage());
+			index++;
+		}
+		index = 0;
+		for (ImageView w : listImage2) {
+			w.setImage(new Image("/resources/CSS/dos.jpg"));
+			index++;
+		}
 
 	}
 
@@ -154,11 +179,11 @@ public class MainController implements Initializable {
 	public void dragDetected(MouseEvent event) { // Je commence à transporter la carte
 
 		Node node = (Node) event.getSource();
-		String source = event.getPickResult().getIntersectedNode().getId(); // Je récupère l'ID de la carte
+		String source = (((Node) event.getSource()).getId()).toString(); // Je récupère l'ID de la carte
 		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1))); // Je prend le dernier
 																							// élément de l'ID que je
 																							// convertis en String puis
-																							// en int
+		draggedNumber = number;																			// en int
 		draggedCard = hand.get(number);
 
 		Dragboard db = node.startDragAndDrop(TransferMode.MOVE);
@@ -173,7 +198,7 @@ public class MainController implements Initializable {
 
 	public void dragOver(DragEvent event) { // J'annonce que je veux transporter la carte
 
-		if (event.getDragboard().hasImage()) {
+		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
 
 			event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
 
@@ -185,23 +210,26 @@ public class MainController implements Initializable {
 	public void dragEntered(DragEvent event) { // Je montre à l'utilisateur sur quelle case il s'apprête à poser la
 												// carte
 
-		if (event.getDragboard().hasImage()) {
+		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
 
 			((ImageView) event.getSource()).setImage(new Image("/resources/CSS/dos.jpg"));
 
 		}
 
 		event.consume();
+		
 	}
 
 	public void dragExited(DragEvent event) { // Je supprime l'image si l'utilisateur quitte la case
 
-		if (!event.isDropCompleted()) {
+		
+			if (!event.isDropCompleted() && allyBoard.get(carteVerif(event)) == null) {
 
-			((ImageView) event.getSource()).setImage(null);
-			event.consume();
+				((ImageView) event.getSource()).setImage(null);
+				event.consume();
 
-		}
+			}
+			
 	}
 
 	public void dragDropped(DragEvent event) { // J'assigne la carte à la case choisie
@@ -209,66 +237,66 @@ public class MainController implements Initializable {
 		Dragboard db = event.getDragboard();
 		boolean success = false;
 
-		String source = event.getPickResult().getIntersectedNode().getId();
-		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
-
-		if (db.hasImage()) {
+		if (db.hasImage() && allyBoard.get(carteVerif(event)) == null) {
 
 			((ImageView) event.getSource()).setImage(draggedCard.getImage());
-			((ImageView) event.getSource()).setDisable(true);
-			allyBoard.set(number, draggedCard);
-			System.out.println(allyBoard);
+			allyBoard.set(carteVerif(event), draggedCard);
+			hand.set(draggedNumber, null);
+            listImage.get(draggedNumber).setImage(null);
+            afficherHand();
 			success = true;
 
 		}
 
 		event.setDropCompleted(success);
 		event.consume();
+		
 	}
 
-//	public void dragDone(DragEvent event) {
-//	        /* the drag and drop gesture ended */
-//	        /* if the data was successfully moved, clear it */
-//	        if (event.getTransferMode() == TransferMode.MOVE) {
-//	            carte0.setImage(null);
-//	        }
-//	        event.consume();
-//	}
+	public int carteVerif(DragEvent event) {
+
+		String source = (((Node) event.getSource()).getId()).toString();
+		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
+		return number;
+
+	}
 
 	public void tour() {
 		int pv = 100;
 		int attack = 10;
 
 //		Phase next = Phase.values()[i.ordinal() + 1];
-		switch (moment) {
+		switch (tour) {
 
-		case TourEnnemie:
-			moment = Phase.PhaseDeStrategie;
+		case TourEnnemi:
+			tour = Phase.PhaseDeStrategie;
 			phase.setText("Tour ennemie");
-			System.out.println(moment);
+			System.out.println(tour);
 			System.out.println("-----------------------");
 			break;
 		case PhaseDeStrategie:
-			moment = Phase.PhaseDeCombat;
+			tour = Phase.PhaseDeCombat;
 			phase.setText("Tour de strategie");
-			System.out.println(moment);
+			System.out.println(tour);
 			System.out.println("-----------------------");
 			break;
 		case PhaseDeCombat:
-			moment = Phase.PhaseDeRetrait;
+			tour = Phase.PhaseDeRetrait;
 			phase.setText("Phase de Combat");
 			pv = (pv - attack);
-			System.out.println(moment);
+			System.out.println(tour);
 			System.out.println(pv + "Le nombre de pv restant");
 			System.out.println("-----------------------");
 			break;
 		case PhaseDeRetrait:
-			moment = Phase.TourEnnemie;
+			tour = Phase.TourEnnemi;
 			phase.setText("Retrait !");
-			System.out.println(moment);
+			System.out.println(tour);
 			System.out.println("-----------------------");
 			break;
 
 		}
+		
 	}
+	
 }
