@@ -58,7 +58,7 @@
             </GridPane>
          </center>
          <left>
-            <Button fx:id="phase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tour" prefHeight="50.0" prefWidth="200.0" text="Commencer !" BorderPane.alignment="CENTER">
+            <Button fx:id="phase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tour" onMousePressed="#Button" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: Transparant; -fx-border-color: Transparent;" text="Commencer !" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="50.0" right="45.0" />
                </BorderPane.margin>

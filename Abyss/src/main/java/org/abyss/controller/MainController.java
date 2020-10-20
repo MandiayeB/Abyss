@@ -90,6 +90,7 @@ public class MainController implements Initializable {
 	private int draggedNumber;
 	private int allyPv;
 	private int ennemyPv;
+	private boolean disable;
 	ArrayList<ImageView> listImage1;
 	ArrayList<ImageView> listImage2;
 	ArrayList<ImageView> listImage3;
@@ -103,6 +104,7 @@ public class MainController implements Initializable {
 		hand = CardsUtils.fillBoard();
 		ennemyHand = CardsUtils.fillBoard();
 		tour = Phase.TourEnnemi;
+		disable = false;
 		allyBoard = CardsUtils.fillBoard();
 		ennemyBoard = CardsUtils.fillBoard();
 		allyPv = 1000;
@@ -214,6 +216,16 @@ public class MainController implements Initializable {
 
 		}
 
+	}
+	
+	public void Button () {
+		
+		if(disable==true) {
+			phase.setDisable(true);
+		}
+		else {
+			phase.setDisable(false);
+		}
 	}
 
 	public void afficherBoard() {
@@ -393,9 +405,12 @@ public class MainController implements Initializable {
 		switch (tour) {
 
 		case TourEnnemi:
-
+			
+			
 			phase.setText("Tour Ennemi"); // On l'affiche 
-										//Vu qu'il passe dans un nouveau Thread Affiche le setText
+			disable = true;
+			Button();
+			//Vu qu'il passe dans un nouveau Thread Affiche le setText
 			new Thread(new Runnable() { // On utilise un nouveau Thread 
                 @Override
                 public void run() {
@@ -407,6 +422,8 @@ public class MainController implements Initializable {
                             public void run() {
                             	phase.setText("Tour de Strategie");
 //								System.out.println(tour);
+                    			disable = false;
+                    			Button();
                             }
                         });
                     } catch (InterruptedException e) {
@@ -427,26 +444,30 @@ public class MainController implements Initializable {
 			break;
 
 		case PhaseDeCombat:
-
-			phase.setText("Phase de Combat"); // On affiche grâce au Thread en bas
-				new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage du prochain SetText
-	                @Override
-	                public void run() {
-	                    try {
-	                    	
-	                    	Thread.sleep(2000); 
-	                        Platform.runLater(new Runnable() {
-	                            @Override
-	                            public void run() {
-	                            	phase.setText("Retrait !");
-	//								System.out.println(tour);
-	                            }
-	                        });
-	                    } catch (InterruptedException e) {
-	                        e.printStackTrace();
-	                    }
-	                }
-	            }).start();
+			
+			disable = true;
+			phase.setText("Phase de Combat"); // On affiche grave au Thread en bas
+			Button();
+			new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage du prochain SetText
+                @Override
+                public void run() {
+                    try {
+                    	
+                    	Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse puisse jouer);
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                            	phase.setText("Retrait !"); // Ca affiche Retrait
+                    			disable = false;
+                    			Button();
+//								System.out.println(tour);
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
 			
 			try {
 				Thread.sleep(1000); // Freeze au moment du combat
@@ -457,13 +478,16 @@ public class MainController implements Initializable {
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeRetrait;
+			
 
 		case PhaseDeRetrait:
 			
+
 			combat();		
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.TourEnnemi;
+			
 			break;
 		}
 		

@@ -23,3 +23,8 @@
 #board {
 	-fx-background-image : url("board.jpg");
 }
+#phase {
+	-fx-background-image: url("Button.png");
+	position: relative;
+	top:110px;
+}
