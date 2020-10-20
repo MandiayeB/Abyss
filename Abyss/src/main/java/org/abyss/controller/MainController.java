@@ -156,7 +156,6 @@ public class MainController implements Initializable {
 
 				hand.set(i, deck.get(0)); // pioche la première carte du deck
 				deck.remove(0);
-				System.out.println("AHAHAHAHAHAH");
 
 			}
 			
@@ -168,7 +167,6 @@ public class MainController implements Initializable {
 			}
 
 		}
-		System.out.println(hand);
 		afficherHand();
 
 	}
