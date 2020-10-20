@@ -9,7 +9,6 @@ import org.abyss.cards.Cards;
 import org.abyss.cards.Combattant;
 
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -23,7 +22,6 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
 public class MainController implements Initializable {
@@ -403,11 +401,11 @@ public class MainController implements Initializable {
                 public void run() {
                     try {
                     	
-                    	Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse puisse jouer);
+                    	Thread.sleep(2000); 
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                            	phase.setText("Tour de Strategie"); // Affiche le tour de Strategie apres avoir attendu le reveille du Thread
+                            	phase.setText("Tour de Strategie");
 //								System.out.println(tour);
                             }
                         });
@@ -415,7 +413,7 @@ public class MainController implements Initializable {
                         e.printStackTrace();
                     }
                 }
-            }).start(); // Lance le Threads
+            }).start(); // Lance le Thread
 			// Platform.runLater(() ->
 
 			tour = Phase.PhaseDeStrategie;
@@ -430,25 +428,25 @@ public class MainController implements Initializable {
 
 		case PhaseDeCombat:
 
-			phase.setText("Phase de Combat"); // On affiche grave au Thread en bas
-			new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage du prochain SetText
-                @Override
-                public void run() {
-                    try {
-                    	
-                    	Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse puisse jouer);
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                            	phase.setText("Retrait !"); // Ca affiche Retrait
-//								System.out.println(tour);
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+			phase.setText("Phase de Combat"); // On affiche grâce au Thread en bas
+				new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage du prochain SetText
+	                @Override
+	                public void run() {
+	                    try {
+	                    	
+	                    	Thread.sleep(2000); 
+	                        Platform.runLater(new Runnable() {
+	                            @Override
+	                            public void run() {
+	                            	phase.setText("Retrait !");
+	//								System.out.println(tour);
+	                            }
+	                        });
+	                    } catch (InterruptedException e) {
+	                        e.printStackTrace();
+	                    }
+	                }
+	            }).start();
 			
 			try {
 				Thread.sleep(1000); // Freeze au moment du combat
