@@ -92,6 +92,7 @@ public class MainController implements Initializable {
 	private int draggedNumber;
 	private int allyPv;
 	private int ennemyPv;
+	private boolean disable;
 	ArrayList<ImageView> listImage1;
 	ArrayList<ImageView> listImage2;
 	ArrayList<ImageView> listImage3;
@@ -105,6 +106,7 @@ public class MainController implements Initializable {
 		hand = CardsUtils.fillBoard();
 		ennemyHand = CardsUtils.fillBoard();
 		tour = Phase.TourEnnemi;
+		disable = false;
 		allyBoard = CardsUtils.fillBoard();
 		ennemyBoard = CardsUtils.fillBoard();
 		allyPv = 1000;
@@ -218,6 +220,16 @@ public class MainController implements Initializable {
 
 		}
 
+	}
+	
+	public void Button () {
+		
+		if(disable==true) {
+			phase.setDisable(true);
+		}
+		else {
+			phase.setDisable(false);
+		}
 	}
 
 	public void afficherBoard() {
@@ -397,9 +409,12 @@ public class MainController implements Initializable {
 		switch (tour) {
 
 		case TourEnnemi:
-
+			
+			
 			phase.setText("Tour Ennemi"); // On l'affiche 
-										//Vu qu'il passe dans un nouveau Thread Affiche le setText
+			disable = true;
+			Button();
+			//Vu qu'il passe dans un nouveau Thread Affiche le setText
 			new Thread(new Runnable() { // On utilise un nouveau Thread 
                 @Override
                 public void run() {
@@ -411,6 +426,8 @@ public class MainController implements Initializable {
                             public void run() {
                             	phase.setText("Tour de Strategie"); // Affiche le tour de Strategie apres avoir attendu le reveille du Thread
 //								System.out.println(tour);
+                    			disable = false;
+                    			Button();
                             }
                         });
                     } catch (InterruptedException e) {
@@ -425,14 +442,17 @@ public class MainController implements Initializable {
 
 		case PhaseDeStrategie:
 			
+
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeCombat;
 			break;
 
 		case PhaseDeCombat:
-
+			
+			disable = true;
 			phase.setText("Phase de Combat"); // On affiche grave au Thread en bas
+			Button();
 			new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage du prochain SetText
                 @Override
                 public void run() {
@@ -443,6 +463,8 @@ public class MainController implements Initializable {
                             @Override
                             public void run() {
                             	phase.setText("Retrait !"); // Ca affiche Retrait
+                    			disable = false;
+                    			Button();
 //								System.out.println(tour);
                             }
                         });
@@ -461,13 +483,16 @@ public class MainController implements Initializable {
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeRetrait;
+			
 
 		case PhaseDeRetrait:
 			
+
 			combat();		
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.TourEnnemi;
+			
 			break;
 		}
 		
