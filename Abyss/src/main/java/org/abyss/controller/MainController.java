@@ -393,15 +393,13 @@ public class MainController implements Initializable {
 	}
 
 	public void tour(){
-		
-		boolean rerun = false;
 
 		switch (tour) {
 
 		case TourEnnemi:
 
-			phase.setText("Tour Ennemi");
-			
+			phase.setText("Tour Ennemi"); // On l'affiche 
+										//Vu qu'il passe dans un nouveau Thread Affiche le setText
 			new Thread(new Runnable() { // On utilise un nouveau Thread 
                 @Override
                 public void run() {
@@ -411,7 +409,7 @@ public class MainController implements Initializable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                            	phase.setText("Tour de Strategie"); // Ca affiche tour ennemi
+                            	phase.setText("Tour de Strategie"); // Affiche le tour de Strategie apres avoir attendu le reveille du Thread
 //								System.out.println(tour);
                             }
                         });
@@ -419,7 +417,7 @@ public class MainController implements Initializable {
                         e.printStackTrace();
                     }
                 }
-            }).start();
+            }).start(); // Lance le Threads
 			// Platform.runLater(() ->
 
 			tour = Phase.PhaseDeStrategie;
@@ -427,17 +425,15 @@ public class MainController implements Initializable {
 
 		case PhaseDeStrategie:
 			
-//			phase.setText("Tour de Strategie"); // Ca affiche tour ennemi
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeCombat;
-			// phase.setText("Phase de Combat");
 			break;
 
 		case PhaseDeCombat:
 
-			phase.setText("Phase de Combat"); // S'affiche plus tard
-			new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage
+			phase.setText("Phase de Combat"); // On affiche grave au Thread en bas
+			new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage du prochain SetText
                 @Override
                 public void run() {
                     try {
@@ -446,7 +442,7 @@ public class MainController implements Initializable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                            	phase.setText("Retrait !"); // Ca affiche tour ennemi
+                            	phase.setText("Retrait !"); // Ca affiche Retrait
 //								System.out.println(tour);
                             }
                         });
@@ -455,25 +451,22 @@ public class MainController implements Initializable {
                     }
                 }
             }).start();
-//			Thread.sleep(1000);
+			
+			try {
+				Thread.sleep(1000); // Freeze au moment du combat
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeRetrait;
-			rerun = true;
 
 		case PhaseDeRetrait:
 			
-			combat();
-//			phase.setText("Retrait !");
-			
+			combat();		
 			System.out.println(tour);
 			System.out.println("-----------------------");
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
 			tour = Phase.TourEnnemi;
 			break;
 		}
