@@ -318,7 +318,7 @@ public class MainController implements Initializable {
 			System.out.println("-----------------------");
 //			Thread.sleep(1000);
 			tour = Phase.TourEnnemi;
-			retrait();
+			retrait(); // Permet de remettre les cartes dans le deck et qu'il pioche juste apres
 			break;
 		}
 
