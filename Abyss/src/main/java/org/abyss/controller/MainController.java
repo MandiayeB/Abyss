@@ -390,26 +390,42 @@ public class MainController implements Initializable {
 
 	}
 
-	public void tour() throws InterruptedException {
+	public void tour(){
+		
+		boolean rerun = false;
 
 		switch (tour) {
 
 		case TourEnnemi:
 
+			phase.setText("Tour Ennemi");
+			
+			new Thread(new Runnable() { // On utilise un nouveau Thread 
+                @Override
+                public void run() {
+                    try {
+                    	
+                    	Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse puisse jouer);
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                            	phase.setText("Tour de Strategie"); // Ca affiche tour ennemi
+//								System.out.println(tour);
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
 			// Platform.runLater(() ->
-			phase.setText("Tour ennemi"); // Ca affiche tour ennemi
-			System.out.println(tour);
-			System.out.println("-----------------------");
-			// Thread.sleep(1000); // fait dormir le Thread (on le prend comme un timeur
-			// pour que le bot puisse jouer);
+
 			tour = Phase.PhaseDeStrategie;
 			retrait();
-			break;
-		// phase.setText("Tour de strategie");
 
 		case PhaseDeStrategie:
-
-			phase.setText("Tour de strategie");
+			
+//			phase.setText("Tour de Strategie"); // Ca affiche tour ennemi
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeCombat;
@@ -418,24 +434,58 @@ public class MainController implements Initializable {
 
 		case PhaseDeCombat:
 
-			phase.setText("Phase de Combat");
-			// Thread.sleep(1000);
+			phase.setText("Phase de Combat"); // S'affiche plus tard
+			new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage
+                @Override
+                public void run() {
+                    try {
+                    	
+                    	Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse puisse jouer);
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                            	phase.setText("Retrait !"); // Ca affiche tour ennemi
+//								System.out.println(tour);
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+//			Thread.sleep(1000);
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeRetrait;
-			break;
+			rerun = true;
 
 		case PhaseDeRetrait:
-
+			
 			combat();
-			phase.setText("Retrait !");
+//			phase.setText("Retrait !");
+			
 			System.out.println(tour);
 			System.out.println("-----------------------");
-			// Thread.sleep(1000);
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			tour = Phase.TourEnnemi;
 			break;
-
 		}
+		
+		/////////////////////////////// TEST //////////////////////////
+//		if (rerun == true) {
+//			try {
+//				Thread.sleep(1000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			rerun = false;
+//			tour();
+//		}
 
 	}
 
