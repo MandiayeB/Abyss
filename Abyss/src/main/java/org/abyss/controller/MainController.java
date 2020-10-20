@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import org.abyss.cards.Cards;
+import org.abyss.cards.Combattant;
 
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -30,17 +31,21 @@ public class MainController implements Initializable {
 	@FXML
 	private Button phase;
 	@FXML
+	private ImageView allyDeck;
+	@FXML
+	private ImageView opponentDeck;
+	@FXML
 	private ImageView imageZoom;
 	@FXML
-	private ImageView carte0;
+	private ImageView allyCard0;
 	@FXML
-	private ImageView carte1;
+	private ImageView allyCard1;
 	@FXML
-	private ImageView carte2;
+	private ImageView allyCard2;
 	@FXML
-	private ImageView carte3;
+	private ImageView allyCard3;
 	@FXML
-	private ImageView carte4;
+	private ImageView allyCard4;
 	@FXML
 	private ImageView ennemyCard0;
 	@FXML
@@ -52,10 +57,6 @@ public class MainController implements Initializable {
 	@FXML
 	private ImageView ennemyCard4;
 	@FXML
-	private ImageView deckAlly;
-	@FXML
-	private ImageView deckEnnemy;
-	@FXML
 	private ImageView ally0;
 	@FXML
 	private ImageView ally1;
@@ -65,6 +66,16 @@ public class MainController implements Initializable {
 	private ImageView ally3;
 	@FXML
 	private ImageView ally4;
+	@FXML
+	private ImageView ennemy0;
+	@FXML
+	private ImageView ennemy1;
+	@FXML
+	private ImageView ennemy2;
+	@FXML
+	private ImageView ennemy3;
+	@FXML
+	private ImageView ennemy4;
 	@FXML
 	private Label allyHp;
 	@FXML
@@ -81,39 +92,52 @@ public class MainController implements Initializable {
 	private int draggedNumber;
 	private int allyPv;
 	private int ennemyPv;
-	ArrayList<ImageView> listImage;
+	ArrayList<ImageView> listImage1;
 	ArrayList<ImageView> listImage2;
+	ArrayList<ImageView> listImage3;
+	ArrayList<ImageView> listImage4;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
 		deck = CardsUtils.getCardsGame();
 		ennemyDeck = CardsUtils.getCardsGame();
-		hand = new ArrayList<>();
-		ennemyHand = new ArrayList<>();
+		hand = CardsUtils.fillBoard();
+		ennemyHand = CardsUtils.fillBoard();
 		tour = Phase.TourEnnemi;
 		allyBoard = CardsUtils.fillBoard();
 		ennemyBoard = CardsUtils.fillBoard();
-		allyPv = 100;
-		ennemyPv = 100;
-		listImage = new ArrayList<>();
-		listImage.add(carte0);
-		listImage.add(carte1);
-		listImage.add(carte2);
-		listImage.add(carte3);
-		listImage.add(carte4);
+		allyPv = 1000;
+		ennemyPv = 1000;
+		listImage1 = new ArrayList<>();
+		listImage1.add(allyCard0);
+		listImage1.add(allyCard1);
+		listImage1.add(allyCard2);
+		listImage1.add(allyCard3);
+		listImage1.add(allyCard4);
 		listImage2 = new ArrayList<>();
 		listImage2.add(ennemyCard0);
 		listImage2.add(ennemyCard1);
 		listImage2.add(ennemyCard2);
 		listImage2.add(ennemyCard3);
 		listImage2.add(ennemyCard4);
+		listImage3 = new ArrayList<>();
+		listImage3.add(ally0);
+		listImage3.add(ally1);
+		listImage3.add(ally2);
+		listImage3.add(ally3);
+		listImage3.add(ally4);
+		listImage4 = new ArrayList<>();
+		listImage4.add(ennemy0);
+		listImage4.add(ennemy1);
+		listImage4.add(ennemy2);
+		listImage4.add(ennemy3);
+		listImage4.add(ennemy4);
 
-		deckAlly.setImage(new Image("/resources/CSS/dos.jpg"));
-		deckEnnemy.setImage(new Image("/resources/CSS/dos.jpg"));
+		allyDeck.setImage(new Image("/resources/CSS/dos.jpg"));
+		opponentDeck.setImage(new Image("/resources/CSS/dos.jpg"));
 
 		piocher();
-		afficherHand();
 		afficherHp();
 	}
 
@@ -126,49 +150,140 @@ public class MainController implements Initializable {
 
 	public void piocher() {
 
-		while (hand.size() < 5) { // Pioche jusqu'à ce que la main soit pleine
+		for (int i = 0; i < hand.size(); i++) { // Pioche jusqu'à ce que la main soit pleine
 
-			hand.add(deck.get(0)); // pioche la première carte du deck
-			deck.remove(0);
+			if (hand.get(i) == null) {
+
+				hand.set(i, deck.get(0)); // pioche la première carte du deck
+				deck.remove(0);
+				System.out.println("AHAHAHAHAHAH");
+
+			}
+			
+			if (ennemyHand.get(i) == null) {
+				
+				ennemyHand.set(i, ennemyDeck.get(0)); // pioche la première carte du deck ennemi
+				ennemyDeck.remove(0);
+				
+			}
 
 		}
-
-		while (ennemyHand.size() < 5) { // Pioche jusqu'à ce que la main soit pleine
-
-			ennemyHand.add(ennemyDeck.get(0)); // pioche la première carte du deck
-			ennemyDeck.remove(0);
-
-		}
+		System.out.println(hand);
 		afficherHand();
+
 	}
 
 	public void retrait() {
+
 		for (int i = 0; i < allyBoard.size(); i++) {
+
 			if (allyBoard.get(i) != null) {
+
 				deck.add(allyBoard.get(i));
 				allyBoard.set(i, null);
+				listImage3.get(i).setImage(null);
+
 			}
+
 		}
+
 		piocher();
+		afficherBoard();
+		
 	}
 
 	public void afficherHand() {
 
 		int index = 0;
-		for (ImageView v : listImage) {
-			v.setImage(hand.get(index).getImage());
+		for (ImageView v : listImage1) {
+
+			if (hand.get(index) != null) {
+
+				v.setImage(hand.get(index).getImage());
+
+			}
 			index++;
+
 		}
+
 		index = 0;
 		for (ImageView w : listImage2) {
-			w.setImage(new Image("/resources/CSS/dos.jpg"));
+
+			if (hand.get(index) != null) {
+
+				w.setImage(new Image("/resources/CSS/dos.jpg"));
+
+			}
 			index++;
+
 		}
 
 	}
 
+	public void afficherBoard() {
+
+		for (int i = 0; i < allyBoard.size(); i++) {
+
+			if (allyBoard.get(i) != null) {
+
+				listImage3.get(i).setImage(allyBoard.get(i).getImage());
+
+			}
+
+		}
+
+		for (int i = 0; i < ennemyBoard.size(); i++) {
+
+			if (ennemyBoard.get(i) != null) {
+
+				listImage4.get(i).setImage(ennemyBoard.get(i).getImage());
+
+			}
+
+		}
+
+	}
+
+	public void combat() {
+
+		for (int i = 0; i < allyBoard.size(); i++) {
+
+			if (allyBoard.get(i) != null) {
+
+				Combattant carte1 = (Combattant) allyBoard.get(i);
+				if (ennemyBoard.get(i) != null) {
+
+					Combattant carte2 = (Combattant) ennemyBoard.get(i);
+					ennemyPv -= carte1.combat(carte2);
+					allyPv -= carte2.combat(carte1);
+
+				} else {
+
+					ennemyPv -= carte1.getAtt();
+
+				}
+
+			} else {
+
+				if (ennemyBoard.get(i) != null) {
+
+					Combattant carte2 = (Combattant) ennemyBoard.get(i);
+					allyPv -= carte2.getAtt();
+
+				}
+
+			}
+
+		}
+		afficherBoard();
+		afficherHp();
+
+	}
+
 	public void afficherCarte(MouseEvent event) {
+
 		if (tour == Phase.PhaseDeCombat) {
+
 			DropShadow borderGlow = new DropShadow();
 			borderGlow.setOffsetY(0f);
 			borderGlow.setOffsetX(0f);
@@ -177,7 +292,9 @@ public class MainController implements Initializable {
 			borderGlow.setHeight(70);
 			Node node = (Node) event.getSource();
 			node.setEffect(borderGlow);
+
 		}
+
 		imageZoom.setImage(((ImageView) event.getSource()).getImage());
 
 	}
@@ -195,13 +312,9 @@ public class MainController implements Initializable {
 		if (tour == Phase.PhaseDeCombat) {
 
 			Node node = (Node) event.getSource();
-			String source = (((Node) event.getSource()).getId()).toString(); // Je récupère l'ID de la carte
-			int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1))); // Je prend le dernier
-																								// élément de l'ID que
-																								// je
-																								// convertis en String
-																								// puis
-			draggedNumber = number; // en int
+			String source = (((Node) event.getSource()).getId()).toString();
+			int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
+			draggedNumber = number;
 			draggedCard = hand.get(number);
 
 			Dragboard db = node.startDragAndDrop(TransferMode.MOVE);
@@ -257,11 +370,11 @@ public class MainController implements Initializable {
 
 		if (db.hasImage() && allyBoard.get(carteVerif(event)) == null) {
 
-			((ImageView) event.getSource()).setImage(draggedCard.getImage());
 			allyBoard.set(carteVerif(event), draggedCard);
 			hand.set(draggedNumber, null);
-			listImage.get(draggedNumber).setImage(null);
+			listImage1.get(draggedNumber).setImage(null);
 			afficherHand();
+			afficherBoard();
 			success = true;
 
 		}
@@ -280,46 +393,50 @@ public class MainController implements Initializable {
 	}
 
 	public void tour() throws InterruptedException {
-		
+
 		switch (tour) {
 
 		case TourEnnemi:
+
 			// Platform.runLater(() ->
 			phase.setText("Tour ennemi"); // Ca affiche tour ennemi
 			System.out.println(tour);
 			System.out.println("-----------------------");
-			//Thread.sleep(1000); // fait dormir le Thread (on le prend comme un timeur pour que le bot puisse jouer);
+			// Thread.sleep(1000); // fait dormir le Thread (on le prend comme un timeur
+			// pour que le bot puisse jouer);
 			tour = Phase.PhaseDeStrategie;
+			retrait();
 			break;
-//			phase.setText("Tour de strategie");	
+		// phase.setText("Tour de strategie");
 
 		case PhaseDeStrategie:
 
-			tour = Phase.PhaseDeCombat;
 			phase.setText("Tour de strategie");
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeCombat;
-//			phase.setText("Phase de Combat");
+			// phase.setText("Phase de Combat");
 			break;
+
 		case PhaseDeCombat:
 
-			tour = Phase.PhaseDeRetrait;
 			phase.setText("Phase de Combat");
-//			Thread.sleep(1000);
+			// Thread.sleep(1000);
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeRetrait;
 			break;
+
 		case PhaseDeRetrait:
 
+			combat();
 			phase.setText("Retrait !");
 			System.out.println(tour);
 			System.out.println("-----------------------");
-//			Thread.sleep(1000);
+			// Thread.sleep(1000);
 			tour = Phase.TourEnnemi;
-			retrait();
 			break;
+
 		}
 
 	}

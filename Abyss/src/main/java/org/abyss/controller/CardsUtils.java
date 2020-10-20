@@ -49,6 +49,8 @@ public class CardsUtils {
 			liste.add(null);
 			
 		}
+		
 		return liste;
 	}
+	
 }
