@@ -17,14 +17,17 @@
 
 }
 #test {
-	-fx-background-image : url("kirito.png");
+	-fx-height: 100%;
+	-fx-background-image : url("background.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
 }
 
 #board {
 	-fx-background-image : url("board.jpg");
 }
+
 #phase {
 	-fx-background-image: url("Button.png");
-	position: relative;
-	top:110px;
 }

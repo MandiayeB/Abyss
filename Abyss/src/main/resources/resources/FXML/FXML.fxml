@@ -29,11 +29,26 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="ennemy0" fitHeight="225.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="ennemy1" fitHeight="225.0" fitWidth="225.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                  <ImageView fx:id="ennemy2" fitHeight="225.0" fitWidth="225.0" layoutX="235.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                  <ImageView fx:id="ennemy3" fitHeight="225.0" fitWidth="225.0" layoutX="460.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                  <ImageView fx:id="ennemy4" fitHeight="225.0" fitWidth="225.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                  <ImageView fx:id="ennemy0" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true">
+                     <GridPane.margin>
+                        <Insets left="37.0" />
+                     </GridPane.margin></ImageView>
+                  <ImageView fx:id="ennemy1" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="37.0" />
+                     </GridPane.margin></ImageView>
+                  <ImageView fx:id="ennemy2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                     <GridPane.margin>
+                        <Insets left="37.0" />
+                     </GridPane.margin></ImageView>
+                  <ImageView fx:id="ennemy3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets left="37.0" />
+                     </GridPane.margin></ImageView>
+                  <ImageView fx:id="ennemy4" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                     <GridPane.margin>
+                        <Insets left="37.0" />
+                     </GridPane.margin></ImageView>
                   <ImageView fx:id="ally0" fitHeight="225.0" fitWidth="150.0" layoutX="910.0" layoutY="10.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="37.0" />
@@ -58,7 +73,7 @@
             </GridPane>
          </center>
          <left>
-            <Button fx:id="phase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tour" onMousePressed="#Button" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: Transparant; -fx-border-color: Transparent;" text="Commencer !" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Button fx:id="phase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tour" onMousePressed="#button" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: Transparent;" text="Commencer !" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="50.0" right="45.0" />
                </BorderPane.margin>

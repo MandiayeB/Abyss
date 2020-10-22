@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import org.abyss.cards.Cards;
 import org.abyss.cards.Combattant;
+import org.abyss.cards.Sorts;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -35,45 +36,45 @@ public class MainController implements Initializable {
 	@FXML
 	private ImageView imageZoom;
 	@FXML
-	private ImageView allyCard0;
+	private ImageView allyCard0; // Main alliée
 	@FXML
-	private ImageView allyCard1;
+	private ImageView allyCard1; // | |
 	@FXML
-	private ImageView allyCard2;
+	private ImageView allyCard2; // | |
 	@FXML
-	private ImageView allyCard3;
+	private ImageView allyCard3; // | |
 	@FXML
-	private ImageView allyCard4;
+	private ImageView allyCard4; // <------->
 	@FXML
-	private ImageView ennemyCard0;
+	private ImageView ennemyCard0; // Main ennemi
 	@FXML
-	private ImageView ennemyCard1;
+	private ImageView ennemyCard1; // | |
 	@FXML
-	private ImageView ennemyCard2;
+	private ImageView ennemyCard2; // | |
 	@FXML
-	private ImageView ennemyCard3;
+	private ImageView ennemyCard3; // | |
 	@FXML
-	private ImageView ennemyCard4;
+	private ImageView ennemyCard4; // <------->
 	@FXML
-	private ImageView ally0;
+	private ImageView ally0; // Terrain allié
 	@FXML
-	private ImageView ally1;
+	private ImageView ally1; // | |
 	@FXML
-	private ImageView ally2;
+	private ImageView ally2; // | |
 	@FXML
-	private ImageView ally3;
+	private ImageView ally3; // | |
 	@FXML
-	private ImageView ally4;
+	private ImageView ally4; // <------->
 	@FXML
-	private ImageView ennemy0;
+	private ImageView ennemy0; // Terrain ennemi
 	@FXML
-	private ImageView ennemy1;
+	private ImageView ennemy1; // | |
 	@FXML
-	private ImageView ennemy2;
+	private ImageView ennemy2; // | |
 	@FXML
-	private ImageView ennemy3;
+	private ImageView ennemy3; // | |
 	@FXML
-	private ImageView ennemy4;
+	private ImageView ennemy4; // <------->
 	@FXML
 	private Label allyHp;
 	@FXML
@@ -152,18 +153,32 @@ public class MainController implements Initializable {
 
 		for (int i = 0; i < hand.size(); i++) { // Pioche jusqu'à ce que la main soit pleine
 
+			if (searchBoard(hand) == 10) {
+
+				break; // Si la main est pleine on arrête la boucle
+
+			}
+
 			if (hand.get(i) == null) {
 
 				hand.set(i, deck.get(0)); // pioche la première carte du deck
-				deck.remove(0);
+				deck.remove(0); // supprime la carte du deck
 
 			}
-			
+
+		}
+
+		for (int i = 0; i < ennemyHand.size(); i++) { // Pareil pour la main ennemi
+
+			if (searchBoard(ennemyHand) == 10) {
+				break;
+			}
+
 			if (ennemyHand.get(i) == null) {
-				
-				ennemyHand.set(i, ennemyDeck.get(0)); // pioche la première carte du deck ennemi
+
+				ennemyHand.set(i, ennemyDeck.get(0));
 				ennemyDeck.remove(0);
-				
+
 			}
 
 		}
@@ -177,9 +192,17 @@ public class MainController implements Initializable {
 
 			if (allyBoard.get(i) != null) {
 
-				deck.add(allyBoard.get(i));
-				allyBoard.set(i, null);
-				listImage3.get(i).setImage(null);
+				deck.add(allyBoard.get(i)); // On remet la carte dans le deck
+				allyBoard.set(i, null); // On supprime la carte du terrain
+				listImage3.get(i).setImage(null); // On supprime l'image de la carte du terrain
+
+			}
+
+			if (ennemyBoard.get(i) != null) {
+
+				ennemyDeck.add(ennemyBoard.get(i)); // Pareil pour l'ennemi
+				ennemyBoard.set(i, null);
+				listImage4.get(i).setImage(null);
 
 			}
 
@@ -187,7 +210,7 @@ public class MainController implements Initializable {
 
 		piocher();
 		afficherBoard();
-		
+
 	}
 
 	public void afficherHand() {
@@ -197,7 +220,11 @@ public class MainController implements Initializable {
 
 			if (hand.get(index) != null) {
 
-				v.setImage(hand.get(index).getImage());
+				v.setImage(hand.get(index).getImage()); // Affiche la main par rapport à la liste de cartes "hand"
+
+			} else {
+
+				v.setImage(null);
 
 			}
 			index++;
@@ -207,9 +234,13 @@ public class MainController implements Initializable {
 		index = 0;
 		for (ImageView w : listImage2) {
 
-			if (hand.get(index) != null) {
+			if (ennemyHand.get(index) != null) {
 
-				w.setImage(new Image("/resources/CSS/dos.jpg"));
+				w.setImage(new Image("/resources/CSS/dos.jpg")); // Pareil pour l'ennemi
+
+			} else {
+
+				w.setImage(null);
 
 			}
 			index++;
@@ -217,15 +248,21 @@ public class MainController implements Initializable {
 		}
 
 	}
-	
-	public void Button () {
-		
-		if(disable==true) {
+
+	public void button() {
+
+		if (disable == true) {
+
 			phase.setDisable(true);
+
 		}
+
 		else {
+
 			phase.setDisable(false);
+
 		}
+
 	}
 
 	public void afficherBoard() {
@@ -234,8 +271,8 @@ public class MainController implements Initializable {
 
 			if (allyBoard.get(i) != null) {
 
-				listImage3.get(i).setImage(allyBoard.get(i).getImage());
-
+				listImage3.get(i).setImage(allyBoard.get(i).getImage()); // Affiche le board par rapport
+																			// à la liste de cartes "allyBoard"
 			}
 
 		}
@@ -244,7 +281,7 @@ public class MainController implements Initializable {
 
 			if (ennemyBoard.get(i) != null) {
 
-				listImage4.get(i).setImage(ennemyBoard.get(i).getImage());
+				listImage4.get(i).setImage(ennemyBoard.get(i).getImage()); // Pareil pour l'ennemi
 
 			}
 
@@ -262,12 +299,12 @@ public class MainController implements Initializable {
 				if (ennemyBoard.get(i) != null) {
 
 					Combattant carte2 = (Combattant) ennemyBoard.get(i);
-					ennemyPv -= carte1.combat(carte2);
-					allyPv -= carte2.combat(carte1);
+					ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
+					allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
 
 				} else {
 
-					ennemyPv -= carte1.getAtt();
+					ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
 
 				}
 
@@ -276,7 +313,7 @@ public class MainController implements Initializable {
 				if (ennemyBoard.get(i) != null) {
 
 					Combattant carte2 = (Combattant) ennemyBoard.get(i);
-					allyPv -= carte2.getAtt();
+					allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
 
 				}
 
@@ -291,7 +328,7 @@ public class MainController implements Initializable {
 	public void afficherCarte(MouseEvent event) {
 
 		if (tour == Phase.PhaseDeCombat) {
-
+			// Effet autour des cartes
 			DropShadow borderGlow = new DropShadow();
 			borderGlow.setOffsetY(0f);
 			borderGlow.setOffsetX(0f);
@@ -304,12 +341,12 @@ public class MainController implements Initializable {
 		}
 
 		imageZoom.setImage(((ImageView) event.getSource()).getImage());
-
+		// Affiche la carte sélectionnée en grand
 	}
 
 	public void cancelZoom(MouseEvent event) {
 
-		Node node = (Node) event.getSource();
+		Node node = (Node) event.getSource(); // Annule le zoom quand on quitte la case
 		node.setEffect(null);
 		imageZoom.setImage(null);
 
@@ -319,16 +356,22 @@ public class MainController implements Initializable {
 
 		if (tour == Phase.PhaseDeCombat) {
 
-			Node node = (Node) event.getSource();
+			Node node = (Node) event.getSource(); // On sauvegarde d'où vient l'évènement dans "node"
 			String source = (((Node) event.getSource()).getId()).toString();
+			// Converti l'id de la case en String
+
 			int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
-			draggedNumber = number;
-			draggedCard = hand.get(number);
+			// Récupère le dernier élément de la chaine de caractère et la converti en int *
+
+			draggedNumber = number; // * On le stock dans un attribut
+			draggedCard = hand.get(number); // On stock la carte dans un attribut
 
 			Dragboard db = node.startDragAndDrop(TransferMode.MOVE);
+			// On annonce au proggramme qu'on veut transporter la carte
 
 			ClipboardContent content = new ClipboardContent();
 			content.putImage(draggedCard.getImage());
+			// On donne l'image qu'on veut voir pendant le drag & drop
 			db.setContent(content);
 
 			event.consume();
@@ -340,19 +383,19 @@ public class MainController implements Initializable {
 
 		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
 
-			event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+			event.acceptTransferModes(TransferMode.COPY_OR_MOVE); // On annonce quelle case va gérer le transfert
 
 		}
 
 		event.consume();
 	}
 
-	public void dragEntered(DragEvent event) { // Je montre à l'utilisateur sur quelle case il s'apprête à poser la
-												// carte
+	public void dragEntered(DragEvent event) { // Je montre sur quelle case il s'apprête à poser la carte
 
 		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
 
 			((ImageView) event.getSource()).setImage(new Image("/resources/CSS/dos.jpg"));
+			// Image pour indiquer où va se dérouler le transfert
 
 		}
 
@@ -378,119 +421,172 @@ public class MainController implements Initializable {
 
 		if (db.hasImage() && allyBoard.get(carteVerif(event)) == null) {
 
-			allyBoard.set(carteVerif(event), draggedCard);
-			hand.set(draggedNumber, null);
-			listImage1.get(draggedNumber).setImage(null);
+			allyBoard.set(carteVerif(event), draggedCard); // Ajoute la carte sur le terrain
+			hand.set(draggedNumber, null); // Supprime la carte de la main
 			afficherHand();
 			afficherBoard();
 			success = true;
 
 		}
 
-		event.setDropCompleted(success);
+		event.setDropCompleted(success); // Indique que le transfert s'est bien déroulé
 		event.consume();
 
 	}
 
 	public int carteVerif(DragEvent event) {
-
+		// Sert à trouver l'emplacement d'un évènement (voir dragDetected)
 		String source = (((Node) event.getSource()).getId()).toString();
 		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
 		return number;
 
 	}
 
-	public void tour(){
+	public void ennemy() {
+
+		new Thread(new Runnable() {
+			public void run() {
+				
+				int index = 0;
+				for (Cards c : ennemyHand) {
+					
+					if (c != null) {
+						
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						
+						if (c instanceof Combattant) {
+							// Si la carte est un combattant le pose sur le terrain
+							
+							System.out.println(index);
+							ennemyBoard.set(searchBoard(ennemyBoard), c);
+							ennemyHand.set(index, null);
+							listImage2.get(index).setImage(null);
+							afficherHand();
+							afficherBoard();
+							
+						} else if (c instanceof Sorts) {
+							// Si la carte est un sort la pose sur le terrain
+						}
+						
+					}
+					index++;
+				}
+			}
+		}).start();
+
+	}
+
+	public int searchBoard(List<Cards> board) {
+		// Cherche une place sur le terrain pour l'ennemi (Ou dans la méthode pioche
+		// pour arrêter de piocher)
+		int location = 10;
+		for (int i = 0; i < board.size(); i++) {
+
+			if (board.get(i) == null) {
+
+				location = i;
+				break;
+
+			}
+
+		}
+		return location;
+
+	}
+
+	public void tour() {
 
 		switch (tour) {
 
 		case TourEnnemi:
-			
-			
-			phase.setText("Tour Ennemi"); // On l'affiche 
+
+			retrait();
+			ennemy();
+			phase.setText("Tour Ennemi"); // On l'affiche
 			disable = true;
-			Button();
-			//Vu qu'il passe dans un nouveau Thread Affiche le setText
-			new Thread(new Runnable() { // On utilise un nouveau Thread 
-                @Override
-                public void run() {
-                    try {
-                    	
-                    	Thread.sleep(2000); 
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                            	phase.setText("Tour de Strategie");
+			button();
+			// Vu qu'il passe dans un nouveau Thread Affiche le setText
+			new Thread(new Runnable() { // On utilise un nouveau Thread
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2000);
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								phase.setText("Tour de Stratégie");
 //								System.out.println(tour);
-                    			disable = false;
-                    			Button();
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start(); // Lance le Thread
+								disable = false;
+								button();
+							}
+						});
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}).start(); // Lance le Thread
 			// Platform.runLater(() ->
 
 			tour = Phase.PhaseDeStrategie;
-			retrait();
 
 		case PhaseDeStrategie:
-			
+
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeCombat;
 			break;
 
 		case PhaseDeCombat:
-			
+
 			disable = true;
 			phase.setText("Phase de Combat"); // On affiche grave au Thread en bas
-			Button();
+			button();
 			new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage du prochain SetText
-                @Override
-                public void run() {
-                    try {
-                    	
-                    	Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse puisse jouer);
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                            	phase.setText("Retrait !"); // Ca affiche Retrait
-                    			disable = false;
-                    			Button();
+				@Override
+				public void run() {
+					try {
+						Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse
+											// puisse jouer);
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								phase.setText("Retrait !"); // Ca affiche Retrait
+								disable = false;
+								button();
 //								System.out.println(tour);
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-			
+							}
+						});
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}).start();
+
 			try {
 				Thread.sleep(1000); // Freeze au moment du combat
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
+
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeRetrait;
-			
 
 		case PhaseDeRetrait:
-			
 
-			combat();		
+			combat();
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.TourEnnemi;
-			
 			break;
+
 		}
-		
+
 		/////////////////////////////// TEST //////////////////////////
 //		if (rerun == true) {
 //			try {
