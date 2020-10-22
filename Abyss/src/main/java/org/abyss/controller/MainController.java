@@ -148,6 +148,12 @@ public class MainController implements Initializable {
 		ennemyHp.setText(Integer.toString(ennemyPv));
 
 	}
+	
+	public void mort() {
+		if(allyPv < 0 || ennemyPv < 0) {
+			System.exit(0);
+		}
+	}
 
 	public void piocher() {
 
@@ -549,8 +555,7 @@ public class MainController implements Initializable {
 				@Override
 				public void run() {
 					try {
-						Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse
-											// puisse jouer);
+						Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse puisse jouer);
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
@@ -565,12 +570,12 @@ public class MainController implements Initializable {
 					}
 				}
 			}).start();
-
-			try {
-				Thread.sleep(1000); // Freeze au moment du combat
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+//
+//			try {
+//				Thread.sleep(1000); // Freeze au moment du combat
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 
 			System.out.println(tour);
 			System.out.println("-----------------------");
@@ -585,17 +590,6 @@ public class MainController implements Initializable {
 			break;
 
 		}
-
-		/////////////////////////////// TEST //////////////////////////
-//		if (rerun == true) {
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//			rerun = false;
-//			tour();
-//		}
 
 	}
 
