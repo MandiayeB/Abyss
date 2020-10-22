@@ -24,10 +24,6 @@
 	-fx-background-size: cover;
 }
 
-#board {
-	-fx-background-image : url("board.jpg");
-}
-
 #phase {
 	-fx-background-image: url("Button.png");
 }

@@ -435,6 +435,7 @@ public class MainController implements Initializable {
 	}
 
 	public int carteVerif(DragEvent event) {
+		
 		// Sert à trouver l'emplacement d'un évènement (voir dragDetected)
 		String source = (((Node) event.getSource()).getId()).toString();
 		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
@@ -515,7 +516,7 @@ public class MainController implements Initializable {
 				public void run() {
 					try {
 
-						Thread.sleep(2000);
+						Thread.sleep(3000);
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
@@ -530,12 +531,10 @@ public class MainController implements Initializable {
 					}
 				}
 			}).start(); // Lance le Thread
-			// Platform.runLater(() ->
 
 			tour = Phase.PhaseDeStrategie;
 
 		case PhaseDeStrategie:
-
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeCombat;
