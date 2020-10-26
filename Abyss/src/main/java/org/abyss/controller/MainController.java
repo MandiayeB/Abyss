@@ -156,12 +156,6 @@ public class MainController implements Initializable {
 
 		for (int i = 0; i < hand.size(); i++) { // Pioche jusqu'à ce que la main soit pleine
 
-//			if (searchBoard(hand) == 10) {
-//
-//				break; // Si la main est pleine on arrête la boucle
-//
-//			}
-
 			if (hand.get(i) == null) {
 
 				hand.set(i, deck.get(0)); // pioche la première carte du deck
@@ -172,10 +166,6 @@ public class MainController implements Initializable {
 		}
 
 		for (int i = 0; i < ennemyHand.size(); i++) { // Pareil pour la main ennemi
-
-//			if (searchBoard(ennemyHand) == 10) {
-//				break;
-//			}
 
 			if (ennemyHand.get(i) == null) {
 
@@ -562,9 +552,6 @@ public class MainController implements Initializable {
 				
 			case PhaseDeCombat:
 				
-//				disable = true;
-//				phase.setText("Phase de Combat");
-//				button();
 				combat();
 				
 				afficherTour.setText("Retrait !");
