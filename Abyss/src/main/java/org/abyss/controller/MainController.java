@@ -79,6 +79,8 @@ public class MainController implements Initializable {
 	private Label allyHp;
 	@FXML
 	private Label ennemyHp;
+	@FXML
+	private Label afficherTour;
 
 	private List<Cards> hand;
 	private List<Cards> ennemyHand;
@@ -91,11 +93,11 @@ public class MainController implements Initializable {
 	private int draggedNumber;
 	private int allyPv;
 	private int ennemyPv;
-	private boolean disable;
-	ArrayList<ImageView> listImage1;
-	ArrayList<ImageView> listImage2;
-	ArrayList<ImageView> listImage3;
-	ArrayList<ImageView> listImage4;
+	private ArrayList<ImageView> listImage1;
+	private ArrayList<ImageView> listImage2;
+	private ArrayList<ImageView> listImage3;
+	private ArrayList<ImageView> listImage4;
+	private Boolean order;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -104,12 +106,12 @@ public class MainController implements Initializable {
 		ennemyDeck = CardsUtils.getCardsGame();
 		hand = CardsUtils.fillBoard();
 		ennemyHand = CardsUtils.fillBoard();
-		tour = Phase.TourEnnemi;
-		disable = false;
 		allyBoard = CardsUtils.fillBoard();
 		ennemyBoard = CardsUtils.fillBoard();
 		allyPv = 1000;
 		ennemyPv = 1000;
+		tour = Phase.TourEnnemi;
+
 		listImage1 = new ArrayList<>();
 		listImage1.add(allyCard0);
 		listImage1.add(allyCard1);
@@ -134,6 +136,7 @@ public class MainController implements Initializable {
 		listImage4.add(ennemy2);
 		listImage4.add(ennemy3);
 		listImage4.add(ennemy4);
+		order = false;
 
 		allyDeck.setImage(new Image("/resources/CSS/dos.jpg"));
 		opponentDeck.setImage(new Image("/resources/CSS/dos.jpg"));
@@ -148,9 +151,9 @@ public class MainController implements Initializable {
 		ennemyHp.setText(Integer.toString(ennemyPv));
 
 	}
-	
+
 	public void mort() {
-		if(allyPv < 0 || ennemyPv < 0) {
+		if (allyPv < 0 || ennemyPv < 0) {
 			System.exit(0);
 		}
 	}
@@ -159,11 +162,11 @@ public class MainController implements Initializable {
 
 		for (int i = 0; i < hand.size(); i++) { // Pioche jusqu'à ce que la main soit pleine
 
-			if (searchBoard(hand) == 10) {
-
-				break; // Si la main est pleine on arrête la boucle
-
-			}
+//			if (searchBoard(hand) == 10) {
+//
+//				break; // Si la main est pleine on arrête la boucle
+//
+//			}
 
 			if (hand.get(i) == null) {
 
@@ -176,9 +179,9 @@ public class MainController implements Initializable {
 
 		for (int i = 0; i < ennemyHand.size(); i++) { // Pareil pour la main ennemi
 
-			if (searchBoard(ennemyHand) == 10) {
-				break;
-			}
+//			if (searchBoard(ennemyHand) == 10) {
+//				break;
+//			}
 
 			if (ennemyHand.get(i) == null) {
 
@@ -255,22 +258,6 @@ public class MainController implements Initializable {
 
 	}
 
-	public void button() {
-
-		if (disable == true) {
-
-			phase.setDisable(true);
-
-		}
-
-		else {
-
-			phase.setDisable(false);
-
-		}
-
-	}
-
 	public void afficherBoard() {
 
 		for (int i = 0; i < allyBoard.size(); i++) {
@@ -331,9 +318,37 @@ public class MainController implements Initializable {
 
 	}
 
+//	public void applyElement (int carte, List<Cards> board) {
+//		Combattant carte1 = (Combattant) board.get(carte);
+//		
+//		for (int i = 0; i < board.size(); i++) {
+//			Combattant carte2 = (Combattant) board.get(i);
+//			if (i != carte) {
+//
+//				if (carte1.getElement() == carte2.getElement()) { 
+//					// Si deux cartes sont du même élément j'applique un bonus
+//					
+//					carte1.setAtt(carte1.getAtt());
+//					carte1.setAppliedElement(true);
+//					
+//					if (!carte2.getAppliedElement()) {
+//						
+//						carte2.setAtt(carte2.getAtt() + 50);
+//						carte2.setAppliedElement(true);
+//						
+//					}
+//					
+//				}
+//				
+//			}
+//			
+//		}
+//		
+//	}
+
 	public void afficherCarte(MouseEvent event) {
 
-		if (tour == Phase.PhaseDeCombat) {
+		if (tour == Phase.Transition) {
 			// Effet autour des cartes
 			DropShadow borderGlow = new DropShadow();
 			borderGlow.setOffsetY(0f);
@@ -360,7 +375,7 @@ public class MainController implements Initializable {
 
 	public void dragDetected(MouseEvent event) { // Je commence à transporter la carte
 
-		if (tour == Phase.PhaseDeCombat) {
+		if (tour == Phase.Transition) {
 
 			Node node = (Node) event.getSource(); // On sauvegarde d'où vient l'évènement dans "node"
 			String source = (((Node) event.getSource()).getId()).toString();
@@ -429,6 +444,7 @@ public class MainController implements Initializable {
 
 			allyBoard.set(carteVerif(event), draggedCard); // Ajoute la carte sur le terrain
 			hand.set(draggedNumber, null); // Supprime la carte de la main
+//			applyElement(carteVerif(event), allyBoard);
 			afficherHand();
 			afficherBoard();
 			success = true;
@@ -441,7 +457,7 @@ public class MainController implements Initializable {
 	}
 
 	public int carteVerif(DragEvent event) {
-		
+
 		// Sert à trouver l'emplacement d'un évènement (voir dragDetected)
 		String source = (((Node) event.getSource()).getId()).toString();
 		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
@@ -451,37 +467,52 @@ public class MainController implements Initializable {
 
 	public void ennemy() {
 
+		phase.setVisible(false);
 		new Thread(new Runnable() {
 			public void run() {
-				
+
 				int index = 0;
 				for (Cards c : ennemyHand) {
-					
+
 					if (c != null) {
-						
+
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
-						
+
 						if (c instanceof Combattant) {
 							// Si la carte est un combattant le pose sur le terrain
-							
-							System.out.println(index);
 							ennemyBoard.set(searchBoard(ennemyBoard), c);
 							ennemyHand.set(index, null);
 							listImage2.get(index).setImage(null);
+//							applyElement(index, ennemyBoard);
 							afficherHand();
 							afficherBoard();
-							
+
 						} else if (c instanceof Sorts) {
 							// Si la carte est un sort la pose sur le terrain
 						}
-						
+
 					}
 					index++;
 				}
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						phase.setText("Fin de tour");
+						if (!order) {
+							afficherTour.setText("Tour de Stratégie");
+							tour = Phase.PhaseDeStrategie;
+							phase.setVisible(true);
+						} else if (order) {
+							afficherTour.setText("Phase de Combat");
+							tour = Phase.PhaseDeCombat;
+						}
+						tour();
+					}
+				});
 			}
 		}).start();
 
@@ -490,7 +521,7 @@ public class MainController implements Initializable {
 	public int searchBoard(List<Cards> board) {
 		// Cherche une place sur le terrain pour l'ennemi (Ou dans la méthode pioche
 		// pour arrêter de piocher)
-		int location = 10;
+		int location = 0;
 		for (int i = 0; i < board.size(); i++) {
 
 			if (board.get(i) == null) {
@@ -511,86 +542,58 @@ public class MainController implements Initializable {
 
 		case TourEnnemi:
 
-			retrait();
+			afficherTour.setText("Tour Ennemi"); // On l'affiche
 			ennemy();
-			phase.setText("Tour Ennemi"); // On l'affiche
-			disable = true;
-			button();
-			// Vu qu'il passe dans un nouveau Thread Affiche le setText
-			new Thread(new Runnable() { // On utilise un nouveau Thread
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(3000);
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								phase.setText("Tour de Stratégie");
-//								System.out.println(tour);
-								disable = false;
-								button();
-							}
-						});
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}).start(); // Lance le Thread
-
-			tour = Phase.PhaseDeStrategie;
+			break;
 
 		case PhaseDeStrategie:
+
 			System.out.println(tour);
 			System.out.println("-----------------------");
-			tour = Phase.PhaseDeCombat;
+			afficherTour.setText("Tour de Stratégie");
+			tour = Phase.Transition;
+			break;
+
+		case Transition:
+
+			if (order) {
+				afficherTour.setText("Tour Ennemi");
+				tour = Phase.TourEnnemi;
+			} else if (!order) {
+				afficherTour.setText("Phase de Combat");
+				tour = Phase.PhaseDeCombat;
+			}
+			tour();
 			break;
 
 		case PhaseDeCombat:
 
-			disable = true;
-			phase.setText("Phase de Combat"); // On affiche grave au Thread en bas
-			button();
-			new Thread(new Runnable() { // On utilise un nouveau Thread pour faire l'affichage du prochain SetText
-				@Override
-				public void run() {
-					try {
-						Thread.sleep(2000); // fait dormir le Thread (on le prend comme un timeur pour que l'adverse puisse jouer);
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								phase.setText("Retrait !"); // Ca affiche Retrait
-								disable = false;
-								button();
-//								System.out.println(tour);
-							}
-						});
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}).start();
-//
-//			try {
-//				Thread.sleep(1000); // Freeze au moment du combat
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
+			combat();
+
+			afficherTour.setText("Retrait !");
 
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			tour = Phase.PhaseDeRetrait;
+			tour();
+			break;
 
 		case PhaseDeRetrait:
 
-			combat();
 			System.out.println(tour);
 			System.out.println("-----------------------");
-			tour = Phase.TourEnnemi;
+			retrait();
+			if (order) {
+				tour = Phase.TourEnnemi;
+				order = false;
+			} else if (!order) {
+				tour = Phase.PhaseDeStrategie;
+				order = true;
+				phase.setVisible(true);
+			}
+			tour();
 			break;
 
 		}
-
 	}
-
 }

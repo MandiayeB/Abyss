@@ -14,11 +14,11 @@ public class CardsUtils {
 
 		ArrayList<Cards> cards = new ArrayList<>();
 
-		Combattant c = new Combattant("test", new Image("/resources/CSS/yugi.jpg"), 10, 5, "test");
-		Combattant c1 = new Combattant("Guts", new Image("/resources/CSS/yugi1.jpg"), 100, 20, "demon");
-		Combattant m = new Combattant("Mandiaye", new Image("/resources/CSS/yugi2.jpg"), 50, 20, "TFT");
-		Combattant t = new Combattant("Takoo", new Image("/resources/CSS/yugi3.jpg"), 100, 20, "CSGO");
-		Combattant sessa = new Combattant("Sessa", new Image("/resources/CSS/yugi4.jpg"), 100, 20, "JAVA");
+		Combattant c = new Combattant("test", new Image("/resources/CSS/yugi.jpg"), 10, 5, "eau");
+		Combattant c1 = new Combattant("Guts", new Image("/resources/CSS/yugi1.jpg"), 100, 20, "eau");
+		Combattant m = new Combattant("Mandiaye", new Image("/resources/CSS/yugi2.jpg"), 50, 20, "glace");
+		Combattant t = new Combattant("Takoo", new Image("/resources/CSS/yugi3.jpg"), 100, 20, "glace");
+		Combattant sessa = new Combattant("Sessa", new Image("/resources/CSS/yugi4.jpg"), 100, 20, "eau");
 		cards.add(c);
 		cards.add(c1);
 		cards.add(t);

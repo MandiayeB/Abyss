@@ -7,11 +7,30 @@ public class Combattant extends Cards {
 	private int att;
 	private int hp;
 	private String element;
+	private Boolean appliedElement;
 	
 	public int getAtt() {
-		
 		return att;
-		
+	}
+	
+	public void setAtt(int att) {
+		this.att = att;
+	}
+	
+	public String getElement() {
+		return element;
+	}
+	
+	public void setElement(String element) {
+		this.element = element;
+	}
+	
+	public Boolean getAppliedElement() {
+		return appliedElement;
+	}
+	
+	public void setAppliedElement(Boolean appliedElement) {
+		this.appliedElement = appliedElement;
 	}
 	
 	public Combattant(String name, Image image, int att, int hp, String element) {
@@ -21,17 +40,7 @@ public class Combattant extends Cards {
 		this.att = att;
 		this.hp = hp;
 		this.element = element;
-		
-	}
-	
-	public void element(Combattant carte2) {
-		
-		if (this.element == carte2.element) { // Si deux cartes sont du même élément j'applique un bonus
-			
-			this.att += 10;
-			carte2.att += 10;
-			
-		}
+		this.appliedElement = false;
 		
 	}
 	
