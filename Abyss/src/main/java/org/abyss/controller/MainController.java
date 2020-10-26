@@ -1,5 +1,12 @@
 package org.abyss.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +88,21 @@ public class MainController implements Initializable {
 	private Label ennemyHp;
 	@FXML
 	private Label afficherTour;
-
+	@FXML
+	private Label Notif;
+	@FXML
+	private Label Notif2;
+	@FXML
+	private Label Notif3;
+	@FXML
+	private Label Notif4;
+	@FXML
+	private Label Notif5;
+	@FXML
+	private Label Notif6;
+	@FXML
+	private Label Notif7;
+	
 	private List<Cards> hand;
 	private List<Cards> ennemyHand;
 	private List<Cards> ennemyDeck;
@@ -98,6 +119,7 @@ public class MainController implements Initializable {
 	private ArrayList<ImageView> listImage3;
 	private ArrayList<ImageView> listImage4;
 	private Boolean order;
+	private boolean nouveau;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -111,6 +133,7 @@ public class MainController implements Initializable {
 		allyPv = 1000;
 		ennemyPv = 1000;
 		tour = Phase.TourEnnemi;
+		nouveau = true;
 
 		listImage1 = new ArrayList<>();
 		listImage1.add(allyCard0);
@@ -154,7 +177,7 @@ public class MainController implements Initializable {
 
 	public void mort() {
 		if (allyPv < 0 || ennemyPv < 0) {
-			System.exit(0); 
+			System.exit(0);
 		}
 	}
 
@@ -536,18 +559,100 @@ public class MainController implements Initializable {
 
 	}
 
+	public void ecrire(String content) {
+		File fichier = new File("src/main/resources/resources/TXT/Text.txt");
+
+		if (nouveau == true) {
+			try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fichier))) {
+				bufferedWriter.write("");
+				bufferedWriter.close();
+
+			} catch (IOException e) {
+				System.out.println("Impossible d'ecrire");
+			}
+		}
+
+		try {
+			FileWriter fw = new FileWriter("src/main/resources/resources/TXT/Text.txt", true);
+			fw.write(content + "\n");
+			fw.close();
+		} catch (IOException ioe) {
+			System.out.println("Impossible d'ecrire");
+		}
+	}
+
+	public void lireLigne() {
+
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new FileReader("src/main/resources/resources/TXT/Text.txt"));
+			String line;
+			int i=0;
+			while ((line = in.readLine()) != null) {
+				// Afficher le contenu du fichier
+				System.out.println(line);
+				String tout = line+line;
+				switch (i) {
+					
+				case 0 : 
+					Notif.setText(line);
+					System.out.println(line);
+				break;
+				case 1 : 
+					Notif2.setText(line);
+					System.out.println(line);
+				break;
+				case 2 : 
+					Notif3.setText(line);
+					System.out.println(line);
+				break;
+				case 3 : 
+					Notif4.setText(line);
+					System.out.println(line);
+				break;
+				case 4 : 
+					Notif5.setText(line);
+					System.out.println(line);
+				break;
+				case 5 : 
+					Notif6.setText(line);
+					System.out.println(line);
+				break;
+				case 6 : 
+					Notif7.setText(line);
+					System.out.println(line);
+				break;
+				
+				}
+				
+				i++;
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public void tour() {
 
 		switch (tour) {
 
 		case TourEnnemi:
-
+			ecrire("Tour Ennemi 2");
+			nouveau = false;
+			lireLigne();
 			afficherTour.setText("Tour Ennemi"); // On l'affiche
 			ennemy();
 			break;
 
 		case PhaseDeStrategie:
-
+			ecrire("Crotte");
+			lireLigne();
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			afficherTour.setText("Tour de Stratégie");
@@ -569,7 +674,7 @@ public class MainController implements Initializable {
 		case PhaseDeCombat:
 
 			combat();
-
+			mort();
 			afficherTour.setText("Retrait !");
 
 			System.out.println(tour);
