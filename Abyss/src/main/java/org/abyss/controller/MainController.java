@@ -154,7 +154,7 @@ public class MainController implements Initializable {
 
 	public void mort() {
 		if (allyPv < 0 || ennemyPv < 0) {
-			System.exit(0);
+			System.exit(0); 
 		}
 	}
 
