@@ -122,11 +122,11 @@
                       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="allyCard0" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="allyCard1" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                        <ImageView fx:id="allyCard2" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                        <ImageView fx:id="allyCard3" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                        <ImageView fx:id="allyCard4" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                        <ImageView fx:id="allyCard0" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="allyCard1" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="allyCard2" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                        <ImageView fx:id="allyCard3" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                        <ImageView fx:id="allyCard4" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="250.0" />
@@ -147,23 +147,24 @@
                </BorderPane.margin>
                <children>
                   <ImageView fx:id="imageZoom" fitHeight="532.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="Notif" layoutX="100.0" layoutY="100.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="1" textFill="#38a7c3" translateY="-200.0" />
-                  <Label fx:id="Notif2" layoutX="100.0" layoutY="100.0" prefHeight="21.0" prefWidth="138.0" scaleX="2.0" text="2" textFill="#3aa5c2" translateY="-175.0" />
-                  <Label fx:id="Notif5" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="5" textFill="#38a7c3" translateY="-100.0" />
-                  <Label fx:id="Notif6" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="6" textFill="#38a7c3" translateY="-75.0" />
-                  <Label fx:id="Notif3" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="3" textFill="#38a7c3" translateY="-150.0" />
-                  <Label fx:id="Notif4" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="4" textFill="#38a7c3" translateY="-125.0" />
-                  <Label fx:id="Notif7" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="7" textFill="#38a7c3" translateY="-50.0" />
-                  <Label fx:id="Notif8" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="8" textFill="#38a7c3" translateY="-25.0" />
-                  <Label fx:id="Notif9" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="9" textFill="#38a7c3" />
-                  <Label fx:id="Notif10" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="10" textFill="#38a7c3" translateY="25.0" />
-                  <Label fx:id="Notif11" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="11" textFill="#38a7c3" translateY="50.0" />
-                  <Label fx:id="Notif12" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="12" textFill="#38a7c3" translateY="75.0" />
-                  <Label fx:id="Notif13" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="13" textFill="#38a7c3" translateY="100.0" />
-                  <Label fx:id="Notif14" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="14" textFill="#38a7c3" translateY="125.0" />
-                  <Label fx:id="Notif15" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="16" textFill="#38a7c3" translateY="175.0" />
-                  <Label fx:id="Notif16" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="17" textFill="#38a7c3" translateY="200.0" />
-                  <Label fx:id="Notif17" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" text="15" textFill="#38a7c3" translateY="150.0" />
+                  <Label fx:id="Notif" layoutX="100.0" layoutY="100.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-200.0" />
+                  <Label fx:id="Notif2" layoutX="100.0" layoutY="100.0" prefHeight="21.0" prefWidth="138.0" scaleX="2.0" textFill="#3aa5c2" translateY="-175.0" />
+                  <Label fx:id="Notif5" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-100.0" />
+                  <Label fx:id="Notif6" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-75.0" />
+                  <Label fx:id="Notif3" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-150.0" />
+                  <Label fx:id="Notif4" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-125.0" />
+                  <Label fx:id="Notif7" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-50.0" />
+                  <Label fx:id="Notif8" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-25.0" />
+                  <Label fx:id="Notif9" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" />
+                  <Label fx:id="Notif10" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="25.0" />
+                  <Label fx:id="Notif11" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="50.0" />
+                  <Label fx:id="Notif12" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="75.0" />
+                  <Label fx:id="Notif13" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="100.0" />
+                  <Label fx:id="Notif14" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="125.0" />
+                  <Label fx:id="Notif15" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="175.0" />
+                  <Label fx:id="Notif16" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="200.0" />
+                  <Label fx:id="Notif17" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="150.0" />
+                  <Label fx:id="tout" prefHeight="370.0" prefWidth="269.0" text="Label" textFill="#e81010" />
                </children>
             </StackPane>
          </right>
