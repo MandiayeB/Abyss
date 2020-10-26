@@ -81,7 +81,7 @@ public class MainController implements Initializable {
 	private Label ennemyHp;
 	@FXML
 	private Label afficherTour;
-	
+
 	private List<Cards> hand;
 	private List<Cards> ennemyHand;
 	private List<Cards> ennemyDeck;
@@ -98,6 +98,7 @@ public class MainController implements Initializable {
 	private ArrayList<ImageView> listImage3;
 	private ArrayList<ImageView> listImage4;
 	private Boolean order;
+	private Node cancel;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -111,7 +112,7 @@ public class MainController implements Initializable {
 		allyPv = 1000;
 		ennemyPv = 1000;
 		tour = Phase.TourEnnemi;
-		
+
 		listImage1 = new ArrayList<>();
 		listImage1.add(allyCard0);
 		listImage1.add(allyCard1);
@@ -150,6 +151,12 @@ public class MainController implements Initializable {
 		allyHp.setText(Integer.toString(allyPv));
 		ennemyHp.setText(Integer.toString(ennemyPv));
 
+	}
+
+	public void mort() {
+		if (allyPv <= 0 || ennemyPv <= 0) {
+			System.exit(0); 
+		}
 	}
 
 	public void piocher() {
@@ -267,41 +274,109 @@ public class MainController implements Initializable {
 	}
 
 	public void combat() {
+		
+		phase.setVisible(false);
+		new Thread(new Runnable() {
+			public void run() {
+				for (int i = 0; i < allyBoard.size(); i++) {
 
-		for (int i = 0; i < allyBoard.size(); i++) {
+					if (allyBoard.get(i) != null) {
 
-			if (allyBoard.get(i) != null) {
+						Combattant carte1 = (Combattant) allyBoard.get(i);
+						if (ennemyBoard.get(i) != null) {
 
-				Combattant carte1 = (Combattant) allyBoard.get(i);
-				if (ennemyBoard.get(i) != null) {
+							listImage3.get(i).setTranslateY(100);
+							listImage4.get(i).setTranslateY(-100);
+							
+							try {
+								Thread.sleep(200);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							
+							listImage3.get(i).setTranslateY(-9);
+							listImage4.get(i).setTranslateY(9);
+							
+							try {
+								Thread.sleep(350);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							
+							Combattant carte2 = (Combattant) ennemyBoard.get(i);
+							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
+							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
 
-					Combattant carte2 = (Combattant) ennemyBoard.get(i);
-					ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
-					allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
+						} else {
+							
+							listImage3.get(i).setTranslateY(100);
+							try {
+								Thread.sleep(200);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							listImage3.get(i).setTranslateY(-100);
+							
+							try {
+								Thread.sleep(350);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							
+							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
 
-				} else {
+						}
 
-					ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
+					} else {
 
+						if (ennemyBoard.get(i) != null) {
+							
+							listImage4.get(i).setTranslateY(-100);
+							try {
+								Thread.sleep(200);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							listImage4.get(i).setTranslateY(100);
+							
+							try {
+								Thread.sleep(350);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+							
+							Combattant carte2 = (Combattant) ennemyBoard.get(i);
+							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
+
+						}
+
+					}
+					
 				}
-
-			} else {
-
-				if (ennemyBoard.get(i) != null) {
-
-					Combattant carte2 = (Combattant) ennemyBoard.get(i);
-					allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
-
+				
+				for (int i = 0; i < allyBoard.size(); i++) {
+					listImage3.get(i).setTranslateY(0);
+					listImage4.get(i).setTranslateY(0);
 				}
-
+				
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						afficherHp();
+						afficherTour.setText("Retrait !");
+						System.out.println(tour);
+						System.out.println("-----------------------");
+						phase.setVisible(true);
+						tour = Phase.PhaseDeRetrait;
+						mort();
+						tour();
+					}
+				});
 			}
-
-		}
-		afficherBoard();
-		afficherHp();
+		}).start();
 
 	}
-	
+
 //	public void applyElement (int carte, List<Cards> board) {
 //		Combattant carte1 = (Combattant) board.get(carte);
 //		
@@ -331,27 +406,43 @@ public class MainController implements Initializable {
 //	}
 
 	public void afficherCarte(MouseEvent event) {
-
+		
+		Node node = (Node) event.getSource();
 		if (tour == Phase.Transition) {
 			// Effet autour des cartes
+			
 			DropShadow borderGlow = new DropShadow();
 			borderGlow.setOffsetY(0f);
 			borderGlow.setOffsetX(0f);
-			borderGlow.setColor(Color.BLUE);
+			
+			if (node.getId().contains("ally")) {
+				borderGlow.setColor(Color.BLUE);
+			} else {
+				borderGlow.setColor(Color.RED);
+			}
+			
 			borderGlow.setWidth(70);
 			borderGlow.setHeight(70);
-			Node node = (Node) event.getSource();
 			node.setEffect(borderGlow);
 
 		}
-
+		
+		if (node.getId().contains("allyCard")) {
+			node.setTranslateY(-10);
+		}
+		
 		imageZoom.setImage(((ImageView) event.getSource()).getImage());
 		// Affiche la carte sélectionnée en grand
 	}
-
+	
 	public void cancelZoom(MouseEvent event) {
 
 		Node node = (Node) event.getSource(); // Annule le zoom quand on quitte la case
+		
+		if (node.getId().contains("allyCard")) {
+			node.setTranslateY(0);
+		}
+		
 		node.setEffect(null);
 		imageZoom.setImage(null);
 
@@ -362,9 +453,11 @@ public class MainController implements Initializable {
 		if (tour == Phase.Transition) {
 
 			Node node = (Node) event.getSource(); // On sauvegarde d'où vient l'évènement dans "node"
+			cancel = node;
+			cancel.setVisible(false);
 			String source = (((Node) event.getSource()).getId()).toString();
 			// Converti l'id de la case en String
-
+			
 			int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
 			// Récupère le dernier élément de la chaine de caractère et la converti en int *
 
@@ -398,7 +491,7 @@ public class MainController implements Initializable {
 	public void dragEntered(DragEvent event) { // Je montre sur quelle case il s'apprête à poser la carte
 
 		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
-
+			
 			((ImageView) event.getSource()).setImage(new Image("/resources/CSS/dos.jpg"));
 			// Image pour indiquer où va se dérouler le transfert
 
@@ -411,7 +504,7 @@ public class MainController implements Initializable {
 	public void dragExited(DragEvent event) { // Je supprime l'image si l'utilisateur quitte la case
 
 		if (!event.isDropCompleted() && allyBoard.get(carteVerif(event)) == null) {
-
+			
 			((ImageView) event.getSource()).setImage(null);
 			event.consume();
 
@@ -439,9 +532,23 @@ public class MainController implements Initializable {
 		event.consume();
 
 	}
-
-	public int carteVerif(DragEvent event) {
+	
+	public void dragDone(DragEvent event) {
 		
+		cancel.setVisible(true);
+		
+	}
+	
+//	public void boardEntered(DragEvent event) {
+//		cancel.setVisible(false);
+//	}
+//	
+//	public void boardExited(DragEvent event) {
+//		cancel.setVisible(true);
+//	}
+	
+	public int carteVerif(DragEvent event) {
+
 		// Sert à trouver l'emplacement d'un évènement (voir dragDetected)
 		String source = (((Node) event.getSource()).getId()).toString();
 		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
@@ -450,7 +557,7 @@ public class MainController implements Initializable {
 	}
 
 	public void ennemy() {
-		
+
 		phase.setVisible(false);
 		new Thread(new Runnable() {
 			public void run() {
@@ -481,6 +588,15 @@ public class MainController implements Initializable {
 
 					}
 					index++;
+					
+					if (index == ennemyHand.size()) {
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+					
 				}
 				Platform.runLater(new Runnable() {
 					@Override
@@ -501,7 +617,7 @@ public class MainController implements Initializable {
 		}).start();
 
 	}
-	
+
 	public int searchBoard(List<Cards> board) {
 		// Cherche une place sur le terrain pour l'ennemi (Ou dans la méthode pioche
 		// pour arrêter de piocher)
@@ -553,13 +669,6 @@ public class MainController implements Initializable {
 			case PhaseDeCombat:
 				
 				combat();
-				
-				afficherTour.setText("Retrait !");
-				
-				System.out.println(tour);
-				System.out.println("-----------------------");
-				tour = Phase.PhaseDeRetrait;
-				tour();
 				break;
 	
 			case PhaseDeRetrait:
@@ -579,7 +688,7 @@ public class MainController implements Initializable {
 				break;
 
 		}
-
+		
 	}
-
+	
 }
