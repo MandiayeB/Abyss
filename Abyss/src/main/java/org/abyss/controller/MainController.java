@@ -295,12 +295,20 @@ public class MainController implements Initializable {
 		new Thread(new Runnable() {
 			public void run() {
 				for (int i = 0; i < allyBoard.size(); i++) {
-
+					
 					if (allyBoard.get(i) != null) {
 
 						Combattant carte1 = (Combattant) allyBoard.get(i);
 						if (ennemyBoard.get(i) != null) {
-
+							
+							Combattant carte2 = (Combattant) ennemyBoard.get(i);
+							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
+							ecrire("Infligé : - "+ carte1.combat(carte2));
+							lireLigne();
+							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
+							ecrire("Reçu : - "+ carte2.combat(carte1));
+							lireLigne();
+							
 							listImage3.get(i).setTranslateY(100);
 							listImage4.get(i).setTranslateY(-100);
 							
@@ -318,15 +326,10 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
-							Combattant carte2 = (Combattant) ennemyBoard.get(i);
-							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
-							ecrire("Infligé : - "+ carte1.combat(carte2));
-							lireLigne();
-							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
-							ecrire("Reçu : - "+ carte2.combat(carte1));
-							lireLigne();
+
 						} else {
+							
+							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
 							
 							listImage3.get(i).setTranslateY(100);
 							try {
@@ -341,7 +344,7 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+		
 							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
 							ecrire("Infligé : - "+ carte1.getAtt());
 							lireLigne();
@@ -351,6 +354,11 @@ public class MainController implements Initializable {
 					} else {
 
 						if (ennemyBoard.get(i) != null) {
+							
+							Combattant carte2 = (Combattant) ennemyBoard.get(i);
+							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
+							ecrire("Reçu : - "+ carte2.getAtt());
+							lireLigne();
 							
 							listImage4.get(i).setTranslateY(-100);
 							try {
@@ -365,15 +373,19 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
-							Combattant carte2 = (Combattant) ennemyBoard.get(i);
-							allyPv -= carte2.getAtt(); // S'il n'y a personne on attaque directement les pv
-							ecrire("Reçu : - "+ carte2.getAtt());
-							lireLigne();
-
+		
 						}
 
 					}
+					
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							allyHp.setTextFill(Color.RED);
+							ennemyHp.setTextFill(Color.RED);
+							afficherHp();
+						}
+					});
 					
 				}
 				
@@ -385,7 +397,8 @@ public class MainController implements Initializable {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						afficherHp();
+						allyHp.setTextFill(Color.web("#36d353"));
+						ennemyHp.setTextFill(Color.web("#36d353"));
 						afficherTour.setText("Retrait !");
 						System.out.println(tour);
 						System.out.println("-----------------------");
@@ -443,7 +456,7 @@ public class MainController implements Initializable {
 			} else {
 				borderGlow.setColor(Color.RED);
 			}
-			notif.setVisible(false);
+			
 			borderGlow.setWidth(70);
 			borderGlow.setHeight(70);
 			node.setEffect(borderGlow);
@@ -452,6 +465,10 @@ public class MainController implements Initializable {
 		
 		if (node.getId().contains("allyCard")) {
 			node.setTranslateY(-10);
+		}
+		
+		if (((ImageView) event.getSource()).getImage() != null) {
+			notif.setVisible(false);
 		}
 		
 		imageZoom.setImage(((ImageView) event.getSource()).getImage());

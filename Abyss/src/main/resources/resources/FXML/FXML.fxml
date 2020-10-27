@@ -141,13 +141,13 @@
             </HBox>
          </bottom>
          <right>
-            <StackPane BorderPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets right="20.0" />
                </BorderPane.margin>
                <children>
-                  <ImageView fx:id="imageZoom" fitHeight="532.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="notif" graphicTextGap="0.0" prefHeight="492.0" prefWidth="269.0" textFill="#40f5e9" wrapText="true">
+                  <ImageView fx:id="imageZoom" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0" prefWidth="300.0" textFill="#40f5e9" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
