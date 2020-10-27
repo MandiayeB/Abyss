@@ -89,39 +89,7 @@ public class MainController implements Initializable {
 	@FXML
 	private Label afficherTour;
 	@FXML
-	private Label Notif;
-	@FXML
-	private Label Notif2;
-	@FXML
-	private Label Notif3;
-	@FXML
-	private Label Notif4;
-	@FXML
-	private Label Notif5;
-	@FXML
-	private Label Notif6;
-	@FXML
-	private Label Notif7;
-	@FXML
-	private Label Notif8;
-	@FXML
-	private Label Notif9;
-	@FXML
-	private Label Notif10;
-	@FXML
-	private Label Notif11;
-	@FXML
-	private Label Notif12;
-	@FXML
-	private Label Notif13;
-	@FXML
-	private Label Notif14;
-	@FXML
-	private Label Notif15;
-	@FXML
-	private Label Notif16;
-	@FXML
-	private Label Notif17;
+	private Label notif;
 	@FXML
 	private Label tout;
 	
@@ -468,7 +436,7 @@ public class MainController implements Initializable {
 			} else {
 				borderGlow.setColor(Color.RED);
 			}
-			Notif.setVisible(false);
+			notif.setVisible(false);
 			borderGlow.setWidth(70);
 			borderGlow.setHeight(70);
 			node.setEffect(borderGlow);
@@ -493,7 +461,7 @@ public class MainController implements Initializable {
 		
 		node.setEffect(null);
 		imageZoom.setImage(null);
-		Notif.setVisible(true);
+		notif.setVisible(true);
 	}
 
 	public void dragDetected(MouseEvent event) { // Je commence à transporter la carte
@@ -712,88 +680,13 @@ public class MainController implements Initializable {
 		try {
 			in = new BufferedReader(new FileReader("src/main/resources/resources/TXT/Text.txt"));
 			String line;
-			int i=0;
 			while ((line = in.readLine()) != null) {
 				// Afficher le contenu du fichier
 				System.out.println(line);
-				String total = "";
-				total = total + line ;
-				tout.setText(tout.getText()+ line);
-				switch (i) {
-					
-				case 0 : 
-					Notif.setText(line);
-					System.out.println(line);
-				break;
-				case 1 : 
-					Notif2.setText(line);
-					System.out.println(line);
-				break;
-				case 2 : 
-					Notif3.setText(line);
-					System.out.println(line);
-				break;
-				case 3 : 
-					Notif4.setText(line);
-					System.out.println(line);
-				break;
-				case 4 : 
-					Notif5.setText(line);
-					System.out.println(line);
-				break;
-				case 5 : 
-					Notif6.setText(line);
-					System.out.println(line);
-				break;
-				case 6 : 
-					Notif7.setText(line);
-					System.out.println(line);
-				break;
-				case 7 : 
-					Notif8.setText(line);
-					System.out.println(line);
-				break;
-				case 8 : 
-					Notif9.setText(line);
-					System.out.println(line);
-				break;
-				case 9 : 
-					Notif10.setText(line);
-					System.out.println(line);
-				break;
-				case 10 : 
-					Notif11.setText(line);
-					System.out.println(line);
-				break;
-				case 11 : 
-					Notif12.setText(line);
-					System.out.println(line);
-				break;
-				case 12 : 
-					Notif13.setText(line);
-					System.out.println(line);
-				break;
-				}
-				if (nouveau == true) {
-					Notif.setText("");
-					Notif2.setText("");
-					Notif3.setText("");
-					Notif4.setText("");
-					Notif5.setText("");
-					Notif6.setText("");
-					Notif7.setText("");
-					Notif8.setText("");
-					Notif9.setText("");
-					Notif10.setText("");
-					Notif11.setText("");
-					Notif12.setText("");
-					Notif13.setText("");
-				}
-				
-				i++;
-				if(i==12) {
-					i = 0;
-					nouveau = true;
+				notif.setText(notif.getText()+ "\n " +line);
+				nouveau = true;
+				if(line.equals("Retrait")) {
+					notif.setText("");
 				}
 			}
 			in.close();
@@ -850,7 +743,7 @@ public class MainController implements Initializable {
 			break;
 
 		case PhaseDeRetrait:
-			ecrire("Retrait!");
+			ecrire("Retrait");
 			lireLigne();
 			System.out.println(tour);
 			System.out.println("-----------------------");
@@ -863,12 +756,9 @@ public class MainController implements Initializable {
 				order = true;
 				phase.setVisible(true);
 			}
-			
-			ecrire("-----------");
+			ecrire("Nouveau tour ");
 			lireLigne();
-			
 			tour();
-			
 			break;
 
 		}

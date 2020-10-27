@@ -147,24 +147,13 @@
                </BorderPane.margin>
                <children>
                   <ImageView fx:id="imageZoom" fitHeight="532.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="Notif" layoutX="100.0" layoutY="100.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-200.0" />
-                  <Label fx:id="Notif2" layoutX="100.0" layoutY="100.0" prefHeight="21.0" prefWidth="138.0" scaleX="2.0" textFill="#3aa5c2" translateY="-175.0" />
-                  <Label fx:id="Notif5" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-100.0" />
-                  <Label fx:id="Notif6" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-75.0" />
-                  <Label fx:id="Notif3" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-150.0" />
-                  <Label fx:id="Notif4" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-125.0" />
-                  <Label fx:id="Notif7" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-50.0" />
-                  <Label fx:id="Notif8" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="-25.0" />
-                  <Label fx:id="Notif9" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" />
-                  <Label fx:id="Notif10" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="25.0" />
-                  <Label fx:id="Notif11" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="50.0" />
-                  <Label fx:id="Notif12" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="75.0" />
-                  <Label fx:id="Notif13" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="100.0" />
-                  <Label fx:id="Notif14" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="125.0" />
-                  <Label fx:id="Notif15" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="175.0" />
-                  <Label fx:id="Notif16" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="200.0" />
-                  <Label fx:id="Notif17" layoutX="90.0" layoutY="266.0" prefHeight="21.0" prefWidth="140.0" scaleX="2.0" textFill="#38a7c3" translateY="150.0" />
-                  <Label fx:id="tout" prefHeight="370.0" prefWidth="269.0" text="Label" textFill="#e81010" />
+                  <Label fx:id="notif" graphicTextGap="0.0" prefHeight="492.0" prefWidth="269.0" textFill="#40f5e9" wrapText="true">
+                     <font>
+                        <Font size="29.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin></Label>
                </children>
             </StackPane>
          </right>
