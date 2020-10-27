@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -121,11 +122,11 @@
                       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="allyCard0" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="allyCard1" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                        <ImageView fx:id="allyCard2" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                        <ImageView fx:id="allyCard3" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                        <ImageView fx:id="allyCard4" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                        <ImageView fx:id="allyCard0" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="allyCard1" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="allyCard2" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                        <ImageView fx:id="allyCard3" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                        <ImageView fx:id="allyCard4" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="250.0" />
@@ -140,11 +141,21 @@
             </HBox>
          </bottom>
          <right>
-            <ImageView fx:id="imageZoom" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets right="20.0" />
                </BorderPane.margin>
-            </ImageView>
+               <children>
+                  <ImageView fx:id="imageZoom" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0" prefWidth="300.0" textFill="#40f5e9" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets />
+                     </StackPane.margin></Label>
+               </children>
+            </StackPane>
          </right>
          <top>
             <HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0" BorderPane.alignment="CENTER">

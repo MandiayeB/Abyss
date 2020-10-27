@@ -1,5 +1,12 @@
 package org.abyss.controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +88,11 @@ public class MainController implements Initializable {
 	private Label ennemyHp;
 	@FXML
 	private Label afficherTour;
-
+	@FXML
+	private Label notif;
+	@FXML
+	private Label tout;
+	
 	private List<Cards> hand;
 	private List<Cards> ennemyHand;
 	private List<Cards> ennemyDeck;
@@ -98,7 +109,9 @@ public class MainController implements Initializable {
 	private ArrayList<ImageView> listImage3;
 	private ArrayList<ImageView> listImage4;
 	private Boolean order;
+	private boolean nouveau;
 	private Node cancel;
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -112,6 +125,7 @@ public class MainController implements Initializable {
 		allyPv = 1000;
 		ennemyPv = 1000;
 		tour = Phase.TourEnnemi;
+		nouveau = true;
 
 		listImage1 = new ArrayList<>();
 		listImage1.add(allyCard0);
@@ -154,8 +168,10 @@ public class MainController implements Initializable {
 	}
 
 	public void mort() {
+
 		if (allyPv <= 0 || ennemyPv <= 0) {
 			System.exit(0); 
+
 		}
 	}
 
@@ -287,7 +303,11 @@ public class MainController implements Initializable {
 							
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
 							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
+							ecrire("Infligé : - "+ carte1.combat(carte2));
+							lireLigne();
 							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
+							ecrire("Reçu : - "+ carte2.combat(carte1));
+							lireLigne();
 							
 							listImage3.get(i).setTranslateY(100);
 							listImage4.get(i).setTranslateY(-100);
@@ -324,7 +344,11 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+		
+							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
+							ecrire("Infligé : - "+ carte1.getAtt());
+							lireLigne();
+
 						}
 
 					} else {
@@ -333,6 +357,8 @@ public class MainController implements Initializable {
 							
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
 							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
+							ecrire("Reçu : - "+ carte2.getAtt());
+							lireLigne();
 							
 							listImage4.get(i).setTranslateY(-100);
 							try {
@@ -347,7 +373,7 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+		
 						}
 
 					}
@@ -441,6 +467,10 @@ public class MainController implements Initializable {
 			node.setTranslateY(-10);
 		}
 		
+		if (((ImageView) event.getSource()).getImage() != null) {
+			notif.setVisible(false);
+		}
+		
 		imageZoom.setImage(((ImageView) event.getSource()).getImage());
 		// Affiche la carte sélectionnée en grand
 	}
@@ -455,7 +485,7 @@ public class MainController implements Initializable {
 		
 		node.setEffect(null);
 		imageZoom.setImage(null);
-
+		notif.setVisible(true);
 	}
 
 	public void dragDetected(MouseEvent event) { // Je commence à transporter la carte
@@ -646,56 +676,114 @@ public class MainController implements Initializable {
 
 	}
 
+	public void ecrire(String content) {
+		File fichier = new File("src/main/resources/resources/TXT/Text.txt");
+
+		if (nouveau == true) {
+			try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fichier))) {
+				bufferedWriter.write("");
+				bufferedWriter.close();
+
+			} catch (IOException e) {
+				System.out.println("Impossible d'ecrire");
+			}
+		}
+
+		try {
+			FileWriter fw = new FileWriter("src/main/resources/resources/TXT/Text.txt", true);
+			fw.write(content + "\n");
+			fw.close();
+		} catch (IOException ioe) {
+			System.out.println("Impossible d'ecrire");
+		}
+	}
+
+	public void lireLigne() {
+
+		BufferedReader in;
+		try {
+			in = new BufferedReader(new FileReader("src/main/resources/resources/TXT/Text.txt"));
+			String line;
+			while ((line = in.readLine()) != null) {
+				// Afficher le contenu du fichier
+				System.out.println(line);
+				notif.setText(notif.getText()+ "\n " +line);
+				nouveau = true;
+				if(line.equals("reset")) {
+					notif.setText("");
+				}
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public void tour() {
 
 		switch (tour) {
 
-			case TourEnnemi:
-	
-				afficherTour.setText("Tour Ennemi"); // On l'affiche
-				ennemy();
-				break;
-	
-			case PhaseDeStrategie:
-	
-				System.out.println(tour);
-				System.out.println("-----------------------");
-				afficherTour.setText("Tour de Stratégie");
-				tour = Phase.Transition;
-				break;
+		case TourEnnemi:
+			ecrire("Tour ennemi");
+			nouveau = false;
+			lireLigne();
+			afficherTour.setText("Tour Ennemi"); // On l'affiche
+			ennemy();
+			ecrire("L'ennemi a fini");
+			break;
+
+		case PhaseDeStrategie:
 			
-			case Transition:
-				
-				if (order) {
-					afficherTour.setText("Tour Ennemi");
-					tour = Phase.TourEnnemi;
-				} else if (!order) {
-					afficherTour.setText("Phase de Combat");
-					tour = Phase.PhaseDeCombat;
-				}
-				tour();
-				break;
-				
-			case PhaseDeCombat:
-				
-				combat();
-				break;
-	
-			case PhaseDeRetrait:
-	
-				System.out.println(tour);
-				System.out.println("-----------------------");
-				retrait();
-				if (order) {
-					tour = Phase.TourEnnemi;
-					order = false;
-				} else if (!order) {
-					tour = Phase.PhaseDeStrategie;
-					order = true;
-					phase.setVisible(true);
-				}
-				tour();
-				break;
+			ecrire("Vous pouvez jouer");
+			lireLigne();
+			System.out.println(tour);
+			System.out.println("-----------------------");
+			afficherTour.setText("Tour de Stratégie");
+			tour = Phase.Transition;
+			break;
+			
+		case Transition:
+			ecrire("Fin de tour");
+			lireLigne();
+			if (order) {
+				afficherTour.setText("Tour Ennemi");
+				tour = Phase.TourEnnemi;
+			} else if (!order) {
+				afficherTour.setText("Phase de Combat");
+				tour = Phase.PhaseDeCombat;
+			}
+			tour();
+			break;
+
+		case PhaseDeCombat:
+			ecrire("reset");
+			lireLigne();
+			ecrire("Combat");
+			lireLigne();
+			combat();
+			break;
+
+		case PhaseDeRetrait:
+			System.out.println(tour);
+			System.out.println("-----------------------");
+			retrait();
+			if (order) {
+				tour = Phase.TourEnnemi;
+				order = false;
+			} else if (!order) {
+				tour = Phase.PhaseDeStrategie;
+				order = true;
+				phase.setVisible(true);
+			}
+			ecrire("Nouveau tour ");
+			lireLigne();
+			tour();
+			break;
 
 		}
 		
