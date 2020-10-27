@@ -690,7 +690,7 @@ public class MainController implements Initializable {
 			while ((line = in.readLine()) != null) {
 				// Afficher le contenu du fichier
 				System.out.println(line);
-				notif.setText(notif.getText()+ "\n " +line);
+				notif.setText(notif.getText()+ "\n " + line);
 				nouveau = true;
 				if(line.equals("reset")) {
 					notif.setText("");
