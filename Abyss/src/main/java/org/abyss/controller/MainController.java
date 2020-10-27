@@ -321,8 +321,11 @@ public class MainController implements Initializable {
 							
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
 							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
+							ecrire("Infligé : - "+ carte1.combat(carte2));
+							lireLigne();
 							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
-
+							ecrire("Reçu : - "+ carte2.combat(carte1));
+							lireLigne();
 						} else {
 							
 							listImage3.get(i).setTranslateY(100);
@@ -340,6 +343,8 @@ public class MainController implements Initializable {
 							}
 							
 							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
+							ecrire("Infligé : - "+ carte1.getAtt());
+							lireLigne();
 
 						}
 
@@ -362,7 +367,9 @@ public class MainController implements Initializable {
 							}
 							
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
-							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
+							allyPv -= carte2.getAtt(); // S'il n'y a personne on attaque directement les pv
+							ecrire("Reçu : - "+ carte2.getAtt());
+							lireLigne();
 
 						}
 
@@ -685,7 +692,7 @@ public class MainController implements Initializable {
 				System.out.println(line);
 				notif.setText(notif.getText()+ "\n " +line);
 				nouveau = true;
-				if(line.equals("Retrait")) {
+				if(line.equals("reset")) {
 					notif.setText("");
 				}
 			}
@@ -737,14 +744,14 @@ public class MainController implements Initializable {
 			break;
 
 		case PhaseDeCombat:
+			ecrire("reset");
+			lireLigne();
 			ecrire("Combat");
 			lireLigne();
 			combat();
 			break;
 
 		case PhaseDeRetrait:
-			ecrire("Retrait");
-			lireLigne();
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			retrait();
