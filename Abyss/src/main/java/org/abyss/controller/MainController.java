@@ -279,12 +279,16 @@ public class MainController implements Initializable {
 		new Thread(new Runnable() {
 			public void run() {
 				for (int i = 0; i < allyBoard.size(); i++) {
-
+					
 					if (allyBoard.get(i) != null) {
 
 						Combattant carte1 = (Combattant) allyBoard.get(i);
 						if (ennemyBoard.get(i) != null) {
-
+							
+							Combattant carte2 = (Combattant) ennemyBoard.get(i);
+							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
+							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
+							
 							listImage3.get(i).setTranslateY(100);
 							listImage4.get(i).setTranslateY(-100);
 							
@@ -302,12 +306,10 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
-							Combattant carte2 = (Combattant) ennemyBoard.get(i);
-							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
-							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
 
 						} else {
+							
+							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
 							
 							listImage3.get(i).setTranslateY(100);
 							try {
@@ -323,13 +325,14 @@ public class MainController implements Initializable {
 								e.printStackTrace();
 							}
 							
-							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
-
 						}
 
 					} else {
 
 						if (ennemyBoard.get(i) != null) {
+							
+							Combattant carte2 = (Combattant) ennemyBoard.get(i);
+							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
 							
 							listImage4.get(i).setTranslateY(-100);
 							try {
@@ -345,12 +348,18 @@ public class MainController implements Initializable {
 								e.printStackTrace();
 							}
 							
-							Combattant carte2 = (Combattant) ennemyBoard.get(i);
-							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
-
 						}
 
 					}
+					
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							allyHp.setTextFill(Color.RED);
+							ennemyHp.setTextFill(Color.RED);
+							afficherHp();
+						}
+					});
 					
 				}
 				
@@ -362,7 +371,8 @@ public class MainController implements Initializable {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						afficherHp();
+						allyHp.setTextFill(Color.web("#36d353"));
+						ennemyHp.setTextFill(Color.web("#36d353"));
 						afficherTour.setText("Retrait !");
 						System.out.println(tour);
 						System.out.println("-----------------------");
