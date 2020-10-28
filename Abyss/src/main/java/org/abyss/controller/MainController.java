@@ -92,7 +92,7 @@ public class MainController implements Initializable {
 	private Label notif;
 	@FXML
 	private Label tout;
-	
+
 	private List<Cards> hand;
 	private List<Cards> ennemyHand;
 	private List<Cards> ennemyDeck;
@@ -111,7 +111,6 @@ public class MainController implements Initializable {
 	private Boolean order;
 	private boolean nouveau;
 	private Node cancel;
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -170,7 +169,7 @@ public class MainController implements Initializable {
 	public void mort() {
 
 		if (allyPv <= 0 || ennemyPv <= 0) {
-			System.exit(0); 
+			System.exit(0);
 
 		}
 	}
@@ -290,37 +289,37 @@ public class MainController implements Initializable {
 	}
 
 	public void combat() {
-		
+
 		phase.setVisible(false);
 		new Thread(new Runnable() {
 			public void run() {
 				for (int i = 0; i < allyBoard.size(); i++) {
-					
+
 					if (allyBoard.get(i) != null) {
 
 						Combattant carte1 = (Combattant) allyBoard.get(i);
 						if (ennemyBoard.get(i) != null) {
-							
+
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
 							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
-							ecrire("Infligé : - "+ carte1.combat(carte2));
+							ecrire("Infligé : " + carte1.combat(carte2));
 							lireLigne();
 							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
-							ecrire("Reçu : - "+ carte2.combat(carte1));
+							ecrire("Reçu : " + carte2.combat(carte1));
 							lireLigne();
-							
+
 							listImage3.get(i).setTranslateY(100);
 							listImage4.get(i).setTranslateY(-100);
-							
+
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+
 							listImage3.get(i).setTranslateY(-9);
 							listImage4.get(i).setTranslateY(9);
-							
+
 							try {
 								Thread.sleep(350);
 							} catch (InterruptedException e) {
@@ -328,9 +327,9 @@ public class MainController implements Initializable {
 							}
 
 						} else {
-							
+
 							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
-							
+
 							listImage3.get(i).setTranslateY(100);
 							try {
 								Thread.sleep(200);
@@ -338,15 +337,15 @@ public class MainController implements Initializable {
 								e.printStackTrace();
 							}
 							listImage3.get(i).setTranslateY(-100);
-							
+
 							try {
 								Thread.sleep(350);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-		
+
 							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
-							ecrire("Infligé : - "+ carte1.getAtt());
+							ecrire("Infligé : " + carte1.getAtt());
 							lireLigne();
 
 						}
@@ -354,12 +353,12 @@ public class MainController implements Initializable {
 					} else {
 
 						if (ennemyBoard.get(i) != null) {
-							
+
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
 							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
-							ecrire("Reçu : - "+ carte2.getAtt());
+							ecrire("Reçu : " + carte2.getAtt());
 							lireLigne();
-							
+
 							listImage4.get(i).setTranslateY(-100);
 							try {
 								Thread.sleep(200);
@@ -367,17 +366,17 @@ public class MainController implements Initializable {
 								e.printStackTrace();
 							}
 							listImage4.get(i).setTranslateY(100);
-							
+
 							try {
 								Thread.sleep(350);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-		
+
 						}
 
 					}
-					
+
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
@@ -386,14 +385,14 @@ public class MainController implements Initializable {
 							afficherHp();
 						}
 					});
-					
+
 				}
-				
+
 				for (int i = 0; i < allyBoard.size(); i++) {
 					listImage3.get(i).setTranslateY(0);
 					listImage4.get(i).setTranslateY(0);
 				}
-				
+
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
@@ -442,47 +441,47 @@ public class MainController implements Initializable {
 //	}
 
 	public void afficherCarte(MouseEvent event) {
-		
+
 		Node node = (Node) event.getSource();
 		if (tour == Phase.Transition) {
 			// Effet autour des cartes
-			
+
 			DropShadow borderGlow = new DropShadow();
 			borderGlow.setOffsetY(0f);
 			borderGlow.setOffsetX(0f);
-			
+
 			if (node.getId().contains("ally")) {
 				borderGlow.setColor(Color.BLUE);
 			} else {
 				borderGlow.setColor(Color.RED);
 			}
-			
+
 			borderGlow.setWidth(70);
 			borderGlow.setHeight(70);
 			node.setEffect(borderGlow);
 
 		}
-		
+
 		if (node.getId().contains("allyCard")) {
 			node.setTranslateY(-10);
 		}
-		
+
 		if (((ImageView) event.getSource()).getImage() != null) {
 			notif.setVisible(false);
 		}
-		
+
 		imageZoom.setImage(((ImageView) event.getSource()).getImage());
 		// Affiche la carte sélectionnée en grand
 	}
-	
+
 	public void cancelZoom(MouseEvent event) {
 
 		Node node = (Node) event.getSource(); // Annule le zoom quand on quitte la case
-		
+
 		if (node.getId().contains("allyCard")) {
 			node.setTranslateY(0);
 		}
-		
+
 		node.setEffect(null);
 		imageZoom.setImage(null);
 		notif.setVisible(true);
@@ -497,7 +496,7 @@ public class MainController implements Initializable {
 			cancel.setVisible(false);
 			String source = (((Node) event.getSource()).getId()).toString();
 			// Converti l'id de la case en String
-			
+
 			int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
 			// Récupère le dernier élément de la chaine de caractère et la converti en int *
 
@@ -531,7 +530,7 @@ public class MainController implements Initializable {
 	public void dragEntered(DragEvent event) { // Je montre sur quelle case il s'apprête à poser la carte
 
 		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
-			
+
 			((ImageView) event.getSource()).setImage(new Image("/resources/CSS/dos.jpg"));
 			// Image pour indiquer où va se dérouler le transfert
 
@@ -544,7 +543,7 @@ public class MainController implements Initializable {
 	public void dragExited(DragEvent event) { // Je supprime l'image si l'utilisateur quitte la case
 
 		if (!event.isDropCompleted() && allyBoard.get(carteVerif(event)) == null) {
-			
+
 			((ImageView) event.getSource()).setImage(null);
 			event.consume();
 
@@ -572,13 +571,13 @@ public class MainController implements Initializable {
 		event.consume();
 
 	}
-	
+
 	public void dragDone(DragEvent event) {
-		
+
 		cancel.setVisible(true);
-		
+
 	}
-	
+
 //	public void boardEntered(DragEvent event) {
 //		cancel.setVisible(false);
 //	}
@@ -586,7 +585,7 @@ public class MainController implements Initializable {
 //	public void boardExited(DragEvent event) {
 //		cancel.setVisible(true);
 //	}
-	
+
 	public int carteVerif(DragEvent event) {
 
 		// Sert à trouver l'emplacement d'un évènement (voir dragDetected)
@@ -628,7 +627,7 @@ public class MainController implements Initializable {
 
 					}
 					index++;
-					
+
 					if (index == ennemyHand.size()) {
 						try {
 							Thread.sleep(500);
@@ -636,7 +635,7 @@ public class MainController implements Initializable {
 							e.printStackTrace();
 						}
 					}
-					
+
 				}
 				Platform.runLater(new Runnable() {
 					@Override
@@ -707,9 +706,9 @@ public class MainController implements Initializable {
 			while ((line = in.readLine()) != null) {
 				// Afficher le contenu du fichier
 				System.out.println(line);
-				notif.setText(notif.getText()+ "\n " + line);
+				notif.setText(notif.getText() + "\n " + line);
 				nouveau = true;
-				if(line.equals("reset")) {
+				if (line.equals("reset")) {
 					notif.setText("");
 				}
 			}
@@ -738,7 +737,7 @@ public class MainController implements Initializable {
 			break;
 
 		case PhaseDeStrategie:
-			
+
 			ecrire("Vous pouvez jouer");
 			lireLigne();
 			System.out.println(tour);
@@ -746,7 +745,7 @@ public class MainController implements Initializable {
 			afficherTour.setText("Tour de Stratégie");
 			tour = Phase.Transition;
 			break;
-			
+
 		case Transition:
 			ecrire("Fin de tour");
 			lireLigne();
@@ -784,9 +783,8 @@ public class MainController implements Initializable {
 			lireLigne();
 			tour();
 			break;
-
 		}
-		
+
 	}
-	
+
 }
