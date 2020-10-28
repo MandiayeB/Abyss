@@ -122,11 +122,11 @@
                       <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ImageView fx:id="allyCard0" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="allyCard1" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                        <ImageView fx:id="allyCard2" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                        <ImageView fx:id="allyCard3" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                        <ImageView fx:id="allyCard4" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                        <ImageView fx:id="allyCard0" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="allyCard1" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fx:id="allyCard2" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                        <ImageView fx:id="allyCard3" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                        <ImageView fx:id="allyCard4" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
                      </children>
                      <HBox.margin>
                         <Insets bottom="10.0" left="250.0" />
