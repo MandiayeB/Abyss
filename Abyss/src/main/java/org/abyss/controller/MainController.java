@@ -152,7 +152,7 @@ public class MainController implements Initializable {
 		listImage4.add(ennemy4);
 		order = false;
 
-		allyDeck.setImage(new Image("/resources/CSS/dos.jpg"));
+		allyDeck.setImage(new Image("/resources/CSS/gif.gif"));
 		opponentDeck.setImage(new Image("/resources/CSS/dos.jpg"));
 
 		piocher();
@@ -203,28 +203,57 @@ public class MainController implements Initializable {
 
 	public void retrait() {
 
-		for (int i = 0; i < allyBoard.size(); i++) {
+		new Thread(new Runnable() {
+			public void run() {
+				for (int i = 0; i < allyBoard.size(); i++) {
 
-			if (allyBoard.get(i) != null) {
+					if (allyBoard.get(i) != null) {
 
-				deck.add(allyBoard.get(i)); // On remet la carte dans le deck
-				allyBoard.set(i, null); // On supprime la carte du terrain
-				listImage3.get(i).setImage(null); // On supprime l'image de la carte du terrain
+						deck.add(allyBoard.get(i)); // On remet la carte dans le deck
+						allyBoard.set(i, null); // On supprime la carte du terrain
+						
+					}
 
+					if (ennemyBoard.get(i) != null) {
+
+						ennemyDeck.add(ennemyBoard.get(i)); // Pareil pour l'ennemi
+						ennemyBoard.set(i, null);
+
+					}
+					
+					listImage3.get(i).setImage(new Image("/resources/CSS/clean.gif")); // On supprime l'image de la carte du terrain
+					listImage4.get(i).setImage(new Image("/resources/CSS/clean.gif"));
+					
+					try {
+						Thread.sleep(200);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+					listImage3.get(i).setImage(null);
+					listImage4.get(i).setImage(null);
+
+				}
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						piocher();
+						afficherBoard();
+						if (order) {
+							tour = Phase.TourEnnemi;
+							order = false;
+						} else if (!order) {
+							tour = Phase.PhaseDeStrategie;
+							order = true;
+							phase.setVisible(true);
+						}
+						ecrire("Nouveau tour ");
+						lireLigne();
+						tour();
+					}
+				});
 			}
-
-			if (ennemyBoard.get(i) != null) {
-
-				ennemyDeck.add(ennemyBoard.get(i)); // Pareil pour l'ennemi
-				ennemyBoard.set(i, null);
-				listImage4.get(i).setImage(null);
-
-			}
-
-		}
-
-		piocher();
-		afficherBoard();
+		}).start();
 
 	}
 
@@ -289,8 +318,12 @@ public class MainController implements Initializable {
 	}
 
 	public void combat() {
-
+		ecrire("reset");
+		lireLigne();
+		ecrire("Combat");
+		lireLigne();
 		phase.setVisible(false);
+		
 		new Thread(new Runnable() {
 			public void run() {
 				for (int i = 0; i < allyBoard.size(); i++) {
@@ -302,12 +335,7 @@ public class MainController implements Initializable {
 
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
 							ennemyPv += carte1.combat(carte2); // On enlève la différence aux pv de l'ennemi
-							ecrire("Infligé : " + carte1.combat(carte2));
-							lireLigne();
 							allyPv += carte2.combat(carte1); // Pareil pour les pv de l'allié
-							ecrire("Reçu : " + carte2.combat(carte1));
-							lireLigne();
-
 							listImage3.get(i).setTranslateY(100);
 							listImage4.get(i).setTranslateY(-100);
 
@@ -325,12 +353,23 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
+							
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									afficherHp();
+									ecrire("Dégâts infligés : "+ carte1.combat(carte2));
+									lireLigne();
+									ecrire("Dégâts reçus : "+ carte2.combat(carte1));
+									lireLigne();
+								}
+							});
 
 						} else {
 
 							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
-
 							listImage3.get(i).setTranslateY(100);
+							
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
@@ -343,11 +382,16 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-
-							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
-							ecrire("Infligé : " + carte1.getAtt());
-							lireLigne();
-
+							
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									afficherHp();
+									ecrire("Dégâts infligés : "+ carte1.getAtt());
+									lireLigne();
+								}
+							});
+							
 						}
 
 					} else {
@@ -356,15 +400,14 @@ public class MainController implements Initializable {
 
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
 							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
-							ecrire("Reçu : " + carte2.getAtt());
-							lireLigne();
-
 							listImage4.get(i).setTranslateY(-100);
+							
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
+							
 							listImage4.get(i).setTranslateY(100);
 
 							try {
@@ -372,7 +415,16 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-
+							
+							Platform.runLater(new Runnable() {
+								@Override
+								public void run() {
+									afficherHp();
+									ecrire("Dégâts reçus : "+ carte2.getAtt());
+									lireLigne();
+								}
+							});
+							
 						}
 
 					}
@@ -382,7 +434,6 @@ public class MainController implements Initializable {
 						public void run() {
 							allyHp.setTextFill(Color.RED);
 							ennemyHp.setTextFill(Color.RED);
-							afficherHp();
 						}
 					});
 
@@ -485,6 +536,7 @@ public class MainController implements Initializable {
 		node.setEffect(null);
 		imageZoom.setImage(null);
 		notif.setVisible(true);
+		
 	}
 
 	public void dragDetected(MouseEvent event) { // Je commence à transporter la carte
@@ -512,6 +564,7 @@ public class MainController implements Initializable {
 			db.setContent(content);
 
 			event.consume();
+			
 		}
 
 	}
@@ -525,6 +578,7 @@ public class MainController implements Initializable {
 		}
 
 		event.consume();
+		
 	}
 
 	public void dragEntered(DragEvent event) { // Je montre sur quelle case il s'apprête à poser la carte
@@ -596,8 +650,13 @@ public class MainController implements Initializable {
 	}
 
 	public void ennemy() {
-
+		
+		ecrire("Tour ennemi");
+		nouveau = false;
+		lireLigne();
+		afficherTour.setText("Tour Ennemi");
 		phase.setVisible(false);
+		
 		new Thread(new Runnable() {
 			public void run() {
 
@@ -649,6 +708,8 @@ public class MainController implements Initializable {
 							afficherTour.setText("Phase de Combat");
 							tour = Phase.PhaseDeCombat;
 						}
+						ecrire("Fin de tour");
+						lireLigne();
 						tour();
 					}
 				});
@@ -706,7 +767,7 @@ public class MainController implements Initializable {
 			while ((line = in.readLine()) != null) {
 				// Afficher le contenu du fichier
 				System.out.println(line);
-				notif.setText(notif.getText() + "\n " + line);
+				notif.setText(notif.getText()+ "\n " + line);
 				nouveau = true;
 				if (line.equals("reset")) {
 					notif.setText("");
@@ -714,10 +775,8 @@ public class MainController implements Initializable {
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -728,16 +787,12 @@ public class MainController implements Initializable {
 		switch (tour) {
 
 		case TourEnnemi:
-			ecrire("Tour ennemi");
-			nouveau = false;
-			lireLigne();
-			afficherTour.setText("Tour Ennemi"); // On l'affiche
+			System.out.println(tour);
+			System.out.println("-----------------------");
 			ennemy();
-			ecrire("L'ennemi a fini");
 			break;
 
 		case PhaseDeStrategie:
-
 			ecrire("Vous pouvez jouer");
 			lireLigne();
 			System.out.println(tour);
@@ -760,10 +815,8 @@ public class MainController implements Initializable {
 			break;
 
 		case PhaseDeCombat:
-			ecrire("reset");
-			lireLigne();
-			ecrire("Combat");
-			lireLigne();
+			System.out.println(tour);
+			System.out.println("-----------------------");
 			combat();
 			break;
 
@@ -771,17 +824,6 @@ public class MainController implements Initializable {
 			System.out.println(tour);
 			System.out.println("-----------------------");
 			retrait();
-			if (order) {
-				tour = Phase.TourEnnemi;
-				order = false;
-			} else if (!order) {
-				tour = Phase.PhaseDeStrategie;
-				order = true;
-				phase.setVisible(true);
-			}
-			ecrire("Nouveau tour ");
-			lireLigne();
-			tour();
 			break;
 		}
 
