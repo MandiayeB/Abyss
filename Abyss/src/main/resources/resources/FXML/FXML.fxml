@@ -18,61 +18,80 @@
    <children>
       <BorderPane prefHeight="1000.0" prefWidth="1920.0">
          <center>
-            <GridPane id="board" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: Transparant; -fx-border-color: Black;" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="452.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="ennemy0" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ennemy1" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ennemy2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ennemy3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ennemy4" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ally0" fitHeight="225.0" fitWidth="150.0" layoutX="910.0" layoutY="10.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ally1" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ally2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ally3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
-                  <ImageView fx:id="ally4" fitHeight="225.0" fitWidth="150.0" layoutX="685.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="37.0" />
-                     </GridPane.margin></ImageView>
+                  <GridPane id="board" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: Transparant; -fx-border-color: Black;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fx:id="ennemy0" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ennemy1" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ennemy2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ennemy3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ennemy4" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ally0" fitHeight="225.0" fitWidth="150.0" layoutX="910.0" layoutY="10.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ally1" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ally2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ally3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="ally4" fitHeight="225.0" fitWidth="150.0" layoutX="685.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="37.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+                  <ImageView fx:id="collision" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                     <StackPane.margin>
+                        <Insets right="900.0" />
+                     </StackPane.margin>
+                  </ImageView>
                </children>
-            </GridPane>
+            </StackPane>
          </center>
          <left>
             <VBox BorderPane.alignment="CENTER">

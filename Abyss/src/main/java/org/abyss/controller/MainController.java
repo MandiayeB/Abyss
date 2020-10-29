@@ -17,9 +17,12 @@ import org.abyss.cards.Combattant;
 import org.abyss.cards.Sorts;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
@@ -30,7 +33,10 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 
@@ -92,6 +98,8 @@ public class MainController implements Initializable {
 	private Label notif;
 	@FXML
 	private Label tout;
+	@FXML
+	private ImageView collision;
 	
 	private List<Cards> hand;
 	private List<Cards> ennemyHand;
@@ -170,8 +178,7 @@ public class MainController implements Initializable {
 	public void mort() {
 
 		if (allyPv <= 0 || ennemyPv <= 0) {
-			System.exit(0); 
-
+			Popup.display();
 		}
 	}
 
@@ -240,6 +247,7 @@ public class MainController implements Initializable {
 					public void run() {
 						piocher();
 						afficherBoard();
+						phase.setVisible(true);
 						if (order) {
 							tour = Phase.TourEnnemi;
 							order = false;
@@ -350,12 +358,14 @@ public class MainController implements Initializable {
 							
 							listImage3.get(i).setTranslateY(-9);
 							listImage4.get(i).setTranslateY(9);
+							collision.setImage(new Image("/resources/CSS/collision.png"));
 							
 							try {
 								Thread.sleep(350);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
+							collision.setImage(null);
 							
 							Platform.runLater(new Runnable() {
 								@Override
@@ -455,7 +465,6 @@ public class MainController implements Initializable {
 						afficherTour.setText("Retrait !");
 						System.out.println(tour);
 						System.out.println("-----------------------");
-						phase.setVisible(true);
 						tour = Phase.PhaseDeRetrait;
 						mort();
 						tour();
@@ -466,33 +475,32 @@ public class MainController implements Initializable {
 
 	}
 
-//	public void applyElement (int carte, List<Cards> board) {
-//		Combattant carte1 = (Combattant) board.get(carte);
-//		
-//		for (int i = 0; i < board.size(); i++) {
-//			Combattant carte2 = (Combattant) board.get(i);
-//			if (i != carte) {
-//
-//				if (carte1.getElement() == carte2.getElement()) { 
-//					// Si deux cartes sont du même élément j'applique un bonus
-//					
-//					carte1.setAtt(carte1.getAtt());
-//					carte1.setAppliedElement(true);
-//					
-//					if (!carte2.getAppliedElement()) {
-//						
-//						carte2.setAtt(carte2.getAtt() + 50);
-//						carte2.setAppliedElement(true);
-//						
-//					}
-//					
-//				}
-//				
-//			}
-//			
-//		}
-//		
-//	}
+	public void applyElement (int carte) {
+		
+		for (int i = 0; i < allyBoard.size(); i++) {
+			
+			if (i != carte) {
+
+				if (((Combattant) allyBoard.get(carte)).getElement() == ((Combattant) allyBoard.get(i)).getElement()) { 
+					// Si deux cartes sont du même élément j'applique un bonus
+					
+					((Combattant) allyBoard.get(carte)).setAtt(((Combattant) allyBoard.get(carte)).getAtt());
+					((Combattant) allyBoard.get(carte)).setAppliedElement(true);
+					
+					if (!((Combattant) allyBoard.get(i)).getAppliedElement()) {
+						
+						((Combattant) allyBoard.get(i)).setAtt(((Combattant) allyBoard.get(i)).getAtt() + 50);
+						((Combattant) allyBoard.get(i)).setAppliedElement(true);
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+	}
 
 	public void afficherCarte(MouseEvent event) {
 		
@@ -617,7 +625,11 @@ public class MainController implements Initializable {
 
 			allyBoard.set(carteVerif(event), draggedCard); // Ajoute la carte sur le terrain
 			hand.set(draggedNumber, null); // Supprime la carte de la main
-//			applyElement(carteVerif(event), allyBoard);
+//			try {
+//			applyElement(carteVerif(event));
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 			afficherHand();
 			afficherBoard();
 			success = true;
@@ -789,48 +801,83 @@ public class MainController implements Initializable {
 
 		switch (tour) {
 
-		case TourEnnemi:
-			System.out.println(tour);
-			System.out.println("-----------------------");
-			ennemy();
-			break;
-
-		case PhaseDeStrategie:
-			ecrire("Vous pouvez jouer");
-			lireLigne();
-			System.out.println(tour);
-			System.out.println("-----------------------");
-			afficherTour.setText("Tour de Stratégie");
-			tour = Phase.Transition;
-			break;
-			
-		case Transition:
-			ecrire("Fin de tour");
-			lireLigne();
-			if (order) {
-				afficherTour.setText("Tour Ennemi");
-				tour = Phase.TourEnnemi;
-			} else if (!order) {
-				afficherTour.setText("Phase de Combat");
-				tour = Phase.PhaseDeCombat;
-			}
-			tour();
-			break;
-
-		case PhaseDeCombat:
-			System.out.println(tour);
-			System.out.println("-----------------------");
-			combat();
-			break;
-
-		case PhaseDeRetrait:
-			System.out.println(tour);
-			System.out.println("-----------------------");
-			retrait();
-			break;
+			case TourEnnemi:
+				System.out.println(tour);
+				System.out.println("-----------------------");
+				ennemy();
+				break;
+	
+			case PhaseDeStrategie:
+				ecrire("Vous pouvez jouer");
+				lireLigne();
+				System.out.println(tour);
+				System.out.println("-----------------------");
+				afficherTour.setText("Tour de Stratégie");
+				tour = Phase.Transition;
+				break;
+				
+			case Transition:
+				ecrire("Fin de tour");
+				lireLigne();
+				if (order) {
+					afficherTour.setText("Tour Ennemi");
+					tour = Phase.TourEnnemi;
+				} else if (!order) {
+					afficherTour.setText("Phase de Combat");
+					tour = Phase.PhaseDeCombat;
+				}
+				tour();
+				break;
+	
+			case PhaseDeCombat:
+				System.out.println(tour);
+				System.out.println("-----------------------");
+				combat();
+				break;
+	
+			case PhaseDeRetrait:
+				System.out.println(tour);
+				System.out.println("-----------------------");
+				retrait();
+				break;
 
 		}
 		
 	}
 	
+	public static void restart(ActionEvent e) {
+		System.exit(0);
+	}
+	
+	public static class Popup {
+
+		public static void display() {
+
+			Stage popupwindow = new Stage();
+
+			popupwindow.initModality(Modality.APPLICATION_MODAL);
+			popupwindow.setTitle("Fin de la partie");
+
+			Label label1 = new Label("La partie est terminée !");
+
+			Button button1 = new Button("Voulez-vous rejouer ?");
+			
+			button1.setOnAction(e -> restart(e));
+			
+			VBox layout = new VBox(10);
+
+			layout.getChildren().addAll(label1, button1);
+
+			layout.setAlignment(Pos.CENTER);
+
+			Scene scene1 = new Scene(layout, 300, 250);
+
+			popupwindow.setScene(scene1);
+
+			popupwindow.showAndWait();
+
+		}
+
+	}
+
 }
