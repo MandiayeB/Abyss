@@ -14,209 +14,232 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.MainController">
    <children>
-      <BorderPane prefHeight="1000.0" prefWidth="1920.0">
-         <center>
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="452.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
-               <children>
-                  <GridPane id="board" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: Transparant; -fx-border-color: Black;">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+      <StackPane>
+         <children>
+            <ImageView fx:id="defeat" fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
+            <BorderPane prefHeight="1000.0" prefWidth="1920.0">
+               <center>
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="452.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
                      <children>
-                        <ImageView fx:id="ennemy0" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
+                        <GridPane id="board" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: Transparant; -fx-border-color: Black;">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <ImageView fx:id="ennemy0" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ennemy1" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ennemy2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ennemy3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ennemy4" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ally0" fitHeight="225.0" fitWidth="150.0" layoutX="910.0" layoutY="10.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ally1" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ally2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ally3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                              <ImageView fx:id="ally4" fitHeight="225.0" fitWidth="150.0" layoutX="685.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="37.0" />
+                                 </GridPane.margin>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                        <ImageView fx:id="collision0" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <StackPane.margin>
+                              <Insets right="902.0" />
+                           </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="ennemy1" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
+                        <ImageView fx:id="collision1" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <StackPane.margin>
+                              <Insets right="452.0" />
+                           </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="ennemy2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
+                        <ImageView fx:id="collision3" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <StackPane.margin>
+                              <Insets left="449.0" />
+                           </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="ennemy3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
+                        <ImageView fx:id="collision4" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <StackPane.margin>
+                              <Insets left="901.0" />
+                           </StackPane.margin>
                         </ImageView>
-                        <ImageView fx:id="ennemy4" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="10.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="ally0" fitHeight="225.0" fitWidth="150.0" layoutX="910.0" layoutY="10.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="ally1" fitHeight="225.0" fitWidth="150.0" layoutX="10.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="ally2" fitHeight="225.0" fitWidth="150.0" layoutX="235.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="ally3" fitHeight="225.0" fitWidth="150.0" layoutX="460.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="ally4" fitHeight="225.0" fitWidth="150.0" layoutX="685.0" layoutY="235.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets left="37.0" />
-                           </GridPane.margin>
-                        </ImageView>
+                        <ImageView fx:id="collision2" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
-                  </GridPane>
-                  <ImageView fx:id="collision" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <StackPane.margin>
-                        <Insets right="900.0" />
-                     </StackPane.margin>
-                  </ImageView>
-               </children>
-            </StackPane>
-         </center>
-         <left>
-            <VBox BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets left="50.0" right="45.0" />
-               </BorderPane.margin>
-               <children>
-                  <Label fx:id="afficherTour" prefHeight="87.0" prefWidth="199.0" text="Appuyez sur start" textAlignment="CENTER" textFill="#f51212">
-                     <VBox.margin>
-                        <Insets top="100.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Calibri" size="20.0" />
-                     </font>
-                  </Label>
-                  <Button id="phase" fx:id="phase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tour" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: Transparent;" stylesheets="@../CSS/style.css" text="Start" textFill="WHITE">
-                     <VBox.margin>
-                        <Insets top="50.0" />
-                     </VBox.margin>
-                  </Button>
-               </children>
-            </VBox>
-         </left>
-         <bottom>
-            <HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-               <children>
-                  <Label fx:id="allyHp" prefHeight="100.0" prefWidth="100.0" text="100" textFill="#36d353">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                  </Label>
-                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  </StackPane>
+               </center>
+               <left>
+                  <VBox BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets left="50.0" right="45.0" />
+                     </BorderPane.margin>
                      <children>
-                        <ImageView fx:id="allyCard0" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="allyCard1" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                        <ImageView fx:id="allyCard2" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                        <ImageView fx:id="allyCard3" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                        <ImageView fx:id="allyCard4" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                        <Label fx:id="afficherTour" prefHeight="87.0" prefWidth="199.0" text="Appuyez sur start" textAlignment="CENTER" textFill="#f51212">
+                           <VBox.margin>
+                              <Insets top="100.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Calibri" size="20.0" />
+                           </font>
+                        </Label>
+                        <Button id="phase" fx:id="phase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#tour" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: Transparent;" stylesheets="@../CSS/style.css" text="Start" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="50.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="250.0" />
-                     </HBox.margin>
-                  </GridPane>
-                  <ImageView fx:id="allyDeck" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="150.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-         </bottom>
-         <right>
-            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets right="20.0" />
-               </BorderPane.margin>
-               <children>
-                  <ImageView fx:id="imageZoom" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0" prefWidth="300.0" textFill="#40f5e9" wrapText="true">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <StackPane.margin>
+                  </VBox>
+               </left>
+               <bottom>
+                  <HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
                         <Insets />
-                     </StackPane.margin></Label>
-               </children>
-            </StackPane>
-         </right>
-         <top>
-            <HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="ennemyHp" prefHeight="100.0" prefWidth="100.0" text="100" textFill="#36d353">
-                     <font>
-                        <Font size="40.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                     </BorderPane.margin>
                      <children>
-                        <ImageView fx:id="ennemyCard0" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="ennemyCard1" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                        <ImageView fx:id="ennemyCard2" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                        <ImageView fx:id="ennemyCard3" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                        <ImageView fx:id="ennemyCard4" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                        <Label fx:id="allyHp" prefHeight="100.0" prefWidth="100.0" text="100" textFill="#36d353">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                        <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <ImageView fx:id="allyCard0" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="allyCard1" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                              <ImageView fx:id="allyCard2" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                              <ImageView fx:id="allyCard3" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                              <ImageView fx:id="allyCard4" fitHeight="225.0" fitWidth="150.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="250.0" />
+                           </HBox.margin>
+                        </GridPane>
+                        <ImageView fx:id="allyDeck" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="150.0" />
+                           </HBox.margin>
+                        </ImageView>
                      </children>
-                     <HBox.margin>
-                        <Insets left="250.0" top="10.0" />
-                     </HBox.margin>
-                  </GridPane>
-                  <ImageView fx:id="opponentDeck" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                     <HBox.margin>
-                        <Insets left="150.0" top="10.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children>
-            </HBox>
-         </top>
-      </BorderPane>
+                  </HBox>
+               </bottom>
+               <right>
+                  <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets right="20.0" />
+                     </BorderPane.margin>
+                     <children>
+                        <ImageView fx:id="imageZoom" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0" prefWidth="300.0" textFill="#40f5e9" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </Label>
+                     </children>
+                  </StackPane>
+               </right>
+               <top>
+                  <HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="ennemyHp" prefHeight="100.0" prefWidth="100.0" text="100" textFill="#36d353">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <ImageView fx:id="ennemyCard0" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="ennemyCard1" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                              <ImageView fx:id="ennemyCard2" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                              <ImageView fx:id="ennemyCard3" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                              <ImageView fx:id="ennemyCard4" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="250.0" top="10.0" />
+                           </HBox.margin>
+                        </GridPane>
+                        <ImageView fx:id="opponentDeck" fitHeight="225.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="150.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </top>
+            </BorderPane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
