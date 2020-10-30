@@ -778,11 +778,12 @@ public class MainController implements Initializable {
 		try {
 			in = new BufferedReader(new FileReader("src/main/resources/resources/TXT/Text.txt"));
 			String line;
+			notif.setText("");
 			while ((line = in.readLine()) != null) {
 				// Afficher le contenu du fichier
 				System.out.println(line);
 				notif.setText(notif.getText()+ "\n " + line);
-				nouveau = true;
+				nouveau = false;
 				if (line.equals("reset")) {
 					notif.setText("");
 				}
