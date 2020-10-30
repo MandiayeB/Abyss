@@ -43,7 +43,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/resources/CSS/style.css").toExternalForm());
 			primaryStage.setTitle("Abyss");
-			primaryStage.getIcons().add(new Image("/resources/CSS/logo.png"));
+			primaryStage.getIcons().add(new Image("/resources/Images/logo.png"));
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			

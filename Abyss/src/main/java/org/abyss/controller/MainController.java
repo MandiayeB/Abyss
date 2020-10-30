@@ -89,6 +89,16 @@ public class MainController implements Initializable {
 	@FXML
 	private ImageView ennemy4; // <------->
 	@FXML
+	private ImageView collision0; // Collision
+	@FXML
+	private ImageView collision1; // | |
+	@FXML
+	private ImageView collision2; // | |
+	@FXML
+	private ImageView collision3; // | |
+	@FXML
+	private ImageView collision4; // <------->
+	@FXML
 	private Label allyHp;
 	@FXML
 	private Label ennemyHp;
@@ -99,7 +109,7 @@ public class MainController implements Initializable {
 	@FXML
 	private Label tout;
 	@FXML
-	private ImageView collision;
+	private ImageView defeat;
 	
 	private List<Cards> hand;
 	private List<Cards> ennemyHand;
@@ -116,6 +126,7 @@ public class MainController implements Initializable {
 	private ArrayList<ImageView> listImage2;
 	private ArrayList<ImageView> listImage3;
 	private ArrayList<ImageView> listImage4;
+	private ArrayList<ImageView> listImage5;
 	private Boolean order;
 	private boolean nouveau;
 	private Node cancel;
@@ -158,10 +169,16 @@ public class MainController implements Initializable {
 		listImage4.add(ennemy2);
 		listImage4.add(ennemy3);
 		listImage4.add(ennemy4);
+		listImage5 = new ArrayList<>();
+		listImage5.add(collision0);
+		listImage5.add(collision1);
+		listImage5.add(collision2);
+		listImage5.add(collision3);
+		listImage5.add(collision4);
 		order = false;
 
-		allyDeck.setImage(new Image("/resources/CSS/gif.gif"));
-		opponentDeck.setImage(new Image("/resources/CSS/dos.jpg"));
+		allyDeck.setImage(new Image("/resources/Images/gif.gif"));
+		opponentDeck.setImage(new Image("/resources/Images/dos.jpg"));
 
 		piocher();
 		afficherHp();
@@ -177,6 +194,8 @@ public class MainController implements Initializable {
 	public void mort() {
 
 		if (allyPv <= 0 || ennemyPv <= 0) {
+			defeat.toFront();
+			defeat.setImage(new Image("/resources/Images/end.gif"));
 			Popup.display();
 		}
 		
@@ -229,8 +248,8 @@ public class MainController implements Initializable {
 
 					}
 					
-					listImage3.get(i).setImage(new Image("/resources/CSS/clean.gif")); // On supprime l'image de la carte du terrain
-					listImage4.get(i).setImage(new Image("/resources/CSS/clean.gif"));
+					listImage3.get(i).setImage(new Image("/resources/Images/tornade.gif")); // On supprime l'image de la carte du terrain
+					listImage4.get(i).setImage(new Image("/resources/Images/tornade.gif"));
 					
 					try {
 						Thread.sleep(200);
@@ -289,7 +308,7 @@ public class MainController implements Initializable {
 
 			if (ennemyHand.get(index) != null) {
 
-				w.setImage(new Image("/resources/CSS/dos.jpg")); // Pareil pour l'ennemi
+				w.setImage(new Image("/resources/Images/dos.jpg")); // Pareil pour l'ennemi
 
 			} else {
 
@@ -327,6 +346,7 @@ public class MainController implements Initializable {
 	}
 
 	public void combat() {
+		
 		ecrire("reset");
 		lireLigne();
 		ecrire("Combat");
@@ -357,14 +377,14 @@ public class MainController implements Initializable {
 							listImage3.get(i).setTranslateY(-9);
 							listImage4.get(i).setTranslateY(9);
 
-							collision.setImage(new Image("/resources/CSS/collision.png"));
+							listImage5.get(i).setImage(new Image("/resources/Images/spark.gif"));
 							
 							try {
 								Thread.sleep(350);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							collision.setImage(null);
+							listImage5.get(i).setImage(null);
 							
 							Platform.runLater(new Runnable() {
 								@Override
@@ -413,7 +433,7 @@ public class MainController implements Initializable {
 							Combattant carte2 = (Combattant) ennemyBoard.get(i);
 							allyPv -= carte2.getAtt(); // S'il n'y a personne l'ennemi attaque directement les pv
 							listImage4.get(i).setTranslateY(-100);
-							
+
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
@@ -595,7 +615,7 @@ public class MainController implements Initializable {
 
 		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
 
-			((ImageView) event.getSource()).setImage(new Image("/resources/CSS/dos.jpg"));
+			((ImageView) event.getSource()).setImage(new Image("/resources/Images/dos.jpg"));
 			// Image pour indiquer où va se dérouler le transfert
 
 		}
@@ -645,14 +665,6 @@ public class MainController implements Initializable {
 		cancel.setVisible(true);
 
 	}
-
-//	public void boardEntered(DragEvent event) {
-//		cancel.setVisible(false);
-//	}
-//	
-//	public void boardExited(DragEvent event) {
-//		cancel.setVisible(true);
-//	}
 
 	public int carteVerif(DragEvent event) {
 
@@ -859,7 +871,7 @@ public class MainController implements Initializable {
 
 			Label label1 = new Label("La partie est terminée !");
 
-			Button button1 = new Button("Voulez-vous rejouer ?");
+			Button button1 = new Button("Quitter la partie");
 			
 			button1.setOnAction(e -> restart(e));
 			
