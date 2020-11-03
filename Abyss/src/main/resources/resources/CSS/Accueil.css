@@ -1,0 +1,10 @@
+#accueil{
+	-fx-height: 100%;
+	-fx-background-image : url("../Images/AccueilBack.png");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+}
+.button{
+	-fx-background-image : url("../Images/pngegg.png");
+}

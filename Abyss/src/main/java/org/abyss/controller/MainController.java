@@ -130,6 +130,25 @@ public class MainController implements Initializable {
 	private Boolean order;
 	private boolean nouveau;
 	private Node cancel;
+	
+	Stage stage;
+	Scene scene;
+	
+	public Stage getStage() {
+		return stage;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -196,7 +215,7 @@ public class MainController implements Initializable {
 		if (allyPv <= 0 || ennemyPv <= 0) {
 			defeat.toFront();
 			defeat.setImage(new Image("/resources/Images/end.gif"));
-			Popup.display();
+			display();
 		}
 		
 	}
@@ -857,38 +876,41 @@ public class MainController implements Initializable {
 
 	}
 	
-	public static void restart(ActionEvent e) {
+	public void restart(ActionEvent e) {
 		System.exit(0);
 	}
+	public void retourAccueil(ActionEvent e) {
+		stage.setScene(scene);
+	}
 	
-	public static class Popup {
 
-		public static void display() {
+	public void display() {
 
-			Stage popupwindow = new Stage();
+		Stage popupwindow = new Stage();
 
-			popupwindow.initModality(Modality.APPLICATION_MODAL);
-			popupwindow.setTitle("Fin de la partie");
+		popupwindow.initModality(Modality.APPLICATION_MODAL);
+		popupwindow.setTitle("Fin de la partie");
 
-			Label label1 = new Label("La partie est terminée !");
+		Label label1 = new Label("La partie est terminée !");
 
-			Button button1 = new Button("Quitter la partie");
-			
-			button1.setOnAction(e -> restart(e));
-			
-			VBox layout = new VBox(10);
+		Button button1 = new Button("Retour a l'accueil");
+		Button button2 = new Button("Quitter la partie");
 
-			layout.getChildren().addAll(label1, button1);
+		button1.setOnAction(e -> retourAccueil(e));
+		button2.setOnAction(e -> restart(e));
 
-			layout.setAlignment(Pos.CENTER);
+		VBox layout = new VBox(10);
 
-			Scene scene1 = new Scene(layout, 300, 250);
+		layout.getChildren().addAll(label1, button1, button2);
 
-			popupwindow.setScene(scene1);
+		layout.setAlignment(Pos.CENTER);
 
-			popupwindow.showAndWait();
+		Scene scene1 = new Scene(layout, 300, 250);
 
-		}
+		popupwindow.setScene(scene1);
+
+		popupwindow.showAndWait();
+		System.exit(0);
 
 	}
 
