@@ -14,8 +14,8 @@ public class CardsUtils {
 
 		ArrayList<Cards> cards = new ArrayList<>();
 
-		Combattant c = new Combattant("test", new Image("/resources/Images/yugi.jpg"), 10, 5, "eau");
-		Combattant c1 = new Combattant("Guts", new Image("/resources/Images/yugi1.jpg"), 1000, 20, "eau");
+		Combattant c = new Combattant("test", new Image("/resources/Images/yugi.jpg"), 550, 5, "eau");
+		Combattant c1 = new Combattant("Guts", new Image("/resources/Images/yugi1.jpg"), 300, 20, "eau");
 		Combattant m = new Combattant("Mandiaye", new Image("/resources/Images/yugi2.jpg"), 50, 20, "glace");
 		Combattant t = new Combattant("Takoo", new Image("/resources/Images/yugi3.jpg"), 100, 20, "glace");
 		Combattant sessa = new Combattant("Sessa", new Image("/resources/Images/yugi4.jpg"), 100, 20, "eau");

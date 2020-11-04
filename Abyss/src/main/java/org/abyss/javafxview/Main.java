@@ -24,32 +24,32 @@ public class Main extends Application {
 		
 		try {
 			
-			//Creation de la scene jeu
-			Parent game = FXMLLoader.load(getClass().getResource("/resources/FXML/FXML.fxml"));
-			Scene sceneGame = new Scene(game);
-			sceneGame.getStylesheets().add(getClass().getResource("/resources/CSS/style.css").toExternalForm());
+//			Parent retourAccueil = FXMLLoader.load(getClass().getResource("/resources/FXML/Accueil.fxml"));
+//			Scene sceneRetourAccueil = new Scene(retourAccueil);
+//			sceneGame.getStylesheets().add(getClass().getResource("/resources/CSS/Accueil.css").toExternalForm());
 			
-			//Creation de la scene Accueil
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/resources/FXML/accueil.fxml"));
-			FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/resources/FXML/FXML.fxml"));
+			//Creation de la scene Accueil et de la scene GAME
+			FXMLLoader loaderAccueil = new FXMLLoader(getClass().getResource("/resources/FXML/Accueil.fxml"));
+			FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/resources/FXML/FXML.fxml"));
 			
-			Parent accueil = loader.load();
-			Parent retourAccueil = loader2.load();
-			
+			Parent accueil = loaderAccueil.load();
 			Scene sceneAccueil = new Scene(accueil);
-			Scene sceneRetourAccueil = new Scene(retourAccueil);
+			
+			Parent game = loaderMain.load();
+			Scene sceneGame = new Scene(game);
 			
 			
 			//CSS
-			accueil.getStylesheets().add(getClass().getResource("/resources/CSS/accueil.css").toExternalForm());
+			accueil.getStylesheets().add(getClass().getResource("/resources/CSS/Accueil.css").toExternalForm());
+			sceneGame.getStylesheets().add(getClass().getResource("/resources/CSS/style.css").toExternalForm());
 			
 			//On fournit au controlleur la scene jeu
-			AccueilController accueilController = (AccueilController) loader.getController();
+			AccueilController accueilController = (AccueilController) loaderAccueil.getController();
 			accueilController.setScene(sceneGame);
 			accueilController.setStage(primaryStage);
 			
-			MainController mc = (MainController) loader2.getController();
-			mc.setScene(sceneRetourAccueil);
+			MainController mc = (MainController) loaderMain.getController();
+			mc.setScene(sceneAccueil);
 			mc.setStage(primaryStage);
 			
 			//On change le curseur 
