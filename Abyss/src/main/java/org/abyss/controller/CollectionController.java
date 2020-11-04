@@ -7,20 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class AccueilController implements Initializable  {
+public class CollectionController implements Initializable  {
 
 	Stage stage;
 	Scene scene;
-	Scene scenecollection;
 	
-	public Scene getScenecollection() {
-		return scenecollection;
-	}
-
-	public void setScenecollection(Scene scenecollection) {
-		this.scenecollection = scenecollection;
-	}
-
 	public Stage getStage() {
 		return stage;
 	}
@@ -42,15 +33,7 @@ public class AccueilController implements Initializable  {
 		
 	}
 	
-	public void commencement() {
+	public void retour() {
 		stage.setScene(scene);
-	}
-	public void collection() {
-		stage.setScene(scenecollection);
-	}
-	
-	public void quitter() {
-		System.out.println("cya");
-		System.exit(0);
 	}
 }

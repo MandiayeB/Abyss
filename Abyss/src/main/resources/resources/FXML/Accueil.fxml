@@ -16,7 +16,7 @@
          <padding>
             <Insets top="15.0" />
          </padding></Button>
-      <Button fx:id="collection" layoutX="875.0" layoutY="492.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: Transparant;" text="Collection" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="collection" layoutX="875.0" layoutY="492.0" mnemonicParsing="false" onAction="#collection" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: Transparant;" text="Collection" textAlignment="CENTER" textFill="WHITE">
          <padding>
             <Insets top="15.0" />
          </padding></Button>

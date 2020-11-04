@@ -1,0 +1,21 @@
+#pack {
+	-fx-height: 100%;
+	-fx-background-image : url("../Images/firetornado.gif");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+}
+#collection {
+	-fx-height: 100%;
+	-fx-background-image : url("../Images/firetornado.gif");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+}
+#collectionb {
+	-fx-height: 100%;
+	-fx-background-image : url("../Images/backcollection.png");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+}

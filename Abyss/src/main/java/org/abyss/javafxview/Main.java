@@ -1,6 +1,7 @@
 package org.abyss.javafxview;
 
 import org.abyss.controller.AccueilController;
+import org.abyss.controller.CollectionController;
 import org.abyss.controller.MainController;
 
 import javafx.application.Application;
@@ -24,16 +25,16 @@ public class Main extends Application {
 		
 		try {
 			
-//			Parent retourAccueil = FXMLLoader.load(getClass().getResource("/resources/FXML/Accueil.fxml"));
-//			Scene sceneRetourAccueil = new Scene(retourAccueil);
-//			sceneGame.getStylesheets().add(getClass().getResource("/resources/CSS/Accueil.css").toExternalForm());
-			
-			//Creation de la scene Accueil et de la scene GAME
+			//Creation de la scene Accueil et de la scene GAME et la scene Collection
 			FXMLLoader loaderAccueil = new FXMLLoader(getClass().getResource("/resources/FXML/Accueil.fxml"));
 			FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/resources/FXML/FXML.fxml"));
+			FXMLLoader loaderCollection = new FXMLLoader(getClass().getResource("/resources/FXML/Collection.fxml"));
 			
 			Parent accueil = loaderAccueil.load();
 			Scene sceneAccueil = new Scene(accueil);
+			
+			Parent collection = loaderCollection.load();
+			Scene sceneCollection = new Scene(collection);
 			
 			Parent game = loaderMain.load();
 			Scene sceneGame = new Scene(game);
@@ -42,12 +43,25 @@ public class Main extends Application {
 			//CSS
 			accueil.getStylesheets().add(getClass().getResource("/resources/CSS/Accueil.css").toExternalForm());
 			sceneGame.getStylesheets().add(getClass().getResource("/resources/CSS/style.css").toExternalForm());
+			sceneCollection.getStylesheets().add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
 			
 			//On fournit au controlleur la scene jeu
+			//Bouton jouer pour aller a la scene de jeu
 			AccueilController accueilController = (AccueilController) loaderAccueil.getController();
 			accueilController.setScene(sceneGame);
 			accueilController.setStage(primaryStage);
 			
+			//Bouton permerttant d"aller a la collection
+			AccueilController accueilCollection = (AccueilController) loaderAccueil.getController();
+			accueilCollection.setScenecollection(sceneCollection);
+			accueilCollection.setStage(primaryStage);
+			
+			//Button permerttant d'aller retour accueil
+			CollectionController retourCol = (CollectionController) loaderCollection.getController();
+			retourCol.setScene(sceneAccueil);
+			retourCol.setStage(primaryStage);
+			
+			//Bouton pour retourner a la scene d'accueil a la fin de la partie
 			MainController mc = (MainController) loaderMain.getController();
 			mc.setScene(sceneAccueil);
 			mc.setStage(primaryStage);
