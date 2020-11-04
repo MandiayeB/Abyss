@@ -177,7 +177,7 @@ public class MainController implements Initializable {
 		listImage5.add(collision4);
 		order = false;
 
-		allyDeck.setImage(new Image("/resources/Images/gif.gif"));
+		allyDeck.setImage(new Image("/resources/Images/dos.jpg"));
 		opponentDeck.setImage(new Image("/resources/Images/dos.jpg"));
 
 		piocher();
@@ -644,11 +644,6 @@ public class MainController implements Initializable {
 
 			allyBoard.set(carteVerif(event), draggedCard); // Ajoute la carte sur le terrain
 			hand.set(draggedNumber, null); // Supprime la carte de la main
-//			try {
-//			applyElement(carteVerif(event));
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
 			afficherHand();
 			afficherBoard();
 			success = true;

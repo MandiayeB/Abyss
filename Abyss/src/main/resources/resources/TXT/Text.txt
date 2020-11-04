@@ -4,14 +4,16 @@ Vous pouvez jouer
 Fin de tour
 reset
 Combat
-Dégâts reçus : 100
 Dégâts infligés : 0
-Dégâts reçus : -45
+Dégâts reçus : -95
+Dégâts infligés : -80
+Dégâts reçus : -30
 Dégâts infligés : -80
 Dégâts reçus : -80
 Dégâts infligés : -95
 Dégâts reçus : 0
-Dégâts reçus : 100
+Dégâts infligés : -30
+Dégâts reçus : -80
 Nouveau tour 
 Vous pouvez jouer
 Fin de tour
@@ -25,8 +27,7 @@ Dégâts reçus : 50
 Dégâts infligés : -80
 Dégâts reçus : -80
 Dégâts reçus : 10
-Dégâts infligés : -80
-Dégâts reçus : -80
+Dégâts reçus : 100
 Nouveau tour 
 Tour ennemi
 Fin de tour
@@ -34,13 +35,22 @@ Vous pouvez jouer
 Fin de tour
 reset
 Combat
+Dégâts infligés : 0
+Dégâts reçus : -95
+Dégâts reçus : 50
 Dégâts reçus : 100
-Dégâts infligés : -80
-Dégâts reçus : -30
-Dégâts infligés : -80
-Dégâts reçus : -80
-Dégâts infligés : -45
-Dégâts reçus : 0
+Dégâts reçus : 10
 Dégâts reçus : 100
 Nouveau tour 
 Vous pouvez jouer
+Fin de tour
+Tour ennemi
+Fin de tour
+reset
+Combat
+Dégâts infligés : 0
+Dégâts reçus : -95
+Dégâts reçus : 50
+Dégâts reçus : 100
+Dégâts reçus : 10
+Dégâts reçus : 100
