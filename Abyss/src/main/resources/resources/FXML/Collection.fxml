@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="collectionb" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.CollectionController">
    <children>
-      <Button fx:id="pack" layoutX="160.0" layoutY="215.0" mnemonicParsing="false" prefHeight="559.0" prefWidth="411.0" style="-fx-background-color: Transparant;" text="Ouvrire les packs" />
+      <Button fx:id="pack" layoutX="160.0" layoutY="215.0" mnemonicParsing="false" onAction="#gacha" prefHeight="559.0" prefWidth="411.0" style="-fx-background-color: Transparant;" text="Ouvrire les packs" />
       <Button fx:id="collection" layoutX="1324.0" layoutY="215.0" mnemonicParsing="false" prefHeight="559.0" prefWidth="411.0" style="-fx-background-color: Transparant;" text="La Collection" />
       <Label layoutX="753.0" layoutY="70.0" prefHeight="151.0" prefWidth="431.0" text="Bienvenue dans la collection." textAlignment="CENTER" textFill="#eb3535">
          <font>
