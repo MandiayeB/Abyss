@@ -134,7 +134,7 @@ public class MainController implements Initializable {
 	private Boolean order;
 	private boolean nouveau;
 	private Node cancel;
-
+	Stage popupwindow;
 	Stage stage;
 	Scene scene;
 
@@ -373,9 +373,7 @@ public class MainController implements Initializable {
 
 	public void combat() {
 
-		ecrire("reset");
-		lireLigne();
-		ecrire("Combat");
+		ecrire("reset"+"\n"+"Combat");
 		lireLigne();
 		phase.setVisible(false);
 
@@ -415,9 +413,8 @@ public class MainController implements Initializable {
 								@Override
 								public void run() {
 									afficherHp();
-									ecrire("Dégâts infligés : " + carte1.combat(carte2));
-									lireLigne();
-									ecrire("Dégâts reçus : " + carte2.combat(carte1));
+									ecrire("Dégâts infligés : "+ carte1.combat(carte2) + "\n" 
+									+ "Dégâts reçus : "+ carte2.combat(carte1));
 									lireLigne();
 								}
 							});
@@ -920,12 +917,14 @@ public class MainController implements Initializable {
 	}
 
 	public void retourAccueil(ActionEvent e) {
+		popupwindow.close();
 		stage.setScene(scene);
+		
 	}
 
 	public void display() {
 
-		Stage popupwindow = new Stage();
+		popupwindow = new Stage();
 
 		popupwindow.initModality(Modality.APPLICATION_MODAL);
 		popupwindow.setTitle("Fin de la partie");
@@ -949,8 +948,6 @@ public class MainController implements Initializable {
 		popupwindow.setScene(scene1);
 
 		popupwindow.showAndWait();
-		System.exit(0);
-
 	}
 
 }

@@ -19,6 +19,7 @@ public class CardsUtils {
 		Combattant m = new Combattant("Mandiaye", new Image("/resources/Images/yugi2.jpg"), 50, 0, "glace");
 		Combattant t = new Combattant("Takoo", new Image("/resources/Images/yugi3.jpg"), 50, 0, "glace");
 		Combattant sessa = new Combattant("Sessa", new Image("/resources/Images/yugi4.jpg"), 100, 0, "eau");
+
 		cards.add(c);
 		cards.add(c1);
 		cards.add(t);
