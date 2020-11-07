@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.MainController">
+<AnchorPane fx:id="test" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.MainController">
    <children>
       <StackPane>
          <children>
@@ -24,6 +23,27 @@
                <center>
                   <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="452.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
                      <children>
+                        <ImageView fx:id="collision0" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <StackPane.margin>
+                              <Insets right="902.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="collision1" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <StackPane.margin>
+                              <Insets right="452.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="collision3" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <StackPane.margin>
+                              <Insets left="449.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="collision4" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <StackPane.margin>
+                              <Insets left="901.0" />
+                           </StackPane.margin>
+                        </ImageView>
+                        <ImageView fx:id="collision2" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                         <GridPane id="board" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: Transparant; -fx-border-color: Black;">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
@@ -89,27 +109,6 @@
                               </ImageView>
                            </children>
                         </GridPane>
-                        <ImageView fx:id="collision0" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <StackPane.margin>
-                              <Insets right="902.0" />
-                           </StackPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="collision1" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <StackPane.margin>
-                              <Insets right="452.0" />
-                           </StackPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="collision3" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <StackPane.margin>
-                              <Insets left="449.0" />
-                           </StackPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="collision4" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <StackPane.margin>
-                              <Insets left="901.0" />
-                           </StackPane.margin>
-                        </ImageView>
-                        <ImageView fx:id="collision2" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </StackPane>
                </center>
@@ -192,6 +191,31 @@
                            </font>
                            <StackPane.margin>
                               <Insets />
+                           </StackPane.margin>
+                        </Label>
+                        <Label fx:id="cardAtt" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#364ad1">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <StackPane.margin>
+                              <Insets right="190.0" top="340.0" />
+                           </StackPane.margin>
+                        </Label>
+                        <Label fx:id="cardHp" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#36d13a">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <StackPane.margin>
+                              <Insets left="190.0" top="340.0" />
                            </StackPane.margin>
                         </Label>
                      </children>

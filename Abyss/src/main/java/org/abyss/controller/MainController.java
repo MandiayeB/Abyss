@@ -103,6 +103,10 @@ public class MainController implements Initializable {
 	@FXML
 	private Label ennemyHp;
 	@FXML
+	private Label cardAtt;
+	@FXML
+	private Label cardHp;
+	@FXML
 	private Label afficherTour;
 	@FXML
 	private Label notif;
@@ -110,7 +114,7 @@ public class MainController implements Initializable {
 	private Label tout;
 	@FXML
 	private ImageView defeat;
-	
+
 	private List<Cards> hand;
 	private List<Cards> ennemyHand;
 	private List<Cards> ennemyDeck;
@@ -131,6 +135,25 @@ public class MainController implements Initializable {
 	private boolean nouveau;
 	private Node cancel;
 
+	Stage stage;
+	Scene scene;
+
+	public Stage getStage() {
+		return stage;
+	}
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public void setScene(Scene scene) {
+		this.scene = scene;
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
@@ -140,8 +163,8 @@ public class MainController implements Initializable {
 		ennemyHand = CardsUtils.fillBoard();
 		allyBoard = CardsUtils.fillBoard();
 		ennemyBoard = CardsUtils.fillBoard();
-		allyPv = 1000;
-		ennemyPv = 1000;
+		allyPv = 10000;
+		ennemyPv = 10000;
 		tour = Phase.TourEnnemi;
 		nouveau = true;
 
@@ -196,9 +219,9 @@ public class MainController implements Initializable {
 		if (allyPv <= 0 || ennemyPv <= 0) {
 			defeat.toFront();
 			defeat.setImage(new Image("/resources/Images/end.gif"));
-			Popup.display();
+			display();
 		}
-		
+
 	}
 
 	public void piocher() {
@@ -235,28 +258,31 @@ public class MainController implements Initializable {
 				for (int i = 0; i < allyBoard.size(); i++) {
 
 					if (allyBoard.get(i) != null) {
-
+						
+						((Combattant) allyBoard.get(i)).setAppliedElement(false);
 						deck.add(allyBoard.get(i)); // On remet la carte dans le deck
 						allyBoard.set(i, null); // On supprime la carte du terrain
-						
+
 					}
 
 					if (ennemyBoard.get(i) != null) {
 
+						((Combattant) ennemyBoard.get(i)).setAppliedElement(false);
 						ennemyDeck.add(ennemyBoard.get(i)); // Pareil pour l'ennemi
 						ennemyBoard.set(i, null);
 
 					}
-					
-					listImage3.get(i).setImage(new Image("/resources/Images/tornade.gif")); // On supprime l'image de la carte du terrain
+
+					listImage3.get(i).setImage(new Image("/resources/Images/tornade.gif")); // On supprime l'image de la
+																							// carte du terrain
 					listImage4.get(i).setImage(new Image("/resources/Images/tornade.gif"));
-					
+
 					try {
 						Thread.sleep(200);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					
+
 					listImage3.get(i).setImage(null);
 					listImage4.get(i).setImage(null);
 
@@ -346,13 +372,13 @@ public class MainController implements Initializable {
 	}
 
 	public void combat() {
-		
+
 		ecrire("reset");
 		lireLigne();
 		ecrire("Combat");
 		lireLigne();
 		phase.setVisible(false);
-		
+
 		new Thread(new Runnable() {
 			public void run() {
 				for (int i = 0; i < allyBoard.size(); i++) {
@@ -376,9 +402,8 @@ public class MainController implements Initializable {
 
 							listImage3.get(i).setTranslateY(-9);
 							listImage4.get(i).setTranslateY(9);
-
 							listImage5.get(i).setImage(new Image("/resources/Images/spark.gif"));
-							
+
 							try {
 								Thread.sleep(350);
 							} catch (InterruptedException e) {
@@ -390,9 +415,9 @@ public class MainController implements Initializable {
 								@Override
 								public void run() {
 									afficherHp();
-									ecrire("Dégâts infligés : "+ carte1.combat(carte2));
+									ecrire("Dégâts infligés : " + carte1.combat(carte2));
 									lireLigne();
-									ecrire("Dégâts reçus : "+ carte2.combat(carte1));
+									ecrire("Dégâts reçus : " + carte2.combat(carte1));
 									lireLigne();
 								}
 							});
@@ -401,7 +426,7 @@ public class MainController implements Initializable {
 
 							ennemyPv -= carte1.getAtt(); // S'il n'y a personne on attaque directement les pv
 							listImage3.get(i).setTranslateY(100);
-							
+
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {
@@ -414,16 +439,16 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									afficherHp();
-									ecrire("Dégâts infligés : "+ carte1.getAtt());
+									ecrire("Dégâts infligés : " + carte1.getAtt());
 									lireLigne();
 								}
 							});
-							
+
 						}
 
 					} else {
@@ -439,7 +464,7 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+
 							listImage4.get(i).setTranslateY(100);
 
 							try {
@@ -447,16 +472,16 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+
 							Platform.runLater(new Runnable() {
 								@Override
 								public void run() {
 									afficherHp();
-									ecrire("Dégâts reçus : "+ carte2.getAtt());
+									ecrire("Dégâts reçus : " + carte2.getAtt());
 									lireLigne();
 								}
 							});
-							
+
 						}
 
 					}
@@ -494,36 +519,44 @@ public class MainController implements Initializable {
 
 	}
 
-	public void applyElement (int carte) {
-		
-		for (int i = 0; i < allyBoard.size(); i++) {
-			
+	public void applyElement(int carte, List<Cards> board) {
+
+		for (int i = 0; i < board.size(); i++) {
+
 			if (i != carte) {
 
-				if (((Combattant) allyBoard.get(carte)).getElement() == ((Combattant) allyBoard.get(i)).getElement()) { 
-					// Si deux cartes sont du même élément j'applique un bonus
+				if (board.get(i) != null) {
 					
-					((Combattant) allyBoard.get(carte)).setAtt(((Combattant) allyBoard.get(carte)).getAtt());
-					((Combattant) allyBoard.get(carte)).setAppliedElement(true);
-					
-					if (!((Combattant) allyBoard.get(i)).getAppliedElement()) {
+					if (((Combattant) board.get(carte)).getElement() == ((Combattant) board.get(i))
+							.getElement()) {
+						// Si deux cartes sont du même élément j'applique un bonus
 						
-						((Combattant) allyBoard.get(i)).setAtt(((Combattant) allyBoard.get(i)).getAtt() + 50);
-						((Combattant) allyBoard.get(i)).setAppliedElement(true);
-						
+						if (!((Combattant) board.get(carte)).getAppliedElement()) {
+							((Combattant) board.get(carte)).setAtt(((Combattant) board.get(carte)).getAtt() + 50);
+							((Combattant) board.get(carte)).setAppliedElement(true);
+						}
+
+						if (!((Combattant) board.get(i)).getAppliedElement()) {
+							((Combattant) board.get(i)).setAtt(((Combattant) board.get(i)).getAtt() + 50);
+							((Combattant) board.get(i)).setAppliedElement(true);
+						}
+
 					}
 					
 				}
-				
+
 			}
-			
+
 		}
-		
+
 	}
 
 	public void afficherCarte(MouseEvent event) {
 
 		Node node = (Node) event.getSource();
+		String source = node.getId().toString();
+		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
+		
 		if (tour == Phase.Transition) {
 			// Effet autour des cartes
 
@@ -549,9 +582,28 @@ public class MainController implements Initializable {
 
 		if (((ImageView) event.getSource()).getImage() != null) {
 			notif.setVisible(false);
+			
+			if (node.getId().contains("ally")) {
+				if (allyBoard.get(number) != null) {
+					cardAtt.setText(Integer.toString(((Combattant) allyBoard.get(number)).getAtt()));
+					cardHp.setText(Integer.toString(((Combattant) allyBoard.get(number)).getHp()));
+				} else {
+					cardAtt.setText(Integer.toString(((Combattant) hand.get(number)).getAtt()));
+					cardHp.setText(Integer.toString(((Combattant) hand.get(number)).getHp()));
+				}
+			} else {
+				if (ennemyBoard.get(number) != null) {
+					cardAtt.setText(Integer.toString(((Combattant) ennemyBoard.get(number)).getAtt()));
+					cardHp.setText(Integer.toString(((Combattant) ennemyBoard.get(number)).getHp()));
+				} else {
+					cardAtt.setText(Integer.toString(((Combattant) ennemyHand.get(number)).getAtt()));
+					cardHp.setText(Integer.toString(((Combattant) ennemyHand.get(number)).getHp()));
+				}
+			}
 		}
 
 		imageZoom.setImage(((ImageView) event.getSource()).getImage());
+		
 		// Affiche la carte sélectionnée en grand
 	}
 
@@ -565,8 +617,10 @@ public class MainController implements Initializable {
 
 		node.setEffect(null);
 		imageZoom.setImage(null);
+		cardAtt.setText(null);
+		cardHp.setText(null);
 		notif.setVisible(true);
-		
+
 	}
 
 	public void dragDetected(MouseEvent event) { // Je commence à transporter la carte
@@ -576,7 +630,7 @@ public class MainController implements Initializable {
 			Node node = (Node) event.getSource(); // On sauvegarde d'où vient l'évènement dans "node"
 			cancel = node;
 			cancel.setVisible(false);
-			String source = (((Node) event.getSource()).getId()).toString();
+			String source = node.getId().toString();
 			// Converti l'id de la case en String
 
 			int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
@@ -594,7 +648,7 @@ public class MainController implements Initializable {
 			db.setContent(content);
 
 			event.consume();
-			
+
 		}
 
 	}
@@ -608,7 +662,7 @@ public class MainController implements Initializable {
 		}
 
 		event.consume();
-		
+
 	}
 
 	public void dragEntered(DragEvent event) { // Je montre sur quelle case il s'apprête à poser la carte
@@ -644,6 +698,7 @@ public class MainController implements Initializable {
 
 			allyBoard.set(carteVerif(event), draggedCard); // Ajoute la carte sur le terrain
 			hand.set(draggedNumber, null); // Supprime la carte de la main
+			applyElement(carteVerif(event), allyBoard);
 			afficherHand();
 			afficherBoard();
 			success = true;
@@ -671,13 +726,13 @@ public class MainController implements Initializable {
 	}
 
 	public void ennemy() {
-		
+
 		ecrire("Tour ennemi");
 		nouveau = false;
 		lireLigne();
 		afficherTour.setText("Tour Ennemi");
 		phase.setVisible(false);
-		
+
 		new Thread(new Runnable() {
 			public void run() {
 
@@ -694,10 +749,11 @@ public class MainController implements Initializable {
 
 						if (c instanceof Combattant) {
 							// Si la carte est un combattant le pose sur le terrain
-							ennemyBoard.set(searchBoard(ennemyBoard), c);
+							int save = searchBoard(ennemyBoard);
+							ennemyBoard.set(save, c);
 							ennemyHand.set(index, null);
 							listImage2.get(index).setImage(null);
-//							applyElement(index, ennemyBoard);
+							applyElement(save, ennemyBoard);
 							afficherHand();
 							afficherBoard();
 
@@ -789,7 +845,7 @@ public class MainController implements Initializable {
 			while ((line = in.readLine()) != null) {
 				// Afficher le contenu du fichier
 				System.out.println(line);
-				notif.setText(notif.getText()+ "\n " + line);
+				notif.setText(notif.getText() + "\n " + line);
 				nouveau = false;
 				if (line.equals("reset")) {
 					notif.setText("");
@@ -808,82 +864,92 @@ public class MainController implements Initializable {
 
 		switch (tour) {
 
-			case TourEnnemi:
-				System.out.println(tour);
-				System.out.println("-----------------------");
-				ennemy();
-				break;
-	
-			case PhaseDeStrategie:
-				ecrire("Vous pouvez jouer");
-				lireLigne();
-				System.out.println(tour);
-				System.out.println("-----------------------");
-				afficherTour.setText("Tour de Stratégie");
-				tour = Phase.Transition;
-				break;
-				
-			case Transition:
-				ecrire("Fin de tour");
-				lireLigne();
-				if (order) {
-					afficherTour.setText("Tour Ennemi");
-					tour = Phase.TourEnnemi;
-				} else if (!order) {
-					afficherTour.setText("Phase de Combat");
-					tour = Phase.PhaseDeCombat;
-				}
-				tour();
-				break;
-	
-			case PhaseDeCombat:
-				System.out.println(tour);
-				System.out.println("-----------------------");
-				combat();
-				break;
-	
-			case PhaseDeRetrait:
-				System.out.println(tour);
-				System.out.println("-----------------------");
-				retrait();
-				break;
+		case TourEnnemi:
+			System.out.println(tour);
+			System.out.println("-----------------------");
+			ennemy();
+			break;
+
+		case PhaseDeStrategie:
+			ecrire("Vous pouvez jouer");
+			lireLigne();
+			System.out.println(tour);
+			System.out.println("-----------------------");
+			System.out.println(hand.toString());
+			afficherTour.setText("Tour de Stratégie");
+			tour = Phase.Transition;
+			break;
+
+		case Transition:
+			ecrire("Fin de tour");
+			lireLigne();
+			if (order) {
+				afficherTour.setText("Tour Ennemi");
+				tour = Phase.TourEnnemi;
+			} else if (!order) {
+				afficherTour.setText("Phase de Combat");
+				tour = Phase.PhaseDeCombat;
+			}
+			tour();
+			break;
+
+		case PhaseDeCombat:
+			System.out.println(tour);
+			System.out.println("-----------------------");
+			for (int i = 0; i < 5; i++) {
+				listImage5.get(i).toFront();
+			}
+			combat();
+			break;
+
+		case PhaseDeRetrait:
+			System.out.println(tour);
+			System.out.println("-----------------------");
+			for (int i = 0; i < 5; i++) {
+				listImage5.get(i).toBack();
+			}
+			retrait();
+			break;
 
 		}
 
 	}
-	
-	public static void restart(ActionEvent e) {
+
+	public void restart(ActionEvent e) {
 		System.exit(0);
 	}
-	
-	public static class Popup {
 
-		public static void display() {
+	public void retourAccueil(ActionEvent e) {
+		stage.setScene(scene);
+	}
 
-			Stage popupwindow = new Stage();
+	public void display() {
 
-			popupwindow.initModality(Modality.APPLICATION_MODAL);
-			popupwindow.setTitle("Fin de la partie");
+		Stage popupwindow = new Stage();
 
-			Label label1 = new Label("La partie est terminée !");
+		popupwindow.initModality(Modality.APPLICATION_MODAL);
+		popupwindow.setTitle("Fin de la partie");
 
-			Button button1 = new Button("Quitter la partie");
-			
-			button1.setOnAction(e -> restart(e));
-			
-			VBox layout = new VBox(10);
+		Label label1 = new Label("La partie est terminée !");
 
-			layout.getChildren().addAll(label1, button1);
+		Button button1 = new Button("Retour a l'accueil");
+		Button button2 = new Button("Quitter la partie");
 
-			layout.setAlignment(Pos.CENTER);
+		button1.setOnAction(e -> retourAccueil(e));
+		button2.setOnAction(e -> restart(e));
 
-			Scene scene1 = new Scene(layout, 300, 250);
+		VBox layout = new VBox(10);
 
-			popupwindow.setScene(scene1);
+		layout.getChildren().addAll(label1, button1, button2);
 
-			popupwindow.showAndWait();
+		layout.setAlignment(Pos.CENTER);
 
-		}
+		Scene scene1 = new Scene(layout, 300, 250);
+
+		popupwindow.setScene(scene1);
+
+		popupwindow.showAndWait();
+		System.exit(0);
 
 	}
 
