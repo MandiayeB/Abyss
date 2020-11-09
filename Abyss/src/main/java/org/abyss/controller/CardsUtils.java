@@ -14,16 +14,19 @@ public class CardsUtils {
 
 		ArrayList<Cards> cards = new ArrayList<>();
 
-		Combattant c = new Combattant("test", new Image("/resources/Images/yugi.jpg"), 550, 5, "eau");
-		Combattant c1 = new Combattant("Guts", new Image("/resources/Images/yugi1.jpg"), 300, 20, "eau");
-		Combattant m = new Combattant("Mandiaye", new Image("/resources/Images/yugi2.jpg"), 50, 20, "glace");
-		Combattant t = new Combattant("Takoo", new Image("/resources/Images/yugi3.jpg"), 100, 20, "glace");
-		Combattant sessa = new Combattant("Sessa", new Image("/resources/Images/yugi4.jpg"), 100, 20, "eau");
-		cards.add(c);
-		cards.add(c1);
-		cards.add(t);
-		cards.add(sessa);
-		cards.add(m);
+		Combattant dragon1 = new Combattant("DragonDestruction", 
+				new Image("/resources/Images/yugi.jpg"), 100, 0, "dragon");
+		Combattant neos = new Combattant("Neos", new Image("/resources/Images/yugi1.jpg"), 100, 0, "monstre");
+		Combattant dragon2 = new Combattant("DragonUltime", 
+				new Image("/resources/Images/yugi2.jpg"), 50, 0, "dragon");
+		Combattant dragon3 = new Combattant("DragonBlanc", new Image("/resources/Images/yugi3.jpg"), 50, 0, "dragon");
+		Combattant exodia = new Combattant("Exodia", new Image("/resources/Images/yugi4.jpg"), 100, 0, "monstre");
+
+		cards.add(dragon1);
+		cards.add(neos);
+		cards.add(dragon2);
+		cards.add(dragon3);
+		cards.add(exodia);
 		
 
 		for (int i = 0; i < cards.size(); i++) {

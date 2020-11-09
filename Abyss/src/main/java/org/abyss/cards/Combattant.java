@@ -17,6 +17,10 @@ public class Combattant extends Cards {
 		this.att = att;
 	}
 	
+	public int getHp() {
+		return hp;
+	}
+	
 	public String getElement() {
 		return element;
 	}
