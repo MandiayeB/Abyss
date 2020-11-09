@@ -5,9 +5,9 @@ Fin de tour
 reset
 Combat
 Dégâts reçus : 100
-Dégâts reçus : 550
+Dégâts reçus : 100
 Dégâts reçus : 300
 Dégâts reçus : 50
-Dégâts reçus : 100
+Dégâts reçus : 550
 Nouveau tour 
 Vous pouvez jouer
