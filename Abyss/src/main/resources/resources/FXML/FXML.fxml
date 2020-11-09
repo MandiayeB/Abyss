@@ -44,7 +44,7 @@
                            </StackPane.margin>
                         </ImageView>
                         <ImageView fx:id="collision2" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                        <GridPane id="board" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: Transparant; -fx-border-color: Black;">
+                        <GridPane id="board" alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: Transparent; -fx-border-color: Black;">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />

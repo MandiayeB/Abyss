@@ -39,7 +39,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable {
-
+	
+	@FXML
+	private AnimationController animationController;
 	@FXML
 	private Button phase;
 	@FXML
@@ -156,7 +158,7 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		
 		deck = CardsUtils.getCardsGame();
 		ennemyDeck = CardsUtils.getCardsGame();
 		hand = CardsUtils.fillBoard();
@@ -400,6 +402,7 @@ public class MainController implements Initializable {
 
 							listImage3.get(i).setTranslateY(-9);
 							listImage4.get(i).setTranslateY(9);
+//							animationController.showSpark(i);
 							listImage5.get(i).setImage(new Image("/resources/Images/spark.gif"));
 
 							try {
@@ -407,6 +410,7 @@ public class MainController implements Initializable {
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
+//							animationController.hideSpark(i);
 							listImage5.get(i).setImage(null);
 							
 							Platform.runLater(new Runnable() {
@@ -893,6 +897,7 @@ public class MainController implements Initializable {
 		case PhaseDeCombat:
 			System.out.println(tour);
 			System.out.println("-----------------------");
+//			animationController.bringUpSpark();
 			for (int i = 0; i < 5; i++) {
 				listImage5.get(i).toFront();
 			}
@@ -902,6 +907,7 @@ public class MainController implements Initializable {
 		case PhaseDeRetrait:
 			System.out.println(tour);
 			System.out.println("-----------------------");
+//			animationController.bringDownSpark();
 			for (int i = 0; i < 5; i++) {
 				listImage5.get(i).toBack();
 			}
@@ -919,7 +925,6 @@ public class MainController implements Initializable {
 	public void retourAccueil(ActionEvent e) {
 		popupwindow.close();
 		stage.setScene(scene);
-		
 	}
 
 	public void display() {
