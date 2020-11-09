@@ -5,7 +5,14 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover;
 }
-#collection {
+#pack2 {
+	-fx-height: 100%;
+	-fx-background-image : url("../Images/dos.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+}
+#pack3 {
 	-fx-height: 100%;
 	-fx-background-image : url("../Images/dos.jpg");
 	-fx-background-position: center;
@@ -14,7 +21,14 @@
 }
 #collectionb {
 	-fx-height: 100%;
-	-fx-background-image : url("../Images/backcollection.png");
+	-fx-background-image : url("../Images/gachaback.png");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+}
+#gacha{
+	-fx-height: 100%;
+	-fx-background-image : url("../Images/gachaback.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover;
