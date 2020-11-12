@@ -1,22 +1,4 @@
-#clickme {
-		-fx-font-size: 30px;
-		-fx-background-color: rgba(255,255,255, .80);
-		-fx-text-fill: blue;
-		-fx-padding: 6 6 6 6;
-		-fx-border-radius: 8;
-		-fx-font-weight: bold;
-
-}
-#myMessage {
-		-fx-font-size: 30px;
-		-fx-background-color: rgba(255,255,255, .80);
-		-fx-text-fill: blue;
-		-fx-padding: 6 6 6 6;
-		-fx-border-radius: 8;
-		-fx-font-weight: bold;
-
-}
-#test {
+#background {
 	-fx-height: 100%;
 	-fx-background-image : url("../Images/background.jpg");
 	-fx-background-position: center;
@@ -26,4 +8,12 @@
 
 #phase {
 	-fx-background-image : url("../Images/button2.png");
+}
+
+#mainDeck {
+	-fx-background-imae : url("../Images/dos.jpg")
+}
+
+#opponentDeck {
+	-fx-background-imae : url("../Images/dos.jpg")
 }
