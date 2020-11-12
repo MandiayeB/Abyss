@@ -15,7 +15,7 @@
       <Label layoutX="837.0" layoutY="42.0" prefHeight="95.0" prefWidth="268.0" text="J'espere que vous aurez de la chance ! " />
       <StackPane layoutX="784.0" layoutY="87.0" prefHeight="226.0" prefWidth="370.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="pak1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/yugi.jpg" />
                </image>
@@ -23,7 +23,7 @@
             <Button fx:id="pack1" mnemonicParsing="false" onAction="#invoc1" prefHeight="153.0" prefWidth="207.0" style="-fx-background-color: Transparent;" />
          </children>
       </StackPane>
-      <GridPane layoutX="132.0" layoutY="385.0" prefHeight="579.0" prefWidth="1654.0">
+      <GridPane layoutX="278.0" layoutY="365.0" prefHeight="579.0" prefWidth="1654.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -109,6 +109,8 @@
             <Image url="@../Images/dos.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="1412.0" layoutY="70.0" prefHeight="47.0" prefWidth="134.0" text="Vous avez eu ceci" />
+      <Label fx:id="affichedrop" layoutX="1392.0" layoutY="74.0" prefHeight="57.0" prefWidth="175.0" />
+      <ImageView fx:id="effet" fitHeight="153.0" fitWidth="161.0" layoutX="1439.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="retourcollection" layoutX="74.0" layoutY="923.0" mnemonicParsing="false" onAction="#back" text="retour" />
    </children>
 </AnchorPane>

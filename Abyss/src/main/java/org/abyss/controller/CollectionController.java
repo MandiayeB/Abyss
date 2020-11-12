@@ -1,15 +1,25 @@
 package org.abyss.controller;
 
+import java.io.File;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 public class CollectionController implements Initializable  {
 	
@@ -33,11 +43,39 @@ public class CollectionController implements Initializable  {
 	private ImageView carte8;
 	@FXML
 	private ImageView carte9;
+	@FXML
+	private Button pack1;
+	@FXML
+	private ImageView effet;
+	@FXML
+	private ImageView pak1;
+	@FXML 
+	private Label affichedrop;
 
+	private ArrayList<ImageView> carte;
+	
 	Stage stage;
 	Scene scene;
 	Scene sceneGacha;
+	Scene sceneBack;
+	public void makeSound() {
+		try {
+			InputStream inputStream = getClass().getResourceAsStream("/resources/Sounds/tada.wav");
+			AudioStream audioStream = new AudioStream(inputStream);
+			AudioPlayer.player.start(audioStream);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public Scene getSceneBack() {
+		return sceneBack;
+	}
+
+	public void setSceneBack(Scene sceneBack) {
+		this.sceneBack = sceneBack;
+	}
+
 	public Scene getSceneGacha() {
 		return sceneGacha;
 	}
@@ -64,7 +102,13 @@ public class CollectionController implements Initializable  {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		carte = new ArrayList<>();
+		carte.add(carte1);
+		carte.add(carte2);
+		carte.add(carte3);
+		carte.add(carte4);
+		carte.add(carte5);
+		carte.add(carte6);
 	}
 	
 	public void retour() {
@@ -73,31 +117,87 @@ public class CollectionController implements Initializable  {
 	public void gacha1() {
 		stage.setScene(sceneGacha);
 	}
+	public void back() {
+		stage.setScene(sceneBack);
+	}
+
+	public void animation (String chemindrop1, String chemincarte1,int quelleCarte) {
+		new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2750);
+                    Platform.runLater(new Runnable() {
+
+                        @Override
+                        public void run() {
+                        	
+                        	makeSound();
+							drop1.setImage(new Image(chemindrop1));
+							if(quelleCarte != 50) {
+								carte.get(quelleCarte).setImage(new Image(chemincarte1));
+								effet.setVisible(true);
+							}
+                			pack1.setVisible(true);
+                			pak1.setVisible(true);
+                			affichedrop.setText("Vous n'avez malheureusement rien eu !");
+                			
+                            
+                        }
+                    });
+                    
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+	}
 	public void invoc1() {
+		effet.setImage(new Image("/resources/Images/confeti.gif"));
+		effet.setVisible(false);
+		affichedrop.setText("");
 		int random = (int) ((Math.random()* 50)); // Random va de 1 a 50
 		System.out.println(random);
 		if (random < 10) {
-			drop1.setImage(new Image("/resources/Images/dos.jpg"));
+			animation("/resources/Images/rien.gif", null, 50);
+			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+			pack1.setVisible(false);
+			pak1.setVisible(false);
+
 		}
 		if (random > 10 && random < 20) {
-			drop1.setImage(new Image("/resources/Images/yugi.jpg"));
-			carte1.setImage(new Image("/resources/Images/yugi.jpg"));
+			animation("/resources/Images/yugi.jpg", "/resources/Images/yugi.jpg", 0);
+			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+			pack1.setVisible(false);
+			pak1.setVisible(false);
 		}
 		if (random > 20 && random < 30) {
-			drop1.setImage(new Image("/resources/Images/yugi1.jpg"));
-			carte2.setImage(new Image("/resources/Images/yugi1.jpg"));
+			animation("/resources/Images/yugi1.jpg", "/resources/Images/yugi1.jpg",1);
+			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+			pack1.setVisible(false);
+			pak1.setVisible(false);
+
 		}
 		if (random > 30 && random < 40) {
-			drop1.setImage(new Image("/resources/Images/yugi2.jpg"));
-			carte3.setImage(new Image("/resources/Images/yugi2.jpg"));
+			animation("/resources/Images/yugi2.jpg", "/resources/Images/yugi2.jpg",2);
+			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+			pack1.setVisible(false);
+			pak1.setVisible(false);
+
 		}
 		if (random > 40 && random < 45) {
-			drop1.setImage(new Image("/resources/Images/yugi3.jpg"));
-			carte4.setImage(new Image("/resources/Images/yugi3.jpg"));
+			animation("/resources/Images/yugi3.jpg", "/resources/Images/yugi3.jpg",3);
+			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+			pack1.setVisible(false);
+			pak1.setVisible(false);
 		}
 		if (random > 45 && random < 50) {
-			drop1.setImage(new Image("/resources/Images/yugi4.jpg"));
-			carte5.setImage(new Image("/resources/Images/yugi4.jpg"));
+			animation("/resources/Images/yugi4.jpg", "/resources/Images/yugi4.jpg",4);
+			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+			pack1.setVisible(false);
+			pak1.setVisible(false);
+
 		}
 	}
 }

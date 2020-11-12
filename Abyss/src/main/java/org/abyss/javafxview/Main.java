@@ -1,5 +1,7 @@
 package org.abyss.javafxview;
 
+import java.io.InputStream;
+
 import org.abyss.controller.AccueilController;
 import org.abyss.controller.CollectionController;
 import org.abyss.controller.MainController;
@@ -11,6 +13,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
 
 public class Main extends Application {
 
@@ -18,6 +24,23 @@ public class Main extends Application {
 
 			launch(args);
 					
+	}
+	public void makeSound() {
+		
+		try {
+			//je cherche la musique
+			InputStream inputStream = getClass().getResourceAsStream("/resources/Sounds/accueil.wav");
+			AudioStream audioStream = new AudioStream(inputStream);
+			//Le loop
+//			AudioData audioData = audioStream.getData();
+//			ContinuousAudioDataStream loop = new ContinuousAudioDataStream(audioData);
+			// Start
+			AudioPlayer.player.start(audioStream);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Je trouve pas la musique");
+		}
 	}
 
 	@Override
@@ -54,27 +77,24 @@ public class Main extends Application {
 			//Bouton jouer pour aller a la scene de jeu
 			AccueilController accueilController = (AccueilController) loaderAccueil.getController();
 			accueilController.setScene(sceneGame);
+			accueilController.setScenecollection(sceneCollection);
 			accueilController.setStage(primaryStage);
 			
-			//Bouton permerttant d"aller a la collection
-			AccueilController accueilCollection = (AccueilController) loaderAccueil.getController();
-			accueilCollection.setScenecollection(sceneCollection);
-			accueilCollection.setStage(primaryStage);
-			
 			//Button permerttant d'aller retour accueil
-			CollectionController retourCol = (CollectionController) loaderCollection.getController();
-			retourCol.setScene(sceneAccueil);
-			retourCol.setStage(primaryStage);
+			CollectionController collectionController = (CollectionController) loaderCollection.getController();
+			collectionController.setScene(sceneAccueil);
+			collectionController.setSceneGacha(sceneGacha);
+			collectionController.setStage(primaryStage);
 			
 			//Bouton pour retourner a la scene d'accueil a la fin de la partie
 			MainController mc = (MainController) loaderMain.getController();
 			mc.setScene(sceneAccueil);
 			mc.setStage(primaryStage);
 			
-			//Gacha 
-			CollectionController collec = (CollectionController) loaderCollection.getController();
-			collec.setSceneGacha(sceneGacha);
-			collec.setStage(primaryStage);
+			//
+			CollectionController back = (CollectionController) loaderGacha.getController();
+			back.setSceneBack(sceneCollection);
+			back.setStage(primaryStage);
 			
 			//On change le curseur 
 			Image image = new Image("/resources/Images/curseur.png");
@@ -85,6 +105,7 @@ public class Main extends Application {
 			primaryStage.setTitle("Abyss");
 			primaryStage.getIcons().add(new Image("/resources/Images/logo.png"));
 			primaryStage.setScene(sceneAccueil);
+			makeSound();
 			primaryStage.show();
 			
 		} catch (Exception e) {
