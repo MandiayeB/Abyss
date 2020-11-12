@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<GridPane id="board" alignment="CENTER" gridLinesVisible="true"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity"
+	style="-fx-background-color: Transparent; -fx-border-color: Black;"
+	xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="org.abyss.controller.BoardController">
+
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="225.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints maxHeight="-Infinity"
+			minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="-Infinity"
+			minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+	</rowConstraints>
+	<children>
+		<ImageView fx:id="ennemy0" fitHeight="225.0"
+			fitWidth="150.0" onMouseEntered="#afficherCarte"
+			onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ennemy1" fitHeight="225.0"
+			fitWidth="150.0" onMouseEntered="#afficherCarte"
+			onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="1">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ennemy2" fitHeight="225.0"
+			fitWidth="150.0" layoutX="235.0" layoutY="10.0"
+			onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom"
+			pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ennemy3" fitHeight="225.0"
+			fitWidth="150.0" layoutX="460.0" layoutY="10.0"
+			onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom"
+			pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ennemy4" fitHeight="225.0"
+			fitWidth="150.0" layoutX="10.0" layoutY="10.0"
+			onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom"
+			pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ally0" fitHeight="225.0" fitWidth="150.0"
+			layoutX="910.0" layoutY="10.0" onDragDropped="#dragDropped"
+			onDragEntered="#dragEntered" onDragExited="#dragExited"
+			onDragOver="#dragOver" onMouseEntered="#afficherCarte"
+			onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true"
+			GridPane.rowIndex="1">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ally1" fitHeight="225.0" fitWidth="150.0"
+			layoutX="10.0" layoutY="235.0" onDragDropped="#dragDropped"
+			onDragEntered="#dragEntered" onDragExited="#dragExited"
+			onDragOver="#dragOver" onMouseEntered="#afficherCarte"
+			onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="1" GridPane.rowIndex="1">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ally2" fitHeight="225.0" fitWidth="150.0"
+			layoutX="235.0" layoutY="235.0" onDragDropped="#dragDropped"
+			onDragEntered="#dragEntered" onDragExited="#dragExited"
+			onDragOver="#dragOver" onMouseEntered="#afficherCarte"
+			onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="2" GridPane.rowIndex="1">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ally3" fitHeight="225.0" fitWidth="150.0"
+			layoutX="460.0" layoutY="235.0" onDragDropped="#dragDropped"
+			onDragEntered="#dragEntered" onDragExited="#dragExited"
+			onDragOver="#dragOver" onMouseEntered="#afficherCarte"
+			onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="3" GridPane.rowIndex="1">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="ally4" fitHeight="225.0" fitWidth="150.0"
+			layoutX="685.0" layoutY="235.0" onDragDropped="#dragDropped"
+			onDragEntered="#dragEntered" onDragExited="#dragExited"
+			onDragOver="#dragOver" onMouseEntered="#afficherCarte"
+			onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="4" GridPane.rowIndex="1">
+			<GridPane.margin>
+				<Insets left="37.0" />
+			</GridPane.margin>
+		</ImageView>
+	</children>
+</GridPane>
+	

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+
+<HBox id="animation" maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity"
+	xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="org.abyss.controller.AnimationController">
+	<ImageView fx:id="collision0" fitHeight="200.0"
+		fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+		<StackPane.margin>
+			<Insets right="902.0" />
+		</StackPane.margin>
+	</ImageView>
+	<ImageView fx:id="collision1" fitHeight="200.0"
+		fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+		<StackPane.margin>
+			<Insets right="452.0" />
+		</StackPane.margin>
+	</ImageView>
+	<ImageView fx:id="collision2" fitHeight="200.0"
+		fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+		<StackPane.margin>
+			<Insets left="449.0" />
+		</StackPane.margin>
+	</ImageView>
+	<ImageView fx:id="collision3" fitHeight="200.0"
+		fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+		<StackPane.margin>
+			<Insets left="901.0" />
+		</StackPane.margin>
+	</ImageView>
+	<ImageView fx:id="collision4" fitHeight="200.0"
+		fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+</HBox>

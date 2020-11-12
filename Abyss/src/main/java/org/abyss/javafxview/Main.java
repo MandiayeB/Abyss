@@ -53,6 +53,7 @@ public class Main extends Application {
 			FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/resources/FXML/FXML.fxml"));
 			FXMLLoader loaderCollection = new FXMLLoader(getClass().getResource("/resources/FXML/Collection.fxml"));
 			FXMLLoader loaderGacha = new FXMLLoader(getClass().getResource("/resources/FXML/Gacha.fxml"));
+			//FXMLLoader loaderInformation = new FXMLLoader(getClass().getResource("/resources/FXML/Information.fxml"));
 			
 			Parent accueil = loaderAccueil.load();
 			Scene sceneAccueil = new Scene(accueil);
@@ -65,6 +66,9 @@ public class Main extends Application {
 			
 			Parent gacha = loaderGacha.load();
 			Scene sceneGacha = new Scene(gacha);
+			
+			//Parent information = loaderInformation.load();
+			
 			
 			
 			//CSS

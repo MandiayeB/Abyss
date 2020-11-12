@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+
+<GridPane id="ennemyHand" alignment="CENTER"
+	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" 
+	xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="org.abyss.controller.EnnemyHandController">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+		<ColumnConstraints hgrow="SOMETIMES"
+			maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints maxHeight="-Infinity"
+			minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+	</rowConstraints>
+	<children>
+		<ImageView fx:id="ennemyCard0" fitHeight="225.0"
+			fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+		<ImageView fx:id="ennemyCard1" fitHeight="225.0"
+			fitWidth="150.0" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="1" />
+		<ImageView fx:id="ennemyCard2" fitHeight="225.0"
+			fitWidth="150.0" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="2" />
+		<ImageView fx:id="ennemyCard3" fitHeight="225.0"
+			fitWidth="150.0" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="3" />
+		<ImageView fx:id="ennemyCard4" fitHeight="225.0"
+			fitWidth="150.0" pickOnBounds="true" preserveRatio="true"
+			GridPane.columnIndex="4" />
+	</children>
+	<HBox.margin>
+		<Insets left="250.0" top="10.0" />
+	</HBox.margin>
+</GridPane>

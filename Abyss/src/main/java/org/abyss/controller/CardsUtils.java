@@ -35,7 +35,6 @@ public class CardsUtils {
 			Cards save = cards.get(i); //save sert a stocker le i
 			cards.set(i,cards.get(remplace)); // Je remplace la carte "i" par la carte "r" grace a set
 			cards.set(remplace, save); // Je remplace la carte replace par la carte save (i)
-			System.out.println(cards.get(i).getName()+i);
 			
 		}
 		
