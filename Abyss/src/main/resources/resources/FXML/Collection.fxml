@@ -9,7 +9,7 @@
    <children>
       <Button fx:id="pack" layoutX="160.0" layoutY="215.0" mnemonicParsing="false" onAction="#gacha1" prefHeight="520.0" prefWidth="344.0" style="-fx-background-color: Transparent;" text="Pack 1" />
       <Button fx:id="pack2" layoutX="806.0" layoutY="215.0" mnemonicParsing="false" prefHeight="520.0" prefWidth="344.0" style="-fx-background-color: Transparent;" text="Pack 2" />
-      <Label layoutX="753.0" layoutY="70.0" prefHeight="151.0" prefWidth="431.0" text="Bienvenue dans la collection." textAlignment="CENTER" textFill="#eb3535">
+      <Label layoutX="753.0" layoutY="70.0" prefHeight="151.0" prefWidth="431.0" text="Bienvenue dans la collection. :)" textAlignment="CENTER" textFill="#eb3535">
          <font>
             <Font name="Arial" size="32.0" />
          </font>
