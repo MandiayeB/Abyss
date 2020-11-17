@@ -11,9 +11,11 @@
 }
 
 #mainDeck {
-	-fx-background-imae : url("../Images/dos.jpg")
+	-fx-background-image : url("../Images/dos.jpg");
+	-fx-background-size: cover;
 }
 
 #opponentDeck {
-	-fx-background-imae : url("../Images/dos.jpg")
+	-fx-background-image : url("../Images/dos.jpg");
+	-fx-background-size: cover;
 }

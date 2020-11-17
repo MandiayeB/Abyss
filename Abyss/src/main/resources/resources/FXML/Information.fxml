@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.control.Label?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane id="information" maxHeight="-Infinity"
-	maxWidth="-Infinity" prefHeight="450.0" prefWidth="300.0"
-	BorderPane.alignment="CENTER" 
-	xmlns="http://javafx.com/javafx/8.0.171"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="org.abyss.controller.InformationController">
+<StackPane id="information" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.InformationController">
 	<BorderPane.margin>
 		<Insets right="20.0" />
 	</BorderPane.margin>
 	<children>
-		<ImageView fx:id="imageZoom" fitHeight="450.0"
-			fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-		<Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0"
-			prefWidth="300.0" textFill="#40f5e9" wrapText="true">
+		<ImageView fx:id="imageZoom" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+		<Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0" prefWidth="300.0" textFill="#40f5e9" wrapText="true">
 			<font>
 				<Font size="18.0" />
 			</font>
@@ -28,11 +21,9 @@
 				<Insets />
 			</StackPane.margin>
 		</Label>
-		<Label fx:id="cardAtt" alignment="CENTER"
-			contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0"
-			textFill="#364ad1">
+		<Label fx:id="cardAtt" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#364ad1">
 			<font>
-				<Font size="40.0" />
+				<Font name="System Bold" size="40.0" />
 			</font>
 			<padding>
 				<Insets left="10.0" />
@@ -44,8 +35,7 @@
 				<Insets right="190.0" top="340.0" />
 			</StackPane.margin>
 		</Label>
-		<Label fx:id="cardHp" alignment="CENTER" contentDisplay="CENTER"
-			prefHeight="100.0" prefWidth="100.0" textFill="#36d13a">
+		<Label fx:id="cardHp" alignment="CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" textFill="#36d13a">
 			<font>
 				<Font size="40.0" />
 			</font>

@@ -50,7 +50,7 @@ public class Main extends Application {
 			
 			//Creation de la scene Accueil et de la scene GAME et la scene Collection
 			FXMLLoader loaderAccueil = new FXMLLoader(getClass().getResource("/resources/FXML/Accueil.fxml"));
-			FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/resources/FXML/FXML.fxml"));
+			FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/resources/FXML/Game.fxml"));
 			FXMLLoader loaderCollection = new FXMLLoader(getClass().getResource("/resources/FXML/Collection.fxml"));
 			FXMLLoader loaderGacha = new FXMLLoader(getClass().getResource("/resources/FXML/Gacha.fxml"));
 			//FXMLLoader loaderInformation = new FXMLLoader(getClass().getResource("/resources/FXML/Information.fxml"));

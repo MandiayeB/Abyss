@@ -2,10 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-
 
 <GridPane id="board" alignment="CENTER" gridLinesVisible="true"
 	maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
@@ -124,5 +123,7 @@
 			</GridPane.margin>
 		</ImageView>
 	</children>
+	<opaqueInsets>
+		<Insets />
+	</opaqueInsets>
 </GridPane>
-	

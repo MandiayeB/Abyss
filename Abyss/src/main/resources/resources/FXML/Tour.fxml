@@ -33,4 +33,7 @@
 	<padding>
 		<Insets top="100.0" />
 	</padding>
+	<opaqueInsets>
+		<Insets />
+	</opaqueInsets>
 </VBox>
