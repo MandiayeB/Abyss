@@ -1,6 +1,11 @@
 package org.abyss.javafxview;
 
-import java.io.InputStream;
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 import org.abyss.controller.AccueilController;
 import org.abyss.controller.CollectionController;
@@ -13,10 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import sun.audio.AudioData;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
-import sun.audio.ContinuousAudioDataStream;
 
 public class Main extends Application {
 
@@ -28,14 +29,15 @@ public class Main extends Application {
 	public void makeSound() {
 		
 		try {
-			//je cherche la musique
-			InputStream inputStream = getClass().getResourceAsStream("/resources/Sounds/accueil.wav");
-			AudioStream audioStream = new AudioStream(inputStream);
-			//Le loop
-//			AudioData audioData = audioStream.getData();
-//			ContinuousAudioDataStream loop = new ContinuousAudioDataStream(audioData);
-			// Start
-			AudioPlayer.player.start(audioStream);
+			
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File ("C:\\Users\\allan\\git\\Abyss\\Abyss\\src\\main\\resources\\resources\\Sounds\\accueil.wav"));
+			Clip clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
+			FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-20.0f);
+			Thread.sleep(200);
+			clip.start();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
