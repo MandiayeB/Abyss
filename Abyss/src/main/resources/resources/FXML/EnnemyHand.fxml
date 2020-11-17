@@ -46,7 +46,4 @@
 			fitWidth="150.0" pickOnBounds="true" preserveRatio="true"
 			GridPane.columnIndex="4" />
 	</children>
-	<HBox.margin>
-		<Insets left="250.0" top="10.0" />
-	</HBox.margin>
 </GridPane>

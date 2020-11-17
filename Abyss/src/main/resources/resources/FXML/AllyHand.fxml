@@ -56,7 +56,4 @@
 			onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true"
 			GridPane.columnIndex="4" />
 	</children>
-	<HBox.margin>
-		<Insets bottom="10.0" left="250.0" />
-	</HBox.margin>
 </GridPane>
