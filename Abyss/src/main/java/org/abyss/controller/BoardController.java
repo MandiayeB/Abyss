@@ -71,11 +71,11 @@ public class BoardController implements Initializable {
 
 	public BoardController() {
 
-		allyBoard = CardsUtils.fillBoard();
-		ennemyBoard = CardsUtils.fillBoard();
+		allyBoard = CardsUtils.fillBoard(5);
+		ennemyBoard = CardsUtils.fillBoard(5);
 
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		listImage3 = new ArrayList<>();
@@ -139,30 +139,36 @@ public class BoardController implements Initializable {
 
 		new Thread(new Runnable() {
 			public void run() {
-				for (int i = 0; i < allyBoard.size(); i++) {
+				for (int i = 0; i < allyBoard.size() + 1; i++) {
+					
+					if (i < allyBoard.size()) {
+						
+						if (allyBoard.get(i) != null) {
 
-					if (allyBoard.get(i) != null) {
+							((Combattant) allyBoard.get(i)).setAppliedElement(false);
+							parentController.getAllyHandController().getAllyDeck().add(allyBoard.get(i)); // On remet la
+																											// carte
+																											// dans le
+																											// deck
+							allyBoard.set(i, null); // On supprime la carte du terrain
 
-						((Combattant) allyBoard.get(i)).setAppliedElement(false);
-						parentController.getAllyHandController().getAllyDeck().add(allyBoard.get(i)); // On remet la
-																										// carte dans le
-																										// deck
-						allyBoard.set(i, null); // On supprime la carte du terrain
+						}
 
+						if (ennemyBoard.get(i) != null) {
+
+							((Combattant) ennemyBoard.get(i)).setAppliedElement(false);
+							parentController.getEnnemyHandController().getEnnemyDeck().add(ennemyBoard.get(i)); // Pareil
+																												// pour
+																												// l'ennemi
+							ennemyBoard.set(i, null);
+
+						}
+
+						listImage3.get(i).setImage(new Image("/resources/Images/tornade.gif"));
+						listImage4.get(i).setImage(new Image("/resources/Images/tornade.gif"));
+					} else {
+						parentController.getSpellController().cacherSpells();
 					}
-
-					if (ennemyBoard.get(i) != null) {
-
-						((Combattant) ennemyBoard.get(i)).setAppliedElement(false);
-						parentController.getEnnemyHandController().getEnnemyDeck().add(ennemyBoard.get(i)); // Pareil
-																											// pour
-																											// l'ennemi
-						ennemyBoard.set(i, null);
-
-					}
-
-					listImage3.get(i).setImage(new Image("/resources/Images/tornade.gif"));
-					listImage4.get(i).setImage(new Image("/resources/Images/tornade.gif"));
 
 					try {
 						Thread.sleep(200);
@@ -170,8 +176,12 @@ public class BoardController implements Initializable {
 						e.printStackTrace();
 					}
 
-					listImage3.get(i).setImage(null);
-					listImage4.get(i).setImage(null);
+					if (i < allyBoard.size()) {
+						listImage3.get(i).setImage(null);
+						listImage4.get(i).setImage(null);
+					} else {
+						parentController.getSpellController().clean();
+					}
 
 				}
 				Platform.runLater(new Runnable() {
@@ -199,23 +209,10 @@ public class BoardController implements Initializable {
 
 	}
 
-	public void cleanStart(int i) {
-
-		listImage3.get(i).setImage(new Image("/resources/Images/tornade.gif"));
-		listImage4.get(i).setImage(new Image("/resources/Images/tornade.gif"));
-
-	}
-
-	public void cleanEnd(int i) {
-
-		listImage3.get(i).setImage(null);
-		listImage4.get(i).setImage(null);
-
-	}
-
 	public void dragOver(DragEvent event) { // J'annonce que je veux transporter la carte
 
-		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
+		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null
+				&& parentController.getAllyHandController().getDraggedCard() instanceof Combattant) {
 
 			event.acceptTransferModes(TransferMode.COPY_OR_MOVE); // On annonce quelle case va gérer le transfert
 
@@ -227,7 +224,8 @@ public class BoardController implements Initializable {
 
 	public void dragEntered(DragEvent event) { // Je montre sur quelle case il s'apprête à poser la carte
 
-		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null) {
+		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null
+				&& parentController.getAllyHandController().getDraggedCard() instanceof Combattant) {
 
 			((ImageView) event.getSource()).setImage(new Image("/resources/Images/dos.jpg"));
 			// Image pour indiquer où va se dérouler le transfert
@@ -254,15 +252,13 @@ public class BoardController implements Initializable {
 		Dragboard db = event.getDragboard();
 		boolean success = false;
 
-		if (db.hasImage() && allyBoard.get(carteVerif(event)) == null) {
+		if (db.hasImage() && allyBoard.get(carteVerif(event)) == null
+				&& parentController.getAllyHandController().getDraggedCard() instanceof Combattant) {
 
-			allyBoard.set(carteVerif(event), parentController.getAllyHandController().getDraggedCard()); // Ajoute la
-																											// carte sur
-																											// le
-																											// terrain
+			allyBoard.set(carteVerif(event), parentController.getAllyHandController().getDraggedCard());
 			parentController.getAllyHandController().getAllyHand()
 					.set(parentController.getAllyHandController().getDraggedNumber(), null); // Supprime la carte de la
-			Element e = new Element();																				// main
+			Element e = new Element(); // main
 			e.applyElement(carteVerif(event), allyBoard);
 			parentController.getAllyHandController().afficherHand();
 			afficherBoard();
@@ -291,15 +287,15 @@ public class BoardController implements Initializable {
 	public void translate4(int i, int j) {
 		listImage4.get(i).setTranslateY(j);
 	}
-	
+
 	public void effect(DropShadow glow, String id, int number) {
-		
+
 		if (id.contains("ally")) {
 			listImage3.get(number).setEffect(glow);
 		} else {
 			listImage4.get(number).setEffect(glow);
 		}
-		
+
 	}
-	
+
 }

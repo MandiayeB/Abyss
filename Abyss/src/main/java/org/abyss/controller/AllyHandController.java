@@ -62,7 +62,7 @@ public class AllyHandController implements Initializable {
 
 	public AllyHandController() {
 		allyDeck = CardsUtils.getCardsGame();
-		allyHand = CardsUtils.fillBoard();
+		allyHand = CardsUtils.fillBoard(5);
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,11 +33,13 @@ public class MainController implements Initializable {
 	@FXML
 	private AnimationController animationController;
 	@FXML
+	private SpellController spellController;
+	@FXML
 	private AnchorPane background;
 	@FXML
 	private ImageView mainDeck;
 	@FXML
-	private ImageView opponentDeck;
+	private Pane opponentDeck;
 	@FXML
 	private Label allyHp;
 	@FXML
@@ -106,6 +109,10 @@ public class MainController implements Initializable {
 		return animationController;
 	}
 
+	public SpellController getSpellController() {
+		return spellController;
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		allyPv = 10000;
@@ -114,6 +121,7 @@ public class MainController implements Initializable {
 		informationController.setParentController(this);
 		allyHandController.setParentController(this);
 		tourController.setParentController(this);
+		spellController.setParentController(this);
 	}
 
 	public void afficherHp() {

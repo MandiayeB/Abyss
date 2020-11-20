@@ -9,15 +9,11 @@ public abstract class Cards {
 	protected Image image;
 	
 	public String getName() {
-		
 		return name;
-		
 	}
 	
 	public Image getImage() {
-		
 		return image;
-		
 	}
 	
 	public void setImage(Image image) {

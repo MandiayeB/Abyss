@@ -53,12 +53,14 @@ public class AnimationController implements Initializable {
 	public void bringUpSpark() {
 		for (int i = 0; i < 5; i++) {
 			listImage5.get(i).setManaged(true);
+			listImage5.get(i).setVisible(true);
 		}
 	}
 	
 	public void bringDownSpark() {
 		for (int i = 0; i < 5; i++) {
 			listImage5.get(i).setManaged(false);
+			listImage5.get(i).setVisible(false);
 		}
 	}
 
