@@ -13,7 +13,6 @@ public class CardsUtils {
 	public static List<Cards> getCardsGame() {
 
 		ArrayList<Cards> cards = new ArrayList<>();
-
 		Combattant dragon1 = new Combattant("DragonDestruction",
 				new Image("/resources/Images/yugi.jpg"), 100, 0, "dragon");
 		Combattant neos = new Combattant("Neos", new Image("/resources/Images/yugi1.jpg"), 100, 0, "monstre");
