@@ -1,8 +1,10 @@
 package org.abyss.cards;
 
+import java.util.List;
+
 import javafx.scene.image.Image;
 
-public class Sorts extends Cards {
+public abstract class Sorts extends Cards {
 	
 	private String effect;
 	
@@ -13,4 +15,5 @@ public class Sorts extends Cards {
 		
 	}
 	
+	public abstract List<Cards> applySpell(List<Cards> list, List<Cards> list2);
 }

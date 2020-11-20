@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.abyss.cards.Combattant;
+import org.abyss.cards.Sorts;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,8 +22,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-public class InformationController  implements Initializable {
-	
+public class InformationController implements Initializable {
+
 	@FXML
 	private StackPane information;
 	@FXML
@@ -40,20 +41,20 @@ public class InformationController  implements Initializable {
 	public void setNouveau(boolean nouveau) {
 		this.nouveau = nouveau;
 	}
-	
+
 	public void setParentController(MainController parentController) {
 		this.parentController = parentController;
 	}
-	
+
 	public InformationController() {
-		
+
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		nouveau = true;
 	}
-	
+
 	public void afficherCarte(Image image, int number, String id) {
 
 		if (parentController.getTourController().getTour() == Phase.Transition) {
@@ -65,11 +66,15 @@ public class InformationController  implements Initializable {
 			borderGlow.setWidth(70);
 			borderGlow.setHeight(70);
 			borderGlow.setColor(Color.BLUE);
-			
+
 			if (id.contains("allyCard")) {
 				parentController.getAllyHandController().effect(borderGlow, id, number);
-			} else if (id.contains("ally")){
+			} else if (id.contains("allySpell")) { 
+				
+			} else if (id.contains("ally")) {
 				parentController.getBoardController().effect(borderGlow, id, number);
+			} else if (id.contains("ennemySpell")) {
+				
 			} else {
 				borderGlow.setColor(Color.RED);
 				parentController.getBoardController().effect(borderGlow, id, number);
@@ -83,35 +88,43 @@ public class InformationController  implements Initializable {
 
 		if (image != null) {
 			notif.setVisible(false);
+			
+			if (parentController.getAllyHandController().getAllyHand().get(number) instanceof Sorts) {
+				
+			} else if (id.contains("Spell")) {
+				
+			} else if (id.contains("ally")) {
 
-			if (id.contains("ally")) {
-				if (parentController.getBoardController().getAllyBoard().get(number) != null) {
-					cardAtt.setText(
-							Integer.toString(((Combattant) parentController.getBoardController().getAllyBoard().get(number)).getAtt()));
-					cardHp.setText(Integer.toString(((Combattant) parentController.getBoardController().getAllyBoard().get(number)).getHp()));
-				} else {
-					cardAtt.setText(
-							Integer.toString(((Combattant) parentController.getAllyHandController().getAllyHand().get(number)).getAtt()));
-					cardHp.setText(
-							Integer.toString(((Combattant) parentController.getAllyHandController().getAllyHand().get(number)).getHp()));
+				if (id.contains("allyCard") && parentController.getAllyHandController().getAllyHand().get(number) != null) {
+					cardAtt.setText(Integer
+							.toString(((Combattant) parentController.getAllyHandController().getAllyHand().get(number))
+									.getAtt()));
+					cardHp.setText(Integer.toString(
+							((Combattant) parentController.getAllyHandController().getAllyHand().get(number)).getHp()));
+				} else if (parentController.getBoardController().getAllyBoard().get(number) != null) {
+					cardAtt.setText(Integer.toString(
+							((Combattant) parentController.getBoardController().getAllyBoard().get(number)).getAtt()));
+					cardHp.setText(Integer.toString(
+							((Combattant) parentController.getBoardController().getAllyBoard().get(number)).getHp()));
 				}
+				
 			} else {
-				if (parentController.getBoardController().getEnnemyBoard().get(number) != null) {
-					cardAtt.setText(
-							Integer.toString(((Combattant) parentController.getBoardController().getEnnemyBoard().get(number)).getAtt()));
-					cardHp.setText(
-							Integer.toString(((Combattant) parentController.getBoardController().getEnnemyBoard().get(number)).getHp()));
-				} else {
-					cardAtt.setText(
-							Integer.toString(((Combattant) parentController.getEnnemyHandController().getEnnemyHand().get(number)).getAtt()));
-					cardHp.setText(
-							Integer.toString(((Combattant) parentController.getEnnemyHandController().getEnnemyHand().get(number)).getHp()));
+				
+				if (id.contains("ennemySpell")) {
+					
+				} else if (parentController.getBoardController().getEnnemyBoard().get(number) != null) {
+					cardAtt.setText(Integer
+							.toString(((Combattant) parentController.getBoardController().getEnnemyBoard().get(number))
+									.getAtt()));
+					cardHp.setText(Integer.toString(
+							((Combattant) parentController.getBoardController().getEnnemyBoard().get(number)).getHp()));
 				}
+				
 			}
+			imageZoom.setImage(image);
+			// Affiche la carte sélectionnée en grand
 		}
 
-		imageZoom.setImage(image);
-		// Affiche la carte sélectionnée en grand
 	}
 
 	public void cancelZoom(int number, String id) {
@@ -119,7 +132,7 @@ public class InformationController  implements Initializable {
 		if (id.contains("allyCard")) {
 			parentController.getAllyHandController().translate1(number, 0);
 			parentController.getAllyHandController().effect(null, id, number);
-		} else {
+		} else if (!id.contains("Spell")) {
 			parentController.getBoardController().effect(null, id, number);
 		}
 

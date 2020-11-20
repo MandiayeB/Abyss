@@ -11,20 +11,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="background" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.MainController">
+<AnchorPane fx:id="background" prefHeight="1000.0"
+	prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="org.abyss.controller.MainController">
 	<children>
 		<StackPane>
 			<children>
-				<ImageView fx:id="defeat" fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
+				<ImageView fx:id="defeat" fitHeight="1000.0"
+					fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
 				<BorderPane prefHeight="1000.0" prefWidth="1920.0">
 					<center>
-						<StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="452.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
+						<StackPane maxHeight="-Infinity" maxWidth="-Infinity"
+							prefHeight="452.0" prefWidth="1127.0"
+							BorderPane.alignment="CENTER">
 							<children>
-								
-								<!-- BOARD -->
-								<fx:include fx:id="board" source="Board.fxml" />
-								<!-- BOARD -->
-								
+								<HBox>
+
+									<!-- BOARD -->
+									<fx:include fx:id="board" source="Board.fxml" />
+									<!-- BOARD -->
+
+									<!-- SPELL -->
+									<fx:include fx:id="spell" source="Spell.fxml" />
+									<!-- SPELL -->
+
+								</HBox>
+
 								<!-- ANIMATION -->
 								<fx:include fx:id="animation" source="Animation.fxml" />
 								<!-- ANIMATION -->
@@ -47,9 +60,11 @@
 						</VBox>
 					</left>
 					<bottom>
-						<HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0" BorderPane.alignment="CENTER">
+						<HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0"
+							BorderPane.alignment="CENTER">
 							<children>
-								<Label fx:id="allyHp" prefHeight="100.0" prefWidth="100.0" text="10000" textFill="#36d353">
+								<Label fx:id="allyHp" prefHeight="100.0" prefWidth="100.0"
+									text="10000" textFill="#36d353">
 									<padding>
 										<Insets left="10.0" />
 									</padding>
@@ -62,7 +77,9 @@
 								<fx:include fx:id="allyHand" source="AllyHand.fxml" />
 								<!-- ALLYHAND -->
 
-								<Pane id="mainDeck" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="155.0">
+								<Pane id="mainDeck" maxHeight="-Infinity"
+									maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+									prefHeight="225.0" prefWidth="155.0">
 									<HBox.margin>
 										<Insets bottom="10.0" left="150.0" />
 									</HBox.margin>
@@ -73,14 +90,17 @@
 					<right>
 
 						<!-- INFORMATION -->
-						<fx:include fx:id="information" source="Information.fxml" />
+						<fx:include fx:id="information"
+							source="Information.fxml" />
 						<!-- INFORMATION -->
 
 					</right>
 					<top>
-						<HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0" BorderPane.alignment="CENTER">
+						<HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0"
+							BorderPane.alignment="CENTER">
 							<children>
-								<Label fx:id="ennemyHp" prefHeight="100.0" prefWidth="100.0" text="10000" textFill="#36d353">
+								<Label fx:id="ennemyHp" prefHeight="100.0"
+									prefWidth="100.0" text="10000" textFill="#36d353">
 									<font>
 										<Font size="40.0" />
 									</font>
@@ -90,10 +110,12 @@
 								</Label>
 
 								<!-- ENNEMY HAND -->
-								<fx:include fx:id="ennemyHand" source="EnnemyHand.fxml" />
+								<fx:include fx:id="ennemyHand"
+									source="EnnemyHand.fxml" />
 								<!-- ENNEMY HAND -->
 
-								<Pane id="opponentDeck" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="155.0">
+								<Pane id="opponentDeck" minHeight="-Infinity"
+									minWidth="-Infinity" prefHeight="225.0" prefWidth="155.0">
 									<HBox.margin>
 										<Insets left="150.0" top="10.0" />
 									</HBox.margin>

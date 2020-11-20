@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane id="spell" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.SpellController">
+	<columnConstraints>
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="190.0" />
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="279.0" minWidth="0.0" prefWidth="0.0" />
+	</columnConstraints>
+	<rowConstraints>
+		<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="225.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+	</rowConstraints>
+	<children>
+		<ImageView fx:id="ennemySpell" fitHeight="225.0" fitWidth="150.0" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true">
+			<GridPane.margin>
+				<Insets left="20.0" />
+			</GridPane.margin>
+		</ImageView>
+		<ImageView fx:id="allySpell" fitHeight="225.0" fitWidth="150.0" onDragDropped="#dragDropped" onDragEntered="#dragEntered" onDragExited="#dragExited" onDragOver="#dragOver" onMouseEntered="#afficherCarte" onMouseExited="#cancelZoom" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+			<GridPane.margin>
+				<Insets left="20.0" />
+			</GridPane.margin>
+		</ImageView>
+	</children>
+	<padding>
+		<Insets top="1.0" />
+	</padding>
+</GridPane>

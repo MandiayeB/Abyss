@@ -14,19 +14,21 @@ public class CardsUtils {
 
 		ArrayList<Cards> cards = new ArrayList<>();
 
-		Combattant dragon1 = new Combattant("DragonDestruction", 
+		Combattant dragon1 = new Combattant("DragonDestruction",
 				new Image("/resources/Images/yugi.jpg"), 100, 0, "dragon");
 		Combattant neos = new Combattant("Neos", new Image("/resources/Images/yugi1.jpg"), 100, 0, "monstre");
 		Combattant dragon2 = new Combattant("DragonUltime", 
 				new Image("/resources/Images/yugi2.jpg"), 50, 0, "dragon");
 		Combattant dragon3 = new Combattant("DragonBlanc", new Image("/resources/Images/yugi3.jpg"), 50, 0, "dragon");
 		Combattant exodia = new Combattant("Exodia", new Image("/resources/Images/yugi4.jpg"), 100, 0, "monstre");
+		DoubleSpell sort1 = new DoubleSpell("sort1", new Image("/resources/Images/spell1.png"), "test");
 
 		cards.add(dragon1);
 		cards.add(neos);
 		cards.add(dragon2);
 		cards.add(dragon3);
 		cards.add(exodia);
+		cards.add(sort1);
 		
 
 		for (int i = 0; i < cards.size(); i++) {
@@ -42,11 +44,11 @@ public class CardsUtils {
 
 	}
 	
-	public static List<Cards> fillBoard() {
+	public static List<Cards> fillBoard(int number) {
 		
 		List<Cards> liste = new ArrayList<>();
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < number; i++) {
 			
 			liste.add(null);
 			
