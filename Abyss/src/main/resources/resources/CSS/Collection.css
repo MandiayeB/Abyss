@@ -1,20 +1,20 @@
 #pack {
 	-fx-height: 100%;
-	-fx-background-image : url("../Images/dos.jpg");
+	-fx-background-image : url("../Images/eau2.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover;
 }
 #pack2 {
 	-fx-height: 100%;
-	-fx-background-image : url("../Images/dos.jpg");
+	-fx-background-image : url("../Images/lightSpell2.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover;
 }
 #pack3 {
 	-fx-height: 100%;
-	-fx-background-image : url("../Images/dos.jpg");
+	-fx-background-image : url("../Images/plante1.png");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover;
