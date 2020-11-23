@@ -30,7 +30,7 @@ public class Combat {
 
 							Combattant carte2 = (Combattant) parentController.getBoardController().getEnnemyBoard().get(i);
 							parentController.setEnnemyPv(parentController.getEnnemyPv() + carte1.combat(carte2)); // On enlève la différence aux pv de l'ennemi
-							parentController.setAllyPv(parentController.getEnnemyPv() + carte2.combat(carte1)); // Pareil pour les pv de l'allié
+							parentController.setAllyPv(parentController.getAllyPv() + carte2.combat(carte1)); // Pareil pour les pv de l'allié
 							parentController.getBoardController().translate3(i, 100);
 							parentController.getBoardController().translate4(i, -100);
 
