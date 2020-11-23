@@ -4,14 +4,13 @@ Vous pouvez jouer
 Fin de tour
 reset
 Combat
+Dégâts infligés : -80
+Dégâts reçus : -140
 Dégâts infligés : -90
-Dégâts reçus : -90
-Dégâts infligés : -70
-Dégâts reçus : -110
+Dégâts reçus : -130
 Dégâts infligés : -80
 Dégâts reçus : -80
-Dégâts infligés : -110
-Dégâts reçus : -110
-Dégâts infligés : 100
+Dégâts infligés : -90
+Dégâts reçus : -90
 Nouveau tour 
 Vous pouvez jouer
