@@ -1,0 +1,34 @@
+Tour ennemi
+Fin de tour
+Vous pouvez jouer
+Fin de tour
+reset
+Combat
+Dégâts infligés : -100
+Dégâts reçus : -200
+Dégâts infligés : -150
+Dégâts reçus : -200
+Dégâts infligés : -150
+Dégâts reçus : -150
+Dégâts infligés : -150
+Dégâts reçus : -150
+Nouveau tour 
+Vous pouvez jouer
+Fin de tour
+Tour ennemi
+Fin de tour
+reset
+Combat
+Dégâts infligés : -300
+Dégâts reçus : -150
+Dégâts infligés : -400
+Dégâts reçus : -250
+Dégâts infligés : -200
+Dégâts reçus : -250
+Dégâts infligés : -300
+Dégâts reçus : -200
+Dégâts reçus : 200
+Nouveau tour 
+Tour ennemi
+Fin de tour
+Vous pouvez jouer
