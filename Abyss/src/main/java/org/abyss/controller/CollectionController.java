@@ -109,6 +109,9 @@ public class CollectionController implements Initializable  {
 		carte.add(carte4);
 		carte.add(carte5);
 		carte.add(carte6);
+		carte.add(carte7);
+		carte.add(carte8);
+		
 	}
 	
 	public void retour() {
@@ -141,7 +144,7 @@ public class CollectionController implements Initializable  {
 							}
                 			pack1.setVisible(true);
                 			pak1.setVisible(true);
-                			affichedrop.setText("Vous n'avez malheureusement rien eu !");
+                			affichedrop.setText("Vous avez eu ceci !");
                 			
                             
                         }
@@ -166,34 +169,48 @@ public class CollectionController implements Initializable  {
 			pak1.setVisible(false);
 
 		}
-		if (random > 10 && random < 20) {
-			animation("/resources/Images/yugi.jpg", "/resources/Images/yugi.jpg", 0);
+		if (random > 10 && random < 15) {
+			animation("/resources/Images/eau1.png", "/resources/Images/eau1.png", 5);
 			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
 			pack1.setVisible(false);
 			pak1.setVisible(false);
 		}
-		if (random > 20 && random < 30) {
-			animation("/resources/Images/yugi1.jpg", "/resources/Images/yugi1.jpg",1);
+		if (random > 15 && random < 20) {
+			animation("/resources/Images/eau3.png", "/resources/Images/eau3.png",1);
+			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+			pack1.setVisible(false);
+			pak1.setVisible(false);
+
+		}
+		if (random > 20 && random < 27) {
+			animation("/resources/Images/ice3.png", "/resources/Images/ice3.png",6);
+			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+			pack1.setVisible(false);
+			pak1.setVisible(false);
+
+		}
+		if (random > 27 && random < 30) {
+			animation("/resources/Images/eau2.png", "/resources/Images/eau2.png",0);
 			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
 			pack1.setVisible(false);
 			pak1.setVisible(false);
 
 		}
 		if (random > 30 && random < 40) {
-			animation("/resources/Images/yugi2.jpg", "/resources/Images/yugi2.jpg",2);
+			animation("/resources/Images/eau4.png", "/resources/Images/eau4.png",2);
 			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
 			pack1.setVisible(false);
 			pak1.setVisible(false);
 
 		}
 		if (random > 40 && random < 45) {
-			animation("/resources/Images/yugi3.jpg", "/resources/Images/yugi3.jpg",3);
+			animation("/resources/Images/ice1.png", "/resources/Images/ice1.png",3);
 			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
 			pack1.setVisible(false);
 			pak1.setVisible(false);
 		}
 		if (random > 45 && random < 50) {
-			animation("/resources/Images/yugi4.jpg", "/resources/Images/yugi4.jpg",4);
+			animation("/resources/Images/ice2.png", "/resources/Images/ice2.png",4);
 			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
 			pack1.setVisible(false);
 			pak1.setVisible(false);

@@ -17,7 +17,7 @@
          <children>
             <ImageView fx:id="pak1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/yugi.jpg" />
+                  <Image url="@../Images/eau2.png" />
                </image>
             </ImageView>
             <Button fx:id="pack1" mnemonicParsing="false" onAction="#invoc1" prefHeight="153.0" prefWidth="207.0" style="-fx-background-color: Transparent;" />
