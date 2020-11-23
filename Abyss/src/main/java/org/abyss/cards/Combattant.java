@@ -21,6 +21,10 @@ public class Combattant extends Cards {
 		return hp;
 	}
 	
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+	
 	public String getElement() {
 		return element;
 	}

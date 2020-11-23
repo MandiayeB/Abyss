@@ -8,6 +8,10 @@ public abstract class Sorts extends Cards {
 	
 	private String effect;
 	
+	public String getEffect() {
+		return effect;
+	}
+	
 	public Sorts(String name, Image image, String effect) {
 		
 		super("sort", name, image);

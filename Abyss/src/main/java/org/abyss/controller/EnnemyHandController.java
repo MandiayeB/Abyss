@@ -42,7 +42,7 @@ public class EnnemyHandController implements Initializable {
 	}
 	
 	public EnnemyHandController() {
-		ennemyDeck = CardsUtils.getCardsGame();
+		ennemyDeck = CardsUtils.getEnnemyCards();
 		ennemyHand = CardsUtils.fillBoard(5);
 	}
 	
