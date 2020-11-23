@@ -26,6 +26,7 @@
 							prefHeight="452.0" prefWidth="1127.0"
 							BorderPane.alignment="CENTER">
 							<children>
+							
 								<HBox>
 
 									<!-- BOARD -->

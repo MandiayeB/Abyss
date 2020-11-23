@@ -34,6 +34,8 @@ public class InformationController implements Initializable {
 	private Label cardHp;
 	@FXML
 	private Label notif;
+	@FXML
+	private Label spellDetails;
 
 	private MainController parentController;
 	private boolean nouveau;
@@ -69,12 +71,12 @@ public class InformationController implements Initializable {
 
 			if (id.contains("allyCard")) {
 				parentController.getAllyHandController().effect(borderGlow, id, number);
-			} else if (id.contains("allySpell")) { 
-				
+			} else if (id.contains("allySpell")) {
+
 			} else if (id.contains("ally")) {
 				parentController.getBoardController().effect(borderGlow, id, number);
 			} else if (id.contains("ennemySpell")) {
-				
+
 			} else {
 				borderGlow.setColor(Color.RED);
 				parentController.getBoardController().effect(borderGlow, id, number);
@@ -88,14 +90,17 @@ public class InformationController implements Initializable {
 
 		if (image != null) {
 			notif.setVisible(false);
-			
-			if (parentController.getAllyHandController().getAllyHand().get(number) instanceof Sorts) {
-				
-			} else if (id.contains("Spell")) {
-				
+
+			if (id.contains("allySpell")) {
+				spellDetails.setText((((Sorts) parentController.getSpellController().getSpell1().get(0)).getEffect()));
 			} else if (id.contains("ally")) {
 
-				if (id.contains("allyCard") && parentController.getAllyHandController().getAllyHand().get(number) != null) {
+				if (id.contains("Card")
+						&& parentController.getAllyHandController().getAllyHand().get(number) instanceof Sorts) {
+					spellDetails.setText(
+							((Sorts) parentController.getAllyHandController().getAllyHand().get(number)).getEffect());
+				} else if (id.contains("Card")
+						&& parentController.getAllyHandController().getAllyHand().get(number) != null) {
 					cardAtt.setText(Integer
 							.toString(((Combattant) parentController.getAllyHandController().getAllyHand().get(number))
 									.getAtt()));
@@ -107,11 +112,12 @@ public class InformationController implements Initializable {
 					cardHp.setText(Integer.toString(
 							((Combattant) parentController.getBoardController().getAllyBoard().get(number)).getHp()));
 				}
-				
+
 			} else {
-				
+
 				if (id.contains("ennemySpell")) {
-					
+					spellDetails
+							.setText((((Sorts) parentController.getSpellController().getSpell2().get(0)).getEffect()));
 				} else if (parentController.getBoardController().getEnnemyBoard().get(number) != null) {
 					cardAtt.setText(Integer
 							.toString(((Combattant) parentController.getBoardController().getEnnemyBoard().get(number))
@@ -119,7 +125,7 @@ public class InformationController implements Initializable {
 					cardHp.setText(Integer.toString(
 							((Combattant) parentController.getBoardController().getEnnemyBoard().get(number)).getHp()));
 				}
-				
+
 			}
 			imageZoom.setImage(image);
 			// Affiche la carte sélectionnée en grand
@@ -140,6 +146,7 @@ public class InformationController implements Initializable {
 		imageZoom.setImage(null);
 		cardAtt.setText(null);
 		cardHp.setText(null);
+		spellDetails.setText(null);
 		notif.setVisible(true);
 
 	}
