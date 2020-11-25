@@ -1,13 +1,9 @@
 package org.abyss.controller;
 
-import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -53,6 +49,7 @@ public class CollectionController implements Initializable  {
 	private Label affichedrop;
 
 	private ArrayList<ImageView> carte;
+	private ArrayList<String> url;
 	
 	Stage stage;
 	Scene scene;
@@ -112,6 +109,16 @@ public class CollectionController implements Initializable  {
 		carte.add(carte7);
 		carte.add(carte8);
 		
+		url = new ArrayList<>();
+		url.add("/resources/Images/rien.gif");
+		url.add("/resources/Images/eau1.png");
+		url.add("/resources/Images/eau2.png");
+		url.add("/resources/Images/eau3.png");
+		url.add("/resources/Images/eau4.png");
+		url.add("/resources/Images/ice1.png");
+		url.add("/resources/Images/ice2.png");
+		url.add("/resources/Images/ice3.png");
+		
 	}
 	
 	public void retour() {
@@ -138,8 +145,8 @@ public class CollectionController implements Initializable  {
                         	
                         	makeSound();
 							drop1.setImage(new Image(chemindrop1));
-							if(quelleCarte != 50) {
-								carte.get(quelleCarte).setImage(new Image(chemincarte1));
+							if(quelleCarte != 0) {
+								carte.get(quelleCarte-1).setImage(new Image(chemincarte1));
 								effet.setVisible(true);
 							}
                 			pack1.setVisible(true);
@@ -160,61 +167,12 @@ public class CollectionController implements Initializable  {
 		effet.setImage(new Image("/resources/Images/confeti.gif"));
 		effet.setVisible(false);
 		affichedrop.setText("");
-		int random = (int) ((Math.random()* 50)); // Random va de 1 a 50
+		int random = (int) ((Math.random()* 8)); // Random va de 0 a 8-1
 		System.out.println(random);
-		if (random < 10) {
-			animation("/resources/Images/rien.gif", null, 50);
-			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
-			pack1.setVisible(false);
-			pak1.setVisible(false);
+		animation(url.get(random),url.get(random),random);
+		drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+		pack1.setVisible(false);
+		pak1.setVisible(false);
 
-		}
-		if (random > 10 && random < 15) {
-			animation("/resources/Images/eau1.png", "/resources/Images/eau1.png", 5);
-			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
-			pack1.setVisible(false);
-			pak1.setVisible(false);
-		}
-		if (random > 15 && random < 20) {
-			animation("/resources/Images/eau3.png", "/resources/Images/eau3.png",1);
-			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
-			pack1.setVisible(false);
-			pak1.setVisible(false);
-
-		}
-		if (random > 20 && random < 27) {
-			animation("/resources/Images/ice3.png", "/resources/Images/ice3.png",6);
-			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
-			pack1.setVisible(false);
-			pak1.setVisible(false);
-
-		}
-		if (random > 27 && random < 30) {
-			animation("/resources/Images/eau2.png", "/resources/Images/eau2.png",0);
-			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
-			pack1.setVisible(false);
-			pak1.setVisible(false);
-
-		}
-		if (random > 30 && random < 40) {
-			animation("/resources/Images/eau4.png", "/resources/Images/eau4.png",2);
-			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
-			pack1.setVisible(false);
-			pak1.setVisible(false);
-
-		}
-		if (random > 40 && random < 45) {
-			animation("/resources/Images/ice1.png", "/resources/Images/ice1.png",3);
-			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
-			pack1.setVisible(false);
-			pak1.setVisible(false);
-		}
-		if (random > 45 && random < 50) {
-			animation("/resources/Images/ice2.png", "/resources/Images/ice2.png",4);
-			drop1.setImage(new Image ("/resources/Images/invocation.gif"));
-			pack1.setVisible(false);
-			pak1.setVisible(false);
-
-		}
 	}
 }
