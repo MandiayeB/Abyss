@@ -84,7 +84,8 @@ public class AllyHandController implements Initializable {
 		Image image = ((ImageView) node).getImage();
 		String source = node.getId().toString();
 		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
-		parentController.getInformationController().afficherCarte(image, number, node.getId());
+		String name = allyHand.get(number).getName();
+		parentController.getInformationController().afficherCarte(image, number, node.getId(), name);
 
 	}
 

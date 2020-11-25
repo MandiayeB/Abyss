@@ -26,7 +26,7 @@
 							prefHeight="452.0" prefWidth="1127.0"
 							BorderPane.alignment="CENTER">
 							<children>
-							
+
 								<HBox>
 
 									<!-- BOARD -->
@@ -39,9 +39,11 @@
 
 								</HBox>
 
+
 								<!-- ANIMATION -->
 								<fx:include fx:id="animation" source="Animation.fxml" />
 								<!-- ANIMATION -->
+
 
 							</children>
 						</StackPane>
@@ -65,7 +67,7 @@
 							BorderPane.alignment="CENTER">
 							<children>
 								<Label fx:id="allyHp" prefHeight="100.0" prefWidth="100.0"
-									text="10000" textFill="#36d353">
+									text="5000" textFill="#36d353">
 									<padding>
 										<Insets left="10.0" />
 									</padding>
@@ -101,7 +103,7 @@
 							BorderPane.alignment="CENTER">
 							<children>
 								<Label fx:id="ennemyHp" prefHeight="100.0"
-									prefWidth="100.0" text="10000" textFill="#36d353">
+									prefWidth="100.0" text="5000" textFill="#36d353">
 									<font>
 										<Font size="40.0" />
 									</font>

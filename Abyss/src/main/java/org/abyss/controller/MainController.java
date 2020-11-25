@@ -115,8 +115,8 @@ public class MainController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		allyPv = 10000;
-		ennemyPv = 10000;
+		allyPv = 5000;
+		ennemyPv = 5000;
 		boardController.setParentController(this);
 		informationController.setParentController(this);
 		allyHandController.setParentController(this);

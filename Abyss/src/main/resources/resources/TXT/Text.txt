@@ -1,1 +1,16 @@
-
+Tour ennemi
+Fin de tour
+Vous pouvez jouer
+Fin de tour
+reset
+Combat
+Dégâts infligés : -230
+Dégâts reçus : -140
+Dégâts infligés : -280
+Dégâts reçus : -110
+Dégâts infligés : -360
+Dégâts reçus : -100
+Dégâts infligés : -240
+Dégâts reçus : -90
+Nouveau tour 
+Vous pouvez jouer
