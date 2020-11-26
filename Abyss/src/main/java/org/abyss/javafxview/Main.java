@@ -1,6 +1,7 @@
 package org.abyss.javafxview;
 
 import java.io.File;
+import java.util.HashMap;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -68,6 +69,11 @@ public class Main extends Application {
 			Parent gacha = loaderGacha.load();
 			Scene sceneGacha = new Scene(gacha);
 			
+			HashMap<String, Scene> listScene = new HashMap<>();
+			listScene.put("game", sceneGame);
+			listScene.put("collection", sceneCollection);
+			listScene.put("accueil", sceneAccueil);
+			listScene.put("gacha", sceneGacha);
 			
 			
 			//CSS
@@ -79,24 +85,23 @@ public class Main extends Application {
 			//On fournit au controlleur la scene jeu
 			//Bouton jouer pour aller a la scene de jeu
 			AccueilController accueilController = (AccueilController) loaderAccueil.getController();
-			accueilController.setScene(sceneGame);
-			accueilController.setScenecollection(sceneCollection);
 			accueilController.setStage(primaryStage);
+			accueilController.setListScene(listScene);
 			
 			//Button permerttant d'aller retour accueil
 			CollectionController collectionController = (CollectionController) loaderCollection.getController();
-			collectionController.setScene(sceneAccueil);
-			collectionController.setSceneGacha(sceneGacha);
+			collectionController.setListScene(listScene);
 			collectionController.setStage(primaryStage);
 			
+			
 			//Bouton pour retourner a la scene d'accueil a la fin de la partie
-			MainController mc = (MainController) loaderMain.getController();
-			mc.setScene(sceneAccueil);
-			mc.setStage(primaryStage);
+			MainController mainController = (MainController) loaderMain.getController();
+			mainController.setListScene(listScene);
+			mainController.setStage(primaryStage);
 			
 			//
 			CollectionController back = (CollectionController) loaderGacha.getController();
-			back.setSceneBack(sceneCollection);
+			back.setListScene(listScene);
 			back.setStage(primaryStage);
 			
 			//On change le curseur 

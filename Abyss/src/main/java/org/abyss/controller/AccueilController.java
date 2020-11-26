@@ -1,6 +1,7 @@
 package org.abyss.controller;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
@@ -10,16 +11,17 @@ import javafx.stage.Stage;
 public class AccueilController implements Initializable  {
 
 	Stage stage;
-	Scene scene;
-	Scene scenecollection;
 	
-	public Scene getScenecollection() {
-		return scenecollection;
+	HashMap<String, Scene> listScene;
+	
+	public HashMap<String, Scene> getListScene() {
+		return listScene;
 	}
 
-	public void setScenecollection(Scene scenecollection) {
-		this.scenecollection = scenecollection;
+	public void setListScene(HashMap<String, Scene> listScene) {
+		this.listScene = listScene;
 	}
+
 
 	public Stage getStage() {
 		return stage;
@@ -29,24 +31,16 @@ public class AccueilController implements Initializable  {
 		this.stage = stage;
 	}
 
-	public Scene getScene() {
-		return scene;
-	}
-
-	public void setScene(Scene scene) {
-		this.scene = scene;
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	}
 	
 	public void commencement() {
-		stage.setScene(scene);
+		stage.setScene(listScene.get("game"));
 	}
 	public void collection() {
-		stage.setScene(scenecollection);
+		stage.setScene(listScene.get("collection"));
 	}
 	
 	public void quitter() {

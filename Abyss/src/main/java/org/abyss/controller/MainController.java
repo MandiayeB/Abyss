@@ -1,6 +1,7 @@
 package org.abyss.controller;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -52,7 +53,16 @@ public class MainController implements Initializable {
 	static Stage popupwindow;
 	static Stage stage;
 	static Scene scene;
+	HashMap<String, Scene> listScene;
 	
+	public HashMap<String, Scene> getListScene() {
+		return listScene;
+	}
+
+	public void setListScene(HashMap<String, Scene> listScene) {
+		this.listScene = listScene;
+	}
+
 	public int getAllyPv() {
 		return allyPv;
 	}
@@ -75,14 +85,6 @@ public class MainController implements Initializable {
 
 	public void setStage(Stage stage) {
 		MainController.stage = stage;
-	}
-
-	public Scene getScene() {
-		return scene;
-	}
-
-	public void setScene(Scene scene) {
-		MainController.scene = scene;
 	}
 	
 	public InformationController getInformationController() {
@@ -147,7 +149,7 @@ public class MainController implements Initializable {
 
 	public void retourAccueil(ActionEvent e) {
 		popupwindow.close();
-		stage.setScene(scene);
+		stage.setScene(listScene.get("accueil"));
 	}
 
 	public void display() {

@@ -3,6 +3,7 @@ package org.abyss.controller;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -55,6 +56,11 @@ public class CollectionController implements Initializable  {
 	Scene scene;
 	Scene sceneGacha;
 	Scene sceneBack;
+
+	
+	HashMap<String, Scene> listScene;
+
+	
 	public void makeSound() {
 		try {
 			InputStream inputStream = getClass().getResourceAsStream("/resources/Sounds/tada.wav");
@@ -65,36 +71,21 @@ public class CollectionController implements Initializable  {
 		}
 	}
 	
-	public Scene getSceneBack() {
-		return sceneBack;
+	
+	public HashMap<String, Scene> getListScene() {
+		return listScene;
 	}
-
-	public void setSceneBack(Scene sceneBack) {
-		this.sceneBack = sceneBack;
+	
+	public void setListScene(HashMap<String, Scene> listScene) {
+		this.listScene = listScene;
 	}
-
-	public Scene getSceneGacha() {
-		return sceneGacha;
-	}
-
-	public void setSceneGacha(Scene sceneGacha) {
-		this.sceneGacha = sceneGacha;
-	}
-
+	
 	public Stage getStage() {
 		return stage;
 	}
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
-	}
-
-	public Scene getScene() {
-		return scene;
-	}
-
-	public void setScene(Scene scene) {
-		this.scene = scene;
 	}
 
 	@Override
@@ -122,13 +113,13 @@ public class CollectionController implements Initializable  {
 	}
 	
 	public void retour() {
-		stage.setScene(scene);
+		stage.setScene(listScene.get("accueil"));
 	}
 	public void gacha1() {
-		stage.setScene(sceneGacha);
+		stage.setScene(listScene.get("gacha"));
 	}
 	public void back() {
-		stage.setScene(sceneBack);
+		stage.setScene(listScene.get("collection"));
 	}
 
 	public void animation (String chemindrop1, String chemincarte1,int quelleCarte) {
