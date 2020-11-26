@@ -36,6 +36,8 @@ public class InformationController implements Initializable {
 	private Label notif;
 	@FXML
 	private Label spellDetails;
+	@FXML
+	private Label cardName;
 
 	private MainController parentController;
 	private boolean nouveau;
@@ -57,7 +59,7 @@ public class InformationController implements Initializable {
 		nouveau = true;
 	}
 
-	public void afficherCarte(Image image, int number, String id) {
+	public void afficherCarte(Image image, int number, String id, String name) {
 
 		if (parentController.getTourController().getTour() == Phase.Transition) {
 			// Effet autour des cartes
@@ -67,7 +69,7 @@ public class InformationController implements Initializable {
 			borderGlow.setOffsetX(0f);
 			borderGlow.setWidth(70);
 			borderGlow.setHeight(70);
-			borderGlow.setColor(Color.BLUE);
+			borderGlow.setColor(Color.YELLOW);
 
 			if (id.contains("allyCard")) {
 				parentController.getAllyHandController().effect(borderGlow, id, number);
@@ -128,6 +130,7 @@ public class InformationController implements Initializable {
 
 			}
 			imageZoom.setImage(image);
+			cardName.setText(name);
 			// Affiche la carte sélectionnée en grand
 		}
 
@@ -148,6 +151,7 @@ public class InformationController implements Initializable {
 		cardHp.setText(null);
 		spellDetails.setText(null);
 		notif.setVisible(true);
+		cardName.setText(null);
 
 	}
 

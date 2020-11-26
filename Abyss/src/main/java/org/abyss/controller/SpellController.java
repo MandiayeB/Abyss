@@ -79,7 +79,15 @@ public class SpellController implements Initializable {
 
 		Node node = (Node) event.getSource();
 		Image image = ((ImageView) node).getImage();
-		parentController.getInformationController().afficherCarte(image, 0, node.getId());
+		String name = "";
+		if (node.getId().contains("ally")) {
+			if (spell1.get(0) != null)
+				name = spell1.get(0).getName();
+		} else {
+			if (spell2.get(0) != null)
+				name = spell2.get(0).getName();
+		}
+		parentController.getInformationController().afficherCarte(image, 0, node.getId(), name);
 
 	}
 

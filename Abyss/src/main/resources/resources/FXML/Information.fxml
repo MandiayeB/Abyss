@@ -49,6 +49,14 @@
             <Font name="Fjalla One" size="18.0" />
          </font>
       </Label>
+      <Label fx:id="cardName" text="Nom de la carte" textFill="#f5f0f0">
+         <StackPane.margin>
+            <Insets bottom="420.0" />
+         </StackPane.margin>
+         <font>
+            <Font name="Fjalla One" size="20.0" />
+         </font>
+      </Label>
 	</children>
 	<padding>
 		<Insets right="20.0" />
