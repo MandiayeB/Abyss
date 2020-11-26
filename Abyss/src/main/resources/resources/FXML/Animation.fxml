@@ -19,6 +19,7 @@
 
 	<ImageView fx:id="collision4" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
      </ImageView>
+   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
 	
 	<padding>
 		<Insets top="75.0" />

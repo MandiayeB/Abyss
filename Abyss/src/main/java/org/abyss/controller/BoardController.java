@@ -98,12 +98,14 @@ public class BoardController implements Initializable {
 		Image image = ((ImageView) node).getImage();
 		String source = node.getId().toString();
 		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
-		String name;
+		String name = "";
 		
 		if (source.contains("ally")) {
-			name = allyBoard.get(number).getName();
+			if (allyBoard.get(number) != null)
+				name = allyBoard.get(number).getName();
 		} else {
-			name = ennemyBoard.get(number).getName();
+			if (ennemyBoard.get(number) != null)
+				name = ennemyBoard.get(number).getName();
 		}
 		parentController.getInformationController().afficherCarte(image, number, node.getId(), name);
 
