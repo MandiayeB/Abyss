@@ -148,8 +148,13 @@ public class MainController implements Initializable {
 	}
 
 	public void retourAccueil(ActionEvent e) {
-		popupwindow.close();
+		defeat.setVisible(false);
+		defeat.toBack();
+		setAllyPv(5000);
+		setEnnemyPv(5000);
 		stage.setScene(listScene.get("accueil"));
+		popupwindow.close();
+
 	}
 
 	public void display() {

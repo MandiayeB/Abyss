@@ -1,0 +1,79 @@
+Tour ennemi
+Fin de tour
+Vous pouvez jouer
+Fin de tour
+reset
+Combat
+Dégâts reçus : 150
+Dégâts reçus : 150
+Dégâts reçus : 150
+Dégâts reçus : 170
+Dégâts reçus : 200
+Nouveau tour 
+Vous pouvez jouer
+Fin de tour
+Tour ennemi
+Fin de tour
+reset
+Combat
+Dégâts reçus : 200
+Dégâts reçus : 200
+Dégâts reçus : 200
+Dégâts reçus : 220
+Nouveau tour 
+Tour ennemi
+Fin de tour
+Vous pouvez jouer
+Fin de tour
+reset
+Combat
+Dégâts reçus : 250
+Dégâts reçus : 250
+Dégâts reçus : 250
+Dégâts reçus : 200
+Nouveau tour 
+Vous pouvez jouer
+Fin de tour
+Tour ennemi
+Fin de tour
+reset
+Combat
+Dégâts reçus : 220
+Dégâts reçus : 300
+Dégâts reçus : 300
+Dégâts reçus : 300
+Nouveau tour 
+Tour ennemi
+Fin de tour
+Vous pouvez jouer
+Fin de tour
+reset
+Combat
+Dégâts reçus : 250
+Dégâts reçus : 270
+Dégâts reçus : 350
+Dégâts reçus : 350
+Nouveau tour 
+Vous pouvez jouer
+Fin de tour
+Tour ennemi
+Fin de tour
+reset
+Combat
+Dégâts reçus : 350
+Dégâts reçus : 300
+Dégâts reçus : 320
+Dégâts reçus : 400
+Nouveau tour 
+Tour ennemi
+Fin de tour
+Vous pouvez jouer
+Fin de tour
+reset
+Combat
+Dégâts reçus : 400
+Dégâts reçus : 400
+Dégâts reçus : 350
+Dégâts reçus : 370
+Nouveau tour 
+Vous pouvez jouer
