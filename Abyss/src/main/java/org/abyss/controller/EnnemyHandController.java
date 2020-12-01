@@ -33,6 +33,10 @@ public class EnnemyHandController implements Initializable {
 		return ennemyHand;
 	}
 	
+	public void setEnnemyHand(List<Cards> ennemyHand) {
+		this.ennemyHand = ennemyHand;
+	}
+	
 	public List<Cards> getEnnemyDeck() {
 		return ennemyDeck;
 	}
@@ -64,10 +68,8 @@ public class EnnemyHandController implements Initializable {
 		for (int i = 0; i < ennemyHand.size(); i++) { // Pareil pour la main ennemi
 
 			if (ennemyHand.get(i) == null) {
-
 				ennemyHand.set(i, ennemyDeck.get(0));
 				ennemyDeck.remove(0);
-
 			}
 
 		}
