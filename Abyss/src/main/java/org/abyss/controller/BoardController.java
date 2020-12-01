@@ -57,10 +57,18 @@ public class BoardController implements Initializable {
 		return allyBoard;
 	}
 
+	public void setAllyBoard(List<Cards> allyBoard) {
+		this.allyBoard = allyBoard;
+	}
+	
 	public List<Cards> getEnnemyBoard() {
 		return ennemyBoard;
 	}
-
+	
+	public void setEnnemyBoard(List<Cards> ennemyBoard) {
+		this.ennemyBoard = ennemyBoard;
+	}
+	
 	public ArrayList<ImageView> getListImage3() {
 		return listImage3;
 	}

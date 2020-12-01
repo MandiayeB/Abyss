@@ -43,11 +43,19 @@ public class AllyHandController implements Initializable {
 	public List<Cards> getAllyHand() {
 		return allyHand;
 	}
-
+	
+	public void setAllyHand(List<Cards> allyHand) {
+		this.allyHand = allyHand;
+	}
+	
 	public List<Cards> getAllyDeck() {
 		return allyDeck;
 	}
 
+	public void setAllyDeck(List<Cards> allyDeck) {
+		this.allyDeck = allyDeck;
+	}
+	
 	public Cards getDraggedCard() {
 		return draggedCard;
 	}

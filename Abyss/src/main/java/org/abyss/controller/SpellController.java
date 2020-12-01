@@ -28,6 +28,14 @@ public class SpellController implements Initializable {
 	private List<Cards> spell1;
 	private List<Cards> spell2;
 
+	public void setSpell1(List<Cards> spell1) {
+		this.spell1 = spell1;
+	}
+
+	public void setSpell2(List<Cards> spell2) {
+		this.spell2 = spell2;
+	}
+
 	public List<Cards> getSpell1() {
 		return spell1;
 	}

@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import org.abyss.cards.Combattant;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -117,14 +119,15 @@ public class MainController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		allyPv = 5000;
-		ennemyPv = 5000;
+		allyPv = 500;
+		ennemyPv = 500;
 		boardController.setParentController(this);
 		informationController.setParentController(this);
 		allyHandController.setParentController(this);
 		tourController.setParentController(this);
 		spellController.setParentController(this);
 	}
+	
 
 	public void afficherHp() {
 
@@ -138,6 +141,7 @@ public class MainController implements Initializable {
 		if (allyPv <= 0 || ennemyPv <= 0) {
 			defeat.toFront();
 			defeat.setImage(new Image("/resources/Images/end.gif"));
+			defeat.setVisible(true);
 			display();
 		}
 
@@ -148,13 +152,33 @@ public class MainController implements Initializable {
 	}
 
 	public void retourAccueil(ActionEvent e) {
-		defeat.setVisible(false);
-		defeat.toBack();
-		setAllyPv(5000);
-		setEnnemyPv(5000);
+		reset();
 		stage.setScene(listScene.get("accueil"));
 		popupwindow.close();
 
+	}
+	
+	public void reset() {
+		defeat.setVisible(false);
+		defeat.toBack();
+		allyPv = 5000;
+		ennemyPv = 5000;
+		afficherHp();
+		boardController.setAllyBoard(CardsUtils.fillBoard(5));
+		boardController.setEnnemyBoard(CardsUtils.fillBoard(5));
+		allyHandController.setAllyDeck(CardsUtils.getCardsGame());
+		allyHandController.setAllyHand(CardsUtils.fillBoard(5));
+		ennemyHandController.setEnnemyDeck(CardsUtils.getEnnemyCards());
+		ennemyHandController.setEnnemyHand(CardsUtils.fillBoard(5));
+		informationController.setNouveau(true);
+		tourController.setTour(Phase.Transition);
+		tourController.setOrder(false);
+		spellController.setSpell1(CardsUtils.fillBoard(1));
+		spellController.setSpell2(CardsUtils.fillBoard(1));
+		boardController.afficherBoard();
+		allyHandController.afficherHand();
+		ennemyHandController.afficherHand();
+		tourController.stade();
 	}
 
 	public void display() {

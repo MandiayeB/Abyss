@@ -33,8 +33,16 @@ public class EnnemyHandController implements Initializable {
 		return ennemyHand;
 	}
 	
+	public void setEnnemyHand(List<Cards> ennemyHand) {
+		this.ennemyHand = ennemyHand;
+	}
+	
 	public List<Cards> getEnnemyDeck() {
 		return ennemyDeck;
+	}
+	
+	public void setEnnemyDeck(List<Cards> ennemyDeck) {
+		this.ennemyDeck = ennemyDeck;
 	}
 	
 	public ArrayList<ImageView> getListImage2() {
