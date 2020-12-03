@@ -61,9 +61,13 @@ public class SpellController implements Initializable {
 	public void afficherSpells() {
 		if (spell1.get(0) != null) {
 			allySpell.setImage(spell1.get(0).getImage());
+		} else {
+			allySpell.setImage(null);  
 		}
 		if (spell2.get(0) != null) {
 			ennemySpell.setImage(spell2.get(0).getImage());
+		}else {
+			ennemySpell.setImage(null);  
 		}
 	}
 	

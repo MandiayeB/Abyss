@@ -50,8 +50,10 @@ public class MainController implements Initializable {
 	@FXML
 	private ImageView defeat;
 	
+	
 	private int allyPv;
 	private int ennemyPv;
+	private boolean restart = false;
 	static Stage popupwindow;
 	static Stage stage;
 	static Scene scene;
@@ -60,6 +62,7 @@ public class MainController implements Initializable {
 	public HashMap<String, Scene> getListScene() {
 		return listScene;
 	}
+	
 
 	public void setListScene(HashMap<String, Scene> listScene) {
 		this.listScene = listScene;
@@ -126,8 +129,8 @@ public class MainController implements Initializable {
 		allyHandController.setParentController(this);
 		tourController.setParentController(this);
 		spellController.setParentController(this);
+
 	}
-	
 
 	public void afficherHp() {
 
@@ -139,26 +142,41 @@ public class MainController implements Initializable {
 	public void mort() {
 
 		if (allyPv <= 0 || ennemyPv <= 0) {
+			setRestart(true);
 			defeat.toFront();
 			defeat.setImage(new Image("/resources/Images/end.gif"));
 			defeat.setVisible(true);
 			display();
 		}
+		else {
+			tourController.stade();
+		}
 
 	}
 
-	public void restart(ActionEvent e) {
+	public boolean getRestart() {
+		return restart;
+	}
+
+
+	public void setRestart(boolean restart) {
+		this.restart = restart;
+	}
+
+	public void leave(ActionEvent e) {
 		System.exit(0);
 	}
 
 	public void retourAccueil(ActionEvent e) {
-		reset();
+		
+		reset(e);
 		stage.setScene(listScene.get("accueil"));
-		popupwindow.close();
 
 	}
 	
-	public void reset() {
+	public void reset(ActionEvent e) {
+		
+		popupwindow.close();
 		defeat.setVisible(false);
 		defeat.toBack();
 		allyPv = 5000;
@@ -170,15 +188,22 @@ public class MainController implements Initializable {
 		allyHandController.setAllyHand(CardsUtils.fillBoard(5));
 		ennemyHandController.setEnnemyDeck(CardsUtils.getEnnemyCards());
 		ennemyHandController.setEnnemyHand(CardsUtils.fillBoard(5));
-		informationController.setNouveau(true);
-		tourController.setTour(Phase.Transition);
-		tourController.setOrder(false);
 		spellController.setSpell1(CardsUtils.fillBoard(1));
 		spellController.setSpell2(CardsUtils.fillBoard(1));
-		boardController.afficherBoard();
 		allyHandController.afficherHand();
 		ennemyHandController.afficherHand();
-		tourController.stade();
+		boardController.afficherBoard();
+		spellController.afficherSpells();
+		allyHandController.piocher();
+		ennemyHandController.piocher();
+		informationController.setNouveau(true);
+		informationController.ecrire("");
+		informationController.lireLigne();
+		tourController.setTour(Phase.TourEnnemi);
+		tourController.setOrder(false);
+		tourController.changeButton();
+		
+
 	}
 
 	public void display() {
@@ -188,15 +213,17 @@ public class MainController implements Initializable {
 		popupwindow.setTitle("Fin de la partie");
 
 		Label label1 = new Label("La partie est terminée !");
+		Button button0 = new Button("Rejouer");
 		Button button1 = new Button("Retour a l'accueil");
 		Button button2 = new Button("Quitter la partie");
 
+		button0.setOnAction(e -> reset(e));
 		button1.setOnAction(e -> retourAccueil(e));
-		button2.setOnAction(e -> restart(e));
+		button2.setOnAction(e -> leave(e));
 
 		VBox layout = new VBox(10);
 
-		layout.getChildren().addAll(label1, button1, button2);
+		layout.getChildren().addAll(label1, button0, button1, button2);
 		layout.setAlignment(Pos.CENTER);
 
 		Scene scene1 = new Scene(layout, 300, 250);

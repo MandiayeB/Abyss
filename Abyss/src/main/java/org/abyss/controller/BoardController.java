@@ -136,7 +136,10 @@ public class BoardController implements Initializable {
 
 				listImage3.get(i).setImage(allyBoard.get(i).getImage()); // Affiche le board par rapport
 																			// à la liste de cartes "allyBoard"
+			} else {
+				listImage3.get(i).setImage(null);  
 			}
+			
 
 		}
 
@@ -146,6 +149,8 @@ public class BoardController implements Initializable {
 
 				listImage4.get(i).setImage(ennemyBoard.get(i).getImage()); // Pareil pour l'ennemi
 
+			} else {
+				listImage4.get(i).setImage(null);  
 			}
 
 		}
