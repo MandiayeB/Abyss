@@ -14,7 +14,7 @@ public class DoubleHpWaterSpell extends Sorts {
 		super(name, image, effect);
 	}
 
-	public List<Cards> applySpell(List<Cards> list, List<Cards> list2) {
+	public void applySpell(List<Cards> list, List<Cards> list2) {
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i) != null) {
 				if (((Combattant) list.get(i)).getElement() == "water") {
@@ -22,7 +22,6 @@ public class DoubleHpWaterSpell extends Sorts {
 				}
 			}
 		}
-		return list;
 	}
 	
 }

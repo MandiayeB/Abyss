@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import org.abyss.cards.Combattant;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -119,15 +117,14 @@ public class MainController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		allyPv = 500;
-		ennemyPv = 500;
+		allyPv = 5000;
+		ennemyPv = 5000;
 		boardController.setParentController(this);
 		informationController.setParentController(this);
 		allyHandController.setParentController(this);
 		tourController.setParentController(this);
 		spellController.setParentController(this);
 	}
-	
 
 	public void afficherHp() {
 
