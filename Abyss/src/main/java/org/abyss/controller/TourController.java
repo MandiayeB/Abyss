@@ -18,6 +18,8 @@ public class TourController implements Initializable {
 	
 	private Phase tour;
 	private Boolean order;
+
+
 	private MainController parentController;
 	
 	public void setParentController(MainController parentController) {
@@ -32,6 +34,13 @@ public class TourController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 			
+	}
+	
+	public void changeButton() {
+		
+		phase.setVisible(true);
+		phase.setText("Start");
+		afficherTour.setText("Appuyez sur Start");
 	}
 	
 	@FXML

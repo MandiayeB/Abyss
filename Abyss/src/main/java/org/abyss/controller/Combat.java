@@ -148,7 +148,7 @@ public class Combat {
 						parentController.getTourController().afficherTour("Retrait !");
 						parentController.getTourController().setTour(Phase.PhaseDeRetrait);
 						parentController.mort();
-						parentController.getTourController().stade();
+
 					}
 				});
 			}

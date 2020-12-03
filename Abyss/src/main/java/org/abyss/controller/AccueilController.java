@@ -11,7 +11,8 @@ import javafx.stage.Stage;
 public class AccueilController implements Initializable  {
 
 	Stage stage;
-	
+
+
 	HashMap<String, Scene> listScene;
 	
 	public HashMap<String, Scene> getListScene() {
@@ -35,8 +36,10 @@ public class AccueilController implements Initializable  {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	}
+
 	
 	public void commencement() {
+
 		stage.setScene(listScene.get("game"));
 	}
 	public void collection() {
