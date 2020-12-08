@@ -2,6 +2,8 @@ package org.abyss.cards;
 
 import java.util.List;
 
+import org.abyss.controller.MainController;
+
 import javafx.scene.image.Image;
 
 public abstract class Sorts extends Cards {
@@ -19,5 +21,5 @@ public abstract class Sorts extends Cards {
 		
 	}
 	
-	public abstract void applySpell(List<Cards> list, List<Cards> list2);
+	public abstract void applySpell(List<Cards> list, List<Cards> list2, MainController parentController);
 }

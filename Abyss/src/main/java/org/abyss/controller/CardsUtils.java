@@ -15,14 +15,18 @@ public class CardsUtils {
 		ArrayList<Cards> cards = new ArrayList<>();
 		DoubleAttSpell lumos = new DoubleAttSpell("Bénédiction de Lumière",
 				new Image("/resources/Images/lightspell1.png"), "Double l'Attaque des cartes alliées");
-		Combattant lancier = new Combattant("Lancier de Lumière", new Image("/resources/Images/light1.png"), 150, 70, "light");
-		Combattant chevalier = new Combattant("Chevalier de Lumière", new Image("/resources/Images/light2.png"), 120, 40, "light");
+		DeleteCard delete = new DeleteCard("Rivalité", new Image("/resources/Images/lightSpell2.png"),
+				"Détruit la carte avec le plus d'Attaque");
+		Combattant lancier = new Combattant("Lancier de Lumière", new Image("/resources/Images/light1.png"), 150, 70,
+				"light");
+		Combattant chevalier = new Combattant("Chevalier de Lumière", new Image("/resources/Images/light2.png"), 120,
+				40, "light");
 		Combattant yamamoto = new Combattant("Yamamoto", new Image("/resources/Images/light3.png"), 100, 60, "light");
 		Combattant sakura = new Combattant("Sakura", new Image("/resources/Images/light4.png"), 100, 60, "light");
 		Combattant ouaf = new Combattant("Ouaf", new Image("/resources/Images/plante1.png"), 100, 60, "earth");
-		
 
 		cards.add(lumos);
+		cards.add(delete);
 		cards.add(lancier);
 		cards.add(chevalier);
 		cards.add(yamamoto);
@@ -41,20 +45,24 @@ public class CardsUtils {
 		return cards;
 
 	}
-	
+
 	public static List<Cards> getEnnemyCards() {
 
 		ArrayList<Cards> cards = new ArrayList<>();
 		DoubleHpWaterSpell poulpe = new DoubleHpWaterSpell("Bénédiction du Poulpe",
 				new Image("/resources/Images/waterSpell.png"), "Double les PV des cartes Eau");
-		Combattant brebis = new Combattant("Brebis Aquatique", new Image("/resources/Images/eau3.png"), 100, 60, "water");
+		PenaltyIceSpell penalty = new PenaltyIceSpell("Prison de glace", new Image("/resources/Images/iceSpell1.png"),
+				"Retire 50 points d'attaque aux cartes adverses");
+		Combattant brebis = new Combattant("Brebis Aquatique", new Image("/resources/Images/eau3.png"), 100, 60,
+				"water");
 		Combattant rasengan = new Combattant("Rasengan", new Image("/resources/Images/eau4.png"), 120, 40, "water");
 		Combattant elfe = new Combattant("Elfe Lunaire", new Image("/resources/Images/ice1.png"), 100, 60, "ice");
 		Combattant reine = new Combattant("Reine de Givre", new Image("/resources/Images/ice2.png"), 150, 70, "ice");
-		Combattant sorcerer = new Combattant("Sorcière de Cristal", new Image("/resources/Images/ice3.png"), 100, 60, "ice");
-		
+		Combattant sorcerer = new Combattant("Sorcière de Cristal", new Image("/resources/Images/ice3.png"), 100, 60,
+				"ice");
 
 		cards.add(poulpe);
+		cards.add(penalty);
 		cards.add(brebis);
 		cards.add(rasengan);
 		cards.add(elfe);

@@ -47,8 +47,7 @@ public class MainController implements Initializable {
 	private Label ennemyHp;
 	@FXML
 	private ImageView defeat;
-	
-	
+
 	private int allyPv;
 	private int ennemyPv;
 	private boolean restart = false;
@@ -127,7 +126,6 @@ public class MainController implements Initializable {
 		allyHandController.setParentController(this);
 		tourController.setParentController(this);
 		spellController.setParentController(this);
-
 	}
 
 	public void afficherHp() {
