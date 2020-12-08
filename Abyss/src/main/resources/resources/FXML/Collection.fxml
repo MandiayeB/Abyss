@@ -7,14 +7,12 @@
 
 <AnchorPane fx:id="collectionb" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.CollectionController">
    <children>
-      <Button fx:id="pack" layoutX="160.0" layoutY="215.0" mnemonicParsing="false" onAction="#gacha1" prefHeight="520.0" prefWidth="344.0" style="-fx-background-color: Transparent;" text="Pack 1" />
-      <Button fx:id="pack2" layoutX="806.0" layoutY="215.0" mnemonicParsing="false" prefHeight="520.0" prefWidth="344.0" style="-fx-background-color: Transparent;" text="Pack 2" />
+      <Button fx:id="pack" layoutX="797.0" layoutY="240.0" mnemonicParsing="false" onAction="#gacha1" prefHeight="520.0" prefWidth="344.0" style="-fx-background-color: Transparent;" text="Pack 1" />
       <Label layoutX="753.0" layoutY="70.0" prefHeight="151.0" prefWidth="431.0" text="Bienvenue dans la collection. :)" textAlignment="CENTER" textFill="#eb3535">
          <font>
             <Font name="Arial" size="32.0" />
          </font>
       </Label>
       <Button fx:id="retour" layoutX="936.0" layoutY="871.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
-      <Button fx:id="pack3" layoutX="1320.0" layoutY="215.0" mnemonicParsing="false" prefHeight="520.0" prefWidth="344.0" style="-fx-background-color: Transparent;" text="Pack 2" />
    </children>
 </AnchorPane>

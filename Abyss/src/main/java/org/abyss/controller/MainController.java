@@ -49,6 +49,8 @@ public class MainController implements Initializable {
 	private Label ennemyHp;
 	@FXML
 	private ImageView defeat;
+	@FXML
+	private ImageView ennemyHero;
 	
 	
 	private int allyPv;
@@ -124,6 +126,7 @@ public class MainController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		allyPv = 500;
 		ennemyPv = 500;
+		ennemyHero.setImage(new Image("/resources/Images/Ennemy.png"));
 		boardController.setParentController(this);
 		informationController.setParentController(this);
 		allyHandController.setParentController(this);

@@ -76,6 +76,7 @@ public class BoardController implements Initializable {
 	public ArrayList<ImageView> getListImage4() {
 		return listImage4;
 	}
+	
 
 	public BoardController() {
 
@@ -98,6 +99,7 @@ public class BoardController implements Initializable {
 		listImage4.add(ennemy2);
 		listImage4.add(ennemy3);
 		listImage4.add(ennemy4);
+		
 	}
 
 	public void afficherCarte(MouseEvent event) {
