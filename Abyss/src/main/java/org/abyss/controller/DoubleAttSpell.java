@@ -14,12 +14,11 @@ public class DoubleAttSpell extends Sorts{
 		super(name, image, effect);
 	}
 	
-	public List<Cards> applySpell(List<Cards> list, List<Cards> list2) {
+	public void applySpell(List<Cards> list, List<Cards> list2, MainController parenController) {
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i) != null) {
 				((Combattant) list.get(i)).setAtt((((Combattant) list.get(i)).getAtt()) * 2);
 			}
 		}
-		return list;
 	}
 }

@@ -25,7 +25,7 @@ public class Ennemy {
 		parentController.getInformationController().lireLigne();
 		parentController.getTourController().afficherTour("Tour Ennemi");
 		parentController.getTourController().visible(false);
-		HashMap<Integer,Sorts> sorts = new HashMap<>();
+		HashMap<Integer, Sorts> sorts = new HashMap<>();
 
 		new Thread(new Runnable() {
 			public void run() {
@@ -37,13 +37,13 @@ public class Ennemy {
 
 						if (c instanceof Combattant) {
 							// Si la carte est un combattant le pose sur le terrain
-							
+
 							try {
 								Thread.sleep(500);
 							} catch (InterruptedException e) {
 								e.printStackTrace();
 							}
-							
+
 							int save = searchBoard(parentController.getBoardController().getEnnemyBoard());
 							parentController.getBoardController().getEnnemyBoard().set(save, c);
 							parentController.getEnnemyHandController().getEnnemyHand().set(index, null);
@@ -60,30 +60,32 @@ public class Ennemy {
 					index++;
 
 				}
-				
+
 				try {
 					Thread.sleep(500);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				
+
 				for (Entry<Integer, Sorts> s : sorts.entrySet()) {
-					if (s.getValue() != null) {
-						parentController.getSpellController().getSpell2().set(0, s.getValue());
-						parentController.getEnnemyHandController().getEnnemyHand().set(s.getKey(), null);
-						parentController.getSpellController().afficherSpells();
-						s.getValue().applySpell(parentController.getBoardController().getEnnemyBoard(),
-								parentController.getBoardController().getAllyBoard());
-					}
-					parentController.getEnnemyHandController().afficherHand();
-					
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					if (parentController.getSpellController().getSpell2().get(0) == null) {
+						if (s.getValue() != null) {
+							parentController.getSpellController().getSpell2().set(0, s.getValue());
+							parentController.getEnnemyHandController().getEnnemyHand().set(s.getKey(), null);
+							parentController.getSpellController().afficherSpells();
+							s.getValue().applySpell(parentController.getBoardController().getEnnemyBoard(),
+									parentController.getBoardController().getAllyBoard(), parentController);
+						}
+						parentController.getEnnemyHandController().afficherHand();
+
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 					}
 				}
-				
+
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {

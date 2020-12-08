@@ -22,7 +22,7 @@
 		</VBox.margin>
 	</Button>
 	<padding>
-		<Insets top="100.0" />
+		<Insets right="100.0" top="100.0" />
 	</padding>
 	<opaqueInsets>
 		<Insets />

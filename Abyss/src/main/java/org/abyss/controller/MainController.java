@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import org.abyss.cards.Combattant;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,8 +49,7 @@ public class MainController implements Initializable {
 	private ImageView defeat;
 	@FXML
 	private ImageView ennemyHero;
-	
-	
+
 	private int allyPv;
 	private int ennemyPv;
 	private boolean restart = false;
@@ -124,6 +121,7 @@ public class MainController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
 		allyPv = 500;
 		ennemyPv = 500;
 		ennemyHero.setImage(new Image("/resources/Images/Ennemy.png"));
@@ -132,7 +130,6 @@ public class MainController implements Initializable {
 		allyHandController.setParentController(this);
 		tourController.setParentController(this);
 		spellController.setParentController(this);
-
 	}
 
 	public void afficherHp() {

@@ -15,6 +15,9 @@
 			<font>
 				<Font size="18.0" />
 			</font>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
 		</Label>
 		<Label fx:id="cardAtt" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="130.0" textFill="#364ad1">
 			<font>

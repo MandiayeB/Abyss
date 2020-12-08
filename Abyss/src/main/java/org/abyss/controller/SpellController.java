@@ -159,12 +159,13 @@ public class SpellController implements Initializable {
 			spell1.set(0, parentController.getAllyHandController().getDraggedCard());
 			parentController.getAllyHandController().getAllyHand()
 					.set(parentController.getAllyHandController().getDraggedNumber(), null);
-			parentController.getAllyHandController().afficherHand();
-			afficherSpells();
 			Sorts myCard = (Sorts) parentController.getAllyHandController().getDraggedCard();
 			myCard.applySpell(parentController.getBoardController().getAllyBoard(),
-					parentController.getBoardController().getEnnemyBoard());
+					parentController.getBoardController().getEnnemyBoard(), parentController);
 			success = true;
+			parentController.getAllyHandController().afficherHand();
+			parentController.getBoardController().afficherBoard();
+			afficherSpells();
 
 		}
 
