@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 
 import org.abyss.cards.Cards;
 import org.abyss.cards.Combattant;
-import org.abyss.cards.Sorts;
+import org.abyss.cards.spells.Sorts;
 
 import javafx.application.Platform;
 

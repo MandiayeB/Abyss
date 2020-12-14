@@ -1,10 +1,10 @@
-package org.abyss.controller;
+package org.abyss.cards.spells;
 
 import java.util.List;
 
 import org.abyss.cards.Cards;
 import org.abyss.cards.Combattant;
-import org.abyss.cards.Sorts;
+import org.abyss.controller.MainController;
 
 import javafx.scene.image.Image;
 

@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.abyss.cards.Combattant;
-import org.abyss.cards.Sorts;
+import org.abyss.cards.spells.Sorts;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -74,13 +74,14 @@ public class InformationController implements Initializable {
 			if (id.contains("allyCard")) {
 				parentController.getAllyHandController().effect(borderGlow, id, number);
 			} else if (id.contains("allySpell")) {
-
+				parentController.getSpellController().effect(borderGlow, true);
 			} else if (id.contains("ally")) {
 				parentController.getBoardController().effect(borderGlow, id, number);
 			} else if (id.contains("ennemySpell")) {
-
+				borderGlow.setColor(Color.BLUE);
+				parentController.getSpellController().effect(borderGlow, false);
 			} else {
-				borderGlow.setColor(Color.RED);
+				borderGlow.setColor(Color.BLUE);
 				parentController.getBoardController().effect(borderGlow, id, number);
 			}
 
@@ -143,9 +144,11 @@ public class InformationController implements Initializable {
 			parentController.getAllyHandController().effect(null, id, number);
 		} else if (!id.contains("Spell")) {
 			parentController.getBoardController().effect(null, id, number);
+		} else {
+			parentController.getSpellController().effect(null, true);
+			parentController.getSpellController().effect(null, false);
 		}
 
-		// node.setEffect(null);
 		imageZoom.setImage(null);
 		cardAtt.setText(null);
 		cardHp.setText(null);

@@ -13,6 +13,47 @@
 
 <AnchorPane fx:id="background" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.MainController">
 	<children>
+      <StackPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="250.0">
+         <children>
+            <ImageView fx:id="ennemyHero" fitHeight="350.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="ennemyHp" prefHeight="100.0" prefWidth="100.0" textFill="#36c4d1">
+               <font>
+                  <Font size="40.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <StackPane.margin>
+                  <Insets right="70.0" top="270.0" />
+               </StackPane.margin>
+            </Label>
+         </children>
+      </StackPane>
+      <StackPane layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="250.0">
+         <children>
+            <ImageView fx:id="allyHero" fitHeight="350.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="allyHp" prefHeight="100.0" prefWidth="100.0" textFill="YELLOW">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font size="40.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets bottom="275.0" right="70.0" top="10.0" />
+               </StackPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" top="1250.0" />
+         </padding>
+      </StackPane>
 		<StackPane>
 			<children>
 				<ImageView fx:id="defeat" fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
@@ -43,7 +84,7 @@
 						</StackPane>
 					</center>
 					<left>
-						<VBox BorderPane.alignment="CENTER">
+						<VBox maxHeight="-Infinity" prefHeight="218.0" prefWidth="300.0" BorderPane.alignment="CENTER">
 							<BorderPane.margin>
 								<Insets left="50.0" right="45.0" />
 							</BorderPane.margin>
@@ -57,16 +98,8 @@
 						</VBox>
 					</left>
 					<bottom>
-						<HBox prefHeight="235.0" prefWidth="1920.0" spacing="250.0" BorderPane.alignment="CENTER">
+						<HBox prefHeight="235.0" prefWidth="1920.0" spacing="200.0" BorderPane.alignment="CENTER">
 							<children>
-								<Label fx:id="allyHp" prefHeight="100.0" prefWidth="100.0" text="5000" textFill="#36d353">
-									<padding>
-										<Insets left="10.0" />
-									</padding>
-									<font>
-										<Font size="40.0" />
-									</font>
-								</Label>
 
 								<!-- ALLYHAND -->
 								<fx:include fx:id="allyHand" source="AllyHand.fxml" />
@@ -74,7 +107,7 @@
 
 								<Pane id="mainDeck" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="155.0">
 									<HBox.margin>
-										<Insets bottom="10.0" left="150.0" />
+										<Insets bottom="10.0" left="140.0" />
 									</HBox.margin>
 								</Pane>
 							</children>
@@ -90,22 +123,6 @@
 					<top>
 						<HBox prefHeight="235.0" prefWidth="1920.0" spacing="200.0" BorderPane.alignment="CENTER">
 							<children>
-                        <StackPane prefHeight="235.0" prefWidth="214.0">
-                           <children>
-                              <ImageView fx:id="ennemyHero" fitHeight="235.0" fitWidth="214.0" pickOnBounds="true" preserveRatio="true" />
-      								<Label fx:id="ennemyHp" prefHeight="100.0" prefWidth="100.0" text="5000" textFill="#36c4d1">
-      									<font>
-      										<Font size="40.0" />
-      									</font>
-      									<padding>
-      										<Insets left="10.0" />
-      									</padding>
-                                 <StackPane.margin>
-                                    <Insets right="10.0" top="165.0" />
-                                 </StackPane.margin>
-      								</Label>
-                           </children>
-                        </StackPane>
 
 								<!-- ENNEMY HAND -->
 								<fx:include fx:id="ennemyHand" source="EnnemyHand.fxml" />

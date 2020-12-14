@@ -88,7 +88,7 @@ public class EnnemyHandController implements Initializable {
 
 			if (ennemyHand.get(index) != null) {
 
-				w.setImage(new Image("/resources/Images/dos.jpg")); // Pareil pour l'ennemi
+				w.setImage(new Image("/resources/Images/Ice.png")); // Pareil pour l'ennemi
 
 			} else {
 

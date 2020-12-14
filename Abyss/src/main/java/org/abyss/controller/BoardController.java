@@ -251,7 +251,7 @@ public class BoardController implements Initializable {
 		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null
 				&& parentController.getAllyHandController().getDraggedCard() instanceof Combattant) {
 
-			((ImageView) event.getSource()).setImage(new Image("/resources/Images/dos.jpg"));
+			((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
 			// Image pour indiquer où va se dérouler le transfert
 
 		}

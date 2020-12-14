@@ -11,11 +11,11 @@
 }
 
 #mainDeck {
-	-fx-background-image : url("../Images/dos.jpg");
+	-fx-background-image : url("../Images/Jade.png");
 	-fx-background-size: cover;
 }
 
 #opponentDeck {
-	-fx-background-image : url("../Images/dos.jpg");
+	-fx-background-image : url("../Images/Ice.png");
 	-fx-background-size: cover;
 }

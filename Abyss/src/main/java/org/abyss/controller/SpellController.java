@@ -5,11 +5,12 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import org.abyss.cards.Cards;
-import org.abyss.cards.Sorts;
+import org.abyss.cards.spells.Sorts;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -128,7 +129,7 @@ public class SpellController implements Initializable {
 		if (event.getDragboard().hasImage() && spell1.get(0) == null
 				&& parentController.getAllyHandController().getDraggedCard() instanceof Sorts) {
 
-			((ImageView) event.getSource()).setImage(new Image("/resources/Images/dos.jpg"));
+			((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
 			// Image pour indiquer où va se dérouler le transfert
 
 		}
@@ -172,6 +173,16 @@ public class SpellController implements Initializable {
 		event.setDropCompleted(success); // Indique que le transfert s'est bien déroulé
 		event.consume();
 
+	}
+	
+	public void effect(DropShadow glow, Boolean bool) {
+		
+		if (bool) {
+			allySpell.setEffect(glow);
+		} else {
+			ennemySpell.setEffect(glow);
+		}
+	
 	}
 
 }

@@ -18,11 +18,11 @@ public class Combat {
 		parentController.getInformationController().ecrire("reset"+"\n"+"Combat");
 		parentController.getInformationController().lireLigne();
 		parentController.getTourController().visible(false);
-
+		
 		new Thread(new Runnable() {
 			public void run() {
 				for (int i = 0; i < parentController.getBoardController().getAllyBoard().size(); i++) {
-
+					
 					if (parentController.getBoardController().getAllyBoard().get(i) != null) {
 
 						Combattant carte1 = (Combattant) parentController.getBoardController().getAllyBoard().get(i);
@@ -125,14 +125,6 @@ public class Combat {
 
 					}
 
-//					Platform.runLater(new Runnable() {
-//						@Override
-//						public void run() {
-//							allyHp.setTextFill(Color.RED);
-//							ennemyHp.setTextFill(Color.RED);
-//						}
-//					});
-
 				}
 
 				for (int i = 0; i < parentController.getBoardController().getAllyBoard().size(); i++) {
@@ -143,12 +135,9 @@ public class Combat {
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-//						allyHp.setTextFill(Color.web("#36d353"));
-//						ennemyHp.setTextFill(Color.web("#36d353"));
 						parentController.getTourController().afficherTour("Retrait !");
 						parentController.getTourController().setTour(Phase.PhaseDeRetrait);
 						parentController.mort();
-
 					}
 				});
 			}

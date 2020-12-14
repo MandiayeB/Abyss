@@ -49,6 +49,8 @@ public class MainController implements Initializable {
 	private ImageView defeat;
 	@FXML
 	private ImageView ennemyHero;
+	@FXML
+	private ImageView allyHero;
 
 	private int allyPv;
 	private int ennemyPv;
@@ -122,9 +124,11 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		allyPv = 500;
-		ennemyPv = 500;
+		allyPv = 3000;
+		ennemyPv = 3000;
+		afficherHp();
 		ennemyHero.setImage(new Image("/resources/Images/Ennemy.png"));
+		allyHero.setImage(new Image("/resources/Images/hero1.png"));
 		boardController.setParentController(this);
 		informationController.setParentController(this);
 		allyHandController.setParentController(this);
@@ -179,8 +183,8 @@ public class MainController implements Initializable {
 		popupwindow.close();
 		defeat.setVisible(false);
 		defeat.toBack();
-		allyPv = 5000;
-		ennemyPv = 5000;
+		allyPv = 3000;
+		ennemyPv = 3000;
 		afficherHp();
 		boardController.setAllyBoard(CardsUtils.fillBoard(5));
 		boardController.setEnnemyBoard(CardsUtils.fillBoard(5));
