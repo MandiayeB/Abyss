@@ -177,9 +177,7 @@ public class AllyHandController implements Initializable {
 	}
 
 	public void dragDone(DragEvent event) {
-
 		cancel.setVisible(true);
-
 	}
 
 	public void effect(DropShadow glow, String id, int number) {
