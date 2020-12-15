@@ -207,7 +207,6 @@ public class MainController implements Initializable {
 		tourController.setOrder(false);
 		tourController.changeButton();
 		
-
 	}
 
 	public void display() {
