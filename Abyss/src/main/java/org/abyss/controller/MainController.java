@@ -63,7 +63,6 @@ public class MainController implements Initializable {
 	public HashMap<String, Scene> getListScene() {
 		return listScene;
 	}
-	
 
 	public void setListScene(HashMap<String, Scene> listScene) {
 		this.listScene = listScene;
@@ -124,8 +123,8 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		allyPv = 3000;
-		ennemyPv = 3000;
+		allyPv = 1500;
+		ennemyPv = 1500;
 		afficherHp();
 		ennemyHero.setImage(new Image("/resources/Images/Ennemy.png"));
 		allyHero.setImage(new Image("/resources/Images/hero1.png"));
@@ -183,8 +182,8 @@ public class MainController implements Initializable {
 		popupwindow.close();
 		defeat.setVisible(false);
 		defeat.toBack();
-		allyPv = 3000;
-		ennemyPv = 3000;
+		allyPv = 1500;
+		ennemyPv = 1500;
 		afficherHp();
 		boardController.setAllyBoard(CardsUtils.fillBoard(5));
 		boardController.setEnnemyBoard(CardsUtils.fillBoard(5));

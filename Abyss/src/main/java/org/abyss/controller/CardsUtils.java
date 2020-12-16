@@ -38,7 +38,7 @@ public class CardsUtils {
 		Combattant pom = new Combattant("Pomme", new Image("/resources/Images/plante3.png"), 40, 40, "earth");
 		Combattant tort = new Combattant("Torterra", new Image("/resources/Images/plante4.png"), 100, 200, "earth");
 		Combattant grog = new Combattant("Grog", new Image("/resources/Images/plante5.png"), 100, 60, "earth");
-		Combattant hydre = new Combattant("Hydre", new Image("/resources/Images/plante1.png"), 120, 70, "earth");
+		Combattant hydre = new Combattant("Hydre", new Image("/resources/Images/plante6.png"), 120, 70, "earth");
 
 		cards.add(lumos);
 		cards.add(delete);
@@ -79,7 +79,7 @@ public class CardsUtils {
 		DoubleAttIceSpell ral = new DoubleAttIceSpell("Ralliement", new Image("/resources/Images/iceSpell2.png"),
 				"Double l'Attaque des cartes glace");
 		Combattant sir = new Combattant("Sirène", new Image("/resources/Images/eau1.png"), 100, 60, "water");
-		Combattant pos = new Combattant("Poseidon", new Image("/resources/Images/eau1.png"), 120, 70, "water");
+		Combattant pos = new Combattant("Poseidon", new Image("/resources/Images/eau2.png"), 120, 70, "water");
 		Combattant brebis = new Combattant("Brebis Aquatique", new Image("/resources/Images/eau3.png"), 100, 60,
 				"water");
 		Combattant rasengan = new Combattant("Rasengan", new Image("/resources/Images/eau4.png"), 120, 40, "water");
