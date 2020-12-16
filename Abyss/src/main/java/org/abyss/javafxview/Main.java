@@ -58,6 +58,7 @@ public class Main extends Application {
 			FXMLLoader loaderMain = new FXMLLoader(getClass().getResource("/resources/FXML/Game.fxml"));
 			FXMLLoader loaderCollection = new FXMLLoader(getClass().getResource("/resources/FXML/Collection.fxml"));
 			FXMLLoader loaderGacha = new FXMLLoader(getClass().getResource("/resources/FXML/Gacha.fxml"));
+			FXMLLoader loaderGacha2 = new FXMLLoader(getClass().getResource("/resources/FXML/Gacha2.fxml"));
 
 			Parent accueil = loaderAccueil.load();
 			Scene sceneAccueil = new Scene(accueil);
@@ -70,10 +71,13 @@ public class Main extends Application {
 
 			Parent gacha = loaderGacha.load();
 			Scene sceneGacha = new Scene(gacha);
-
+			
+			Parent gacha2 = loaderGacha2.load();
+			Scene sceneGacha2 = new Scene(gacha2);
 			
 			HashMap<String, Scene> listScene = new HashMap<>();
 			listScene.put("game", sceneGame);
+			listScene.put("gacha2", sceneGacha2);
 			listScene.put("collection", sceneCollection);
 			listScene.put("accueil", sceneAccueil);
 			listScene.put("gacha", sceneGacha);
@@ -82,9 +86,9 @@ public class Main extends Application {
 			//CSS
 			accueil.getStylesheets().add(getClass().getResource("/resources/CSS/Accueil.css").toExternalForm());
 			sceneGame.getStylesheets().add(getClass().getResource("/resources/CSS/style.css").toExternalForm());
-			sceneCollection.getStylesheets()
-					.add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
+			sceneCollection.getStylesheets().add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
 			sceneGacha.getStylesheets().add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
+			sceneGacha2.getStylesheets().add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
 
 			// On fournit au controlleur la scene jeu
 			// Bouton jouer pour aller a la scene de jeu
@@ -107,6 +111,10 @@ public class Main extends Application {
 			CollectionController back = (CollectionController) loaderGacha.getController();
 			back.setListScene(listScene);
 			back.setStage(primaryStage);
+			
+			CollectionController back2 = (CollectionController) loaderGacha2.getController();
+			back2.setListScene(listScene);
+			back2.setStage(primaryStage);
 
 			// On change le curseur
 			Image image = new Image("/resources/Images/curseur.png");
