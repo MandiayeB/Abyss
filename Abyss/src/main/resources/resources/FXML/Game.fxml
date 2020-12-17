@@ -54,6 +54,7 @@
             <Insets left="20.0" top="1250.0" />
          </padding>
       </StackPane>
+      <fx:include fx:id="dialogue" source="Dialogue.fxml" />
 		<StackPane>
 			<children>
 				<ImageView fx:id="defeat" fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />

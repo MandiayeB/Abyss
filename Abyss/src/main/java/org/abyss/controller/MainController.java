@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 public class MainController implements Initializable {
 	
 	@FXML
+	private DialogueController dialogueController;
+	@FXML
 	private InformationController informationController;
 	@FXML
 	private BoardController boardController;
@@ -134,6 +136,7 @@ public class MainController implements Initializable {
 		allyHandController.setParentController(this);
 		tourController.setParentController(this);
 		spellController.setParentController(this);
+		dialogueController.setParentController(this);
 	}
 
 	public void afficherHp() {
