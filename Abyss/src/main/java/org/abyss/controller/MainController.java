@@ -132,8 +132,10 @@ public class MainController implements Initializable {
 		allyPv = 3000;
 		ennemyPv = 3000;
 		afficherHp();
-		dialogueController.cacherBulleAlly();
-		dialogueController.cacherBullyEnnemy();
+		dialogueController.BulleAlly.setVisible(false);
+		dialogueController.BulleEnnemy.setVisible(false);
+		dialogueController.TxtAlly.setVisible(false);
+		dialogueController.TxtEnnemy.setVisible(false);
 		ennemyHero.setImage(new Image("/resources/Images/Ennemy.png"));
 		allyHero.setImage(new Image("/resources/Images/hero1.png"));
 		boardController.setParentController(this);

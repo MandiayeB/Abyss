@@ -103,8 +103,31 @@ public class DialogueController implements Initializable {
 	}
 
 	public void cacherBullyEnnemy() {
-		BulleEnnemy.setVisible(false);
-		TxtEnnemy.setVisible(false);
+
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+
+					Thread.sleep(2500);
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+
+						BulleEnnemy.setVisible(false);
+						TxtEnnemy.setVisible(false);
+
+					}
+				});
+
+			}
+		}).start();
 	}
 
 	public void afficherBulleAlly(int id) {
@@ -117,11 +140,34 @@ public class DialogueController implements Initializable {
 	}
 
 	public void cacherBulleAlly() {
-		BulleAlly.setVisible(false);
-		TxtAlly.setVisible(false);
+		
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+
+					Thread.sleep(2500);
+
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+
+						BulleAlly.setVisible(false);
+						TxtAlly.setVisible(false);
+
+					}
+				});
+
+			}
+		}).start();
 
 	}
-
+	
 	public void dialogueCommencement() {
 
 		if (parentController.getAllyPv() == 3000 && parentController.getEnnemyPv() == 3000) {
@@ -133,7 +179,7 @@ public class DialogueController implements Initializable {
 				public void run() {
 					try {
 
-						Thread.sleep(2500);
+						Thread.sleep(1000);
 
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -150,7 +196,7 @@ public class DialogueController implements Initializable {
 					});
 					try {
 
-						Thread.sleep(2500);
+						Thread.sleep(1000);
 
 					} catch (InterruptedException e) {
 						e.printStackTrace();
@@ -164,225 +210,49 @@ public class DialogueController implements Initializable {
 		if(parentController.getAllyPv() < 2251 && hideA == 0) {
 			parlerA = true;
 			afficherBulleAlly(3);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(2500);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-
-							cacherBulleAlly();
-
-						}
-					});
-
-				}
-			}).start();
+			cacherBulleAlly();
 			hideA = 1;
 		}
 		if(parentController.getEnnemyPv() < 2251 && hideE == 0) {
 			parlerE = true;
 			afficherBulleEnnemy(2);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(2500);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-
-							cacherBullyEnnemy();
-
-						}
-					});
-
-				}
-			}).start();
+			cacherBullyEnnemy();
 			hideE = 1;
 		}
 		if(parentController.getEnnemyPv() < 1500 && hideE == 1) {
 			parlerE = true;
 			afficherBulleEnnemy(4);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(2500);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-
-							cacherBullyEnnemy();
-
-						}
-					});
-
-				}
-			}).start();
+			cacherBullyEnnemy();
 			hideE = 2;
 		}
 		if(parentController.getAllyPv() < 1500 && hideA == 1) {
 			parlerA = true;
 			afficherBulleAlly(5);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(2500);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-
-							cacherBulleAlly();
-
-						}
-					});
-
-				}
-			}).start();
+			cacherBulleAlly();
 			hideA = 2;
 		}
 		if(parentController.getEnnemyPv() < 750 && hideE == 2) {
 			parlerE = true;
 			afficherBulleEnnemy(6);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(2500);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-
-							cacherBullyEnnemy();
-
-						}
-					});
-
-				}
-			}).start();
+			cacherBullyEnnemy();
 			hideE = 3;
 		}
 		if(parentController.getAllyPv() < 750 && hideA == 2) {
 			parlerA = true;
 			afficherBulleAlly(7);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(2500);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-
-							cacherBulleAlly();
-
-						}
-					});
-
-				}
-			}).start();
+			cacherBulleAlly();
 			hideA = 3;
 		}
 		if(parentController.getEnnemyPv() == 0 && hideE == 3) {
 			parlerE = true;
 			afficherBulleEnnemy(8);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(2500);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-
-							cacherBullyEnnemy();
-
-						}
-					});
-
-				}
-			}).start();
+			cacherBullyEnnemy();
 			hideE = 4;
 		}
 		if(parentController.getAllyPv() == 0 && hideA == 3) {
 			parlerA = true;
 			afficherBulleAlly(9);
-			new Thread(new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-
-						Thread.sleep(2500);
-
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					Platform.runLater(new Runnable() {
-
-						@Override
-						public void run() {
-
-							cacherBulleAlly();
-
-						}
-					});
-
-				}
-			}).start();
+			cacherBulleAlly();
 			hideA = 4;
 		}
 	}
