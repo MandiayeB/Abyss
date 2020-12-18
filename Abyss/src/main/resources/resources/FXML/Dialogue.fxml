@@ -16,7 +16,10 @@
 						<Image url="@../Images/bulle.png" />
 					</image>
 				</ImageView>
-				<Label fx:id="TxtEnnemy" text="Label" />
+				<Label fx:id="TxtEnnemy" prefHeight="85.0" prefWidth="133.0" text="Label">
+               <StackPane.margin>
+                  <Insets bottom="45.0" />
+               </StackPane.margin></Label>
 			</children>
          <VBox.margin>
             <Insets top="50.0" />
@@ -32,7 +35,10 @@
 						<Image url="@../Images/bulle.png" />
 					</image>
 				</ImageView>
-				<Label fx:id="TxtAlly" text="Label" />
+				<Label fx:id="TxtAlly" prefHeight="78.0" prefWidth="130.0" text="Label">
+               <StackPane.margin>
+                  <Insets bottom="45.0" />
+               </StackPane.margin></Label>
 			</children>
 		</StackPane>
 	</children>

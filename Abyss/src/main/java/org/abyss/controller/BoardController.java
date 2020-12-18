@@ -160,7 +160,7 @@ public class BoardController implements Initializable {
 	}
 
 	public void retrait() {
-
+		parentController.getDialogueController().dialogueCommencement();
 		new Thread(new Runnable() {
 			public void run() {
 				for (int i = 0; i < allyBoard.size() + 1; i++) {

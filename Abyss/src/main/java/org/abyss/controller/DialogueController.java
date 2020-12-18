@@ -1,6 +1,7 @@
 package org.abyss.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -9,9 +10,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-public class DialogueController implements Initializable{
-	
-	@FXML 
+public class DialogueController implements Initializable {
+
+	@FXML
 	ImageView BulleEnnemy;
 	@FXML
 	ImageView BulleAlly;
@@ -20,120 +21,369 @@ public class DialogueController implements Initializable{
 	@FXML
 	Label TxtEnnemy;
 	
-	private MainController parentController;
+	private boolean parlerE = true;
+	private boolean parlerA = true;
+
+
+	private int hideA = 0;
+	private int hideE = 0;
 	
+
+
+	private ArrayList<String> dialogue;
+
+	private MainController parentController;
+
 	public void setParentController(MainController parentController) {
 		this.parentController = parentController;
 	}
-	
+
 	public DialogueController() {
 
 	}
+	
+	public int getHideA() {
+		return hideA;
+	}
+
+	public void setHideA(int hideA) {
+		this.hideA = hideA;
+	}
+
+	public int getHideE() {
+		return hideE;
+	}
+
+	public void setHideE(int hideE) {
+		this.hideE = hideE;
+	}
+	public boolean isParlerE() {
+		return parlerE;
+	}
+
+	public void setParlerE(boolean parlerE) {
+		this.parlerE = parlerE;
+	}
+
+	public boolean isParlerA() {
+		return parlerA;
+	}
+
+	public void setParlerA(boolean parlerA) {
+		this.parlerA = parlerA;
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		
+
+		dialogue = new ArrayList<>();
+		dialogue.add("Prépare toi à \n souffrir !");// 1
+		dialogue.add("Arrête tes sottises !");
+
+		dialogue.add("Si tu penses que \n cela va suffir, \n tu te mets le \n doigt dans l'oeil...");// 2
+		dialogue.add("Ça ne va pas \n se passer \n comme ça !");
+
+		dialogue.add("Ce n'est une \n égratinure.");// 3
+		dialogue.add("Je me batterai \n jusqu'au bout !");
+
+		dialogue.add("Passons aux \n choses sérieuses !");// 4
+		dialogue.add("Je triompherai \n de l'Abyss quoi \n qu'il en coûte !");
+
+		dialogue.add("Arggggg...");// 5
+		dialogue.add("Je n'abandonnerai pas !");
 	}
-	
-	public void afficherBulleEnnemy() {
-		BulleEnnemy.setVisible(true);
-		TxtEnnemy.setVisible(true);
-	
+
+	public void afficherBulleEnnemy(int id) {
+		if(parlerE == true) {
+			BulleEnnemy.setVisible(true);
+			TxtEnnemy.setVisible(true);
+			TxtEnnemy.setText(dialogue.get(id));
+			parlerE = false;
+		}
 	}
-	
+
 	public void cacherBullyEnnemy() {
 		BulleEnnemy.setVisible(false);
 		TxtEnnemy.setVisible(false);
 	}
-	
-	public void afficherBulleAlly() {
-		BulleAlly.setVisible(true);
-		TxtAlly.setVisible(true);
-	
+
+	public void afficherBulleAlly(int id) {
+		if(parlerA == true) {
+			BulleAlly.setVisible(true);
+			TxtAlly.setVisible(true);
+			TxtAlly.setText(dialogue.get(id));
+			parlerA=false;
+		}
 	}
-	
+
 	public void cacherBulleAlly() {
 		BulleAlly.setVisible(false);
 		TxtAlly.setVisible(false);
-	
+
 	}
-	
-	public void commencementEnnemy() {
-		afficherBulleEnnemy();
-		TxtEnnemy.setText("Prepare toi a souffrir");
-	}
-	
-	public void quartEnnemy() {
-		afficherBulleEnnemy();
-		TxtEnnemy.setText("Si tu pense que cela va suffir, tu te met le doigts dans l'oeil");
-	}
-	public void moitierEnnemy() {
-		afficherBulleEnnemy();
-		TxtEnnemy.setText("Ce n'est une égratinure");
-	}
-	public void troiquartEnnemy() {
-		afficherBulleEnnemy();
-		TxtEnnemy.setText("Passons aux choses serieuse ! ");
-	}
-	public void meursEnnemy() {
-		afficherBulleEnnemy();
-		TxtEnnemy.setText("Arggggg...");
-	}
-	//ALLY
-	public void commencementAlly() {
-		afficherBulleAlly();
-		TxtAlly.setText("A nous deux !");
-	}
-	
-	public void quartAlly() {
-		afficherBulleAlly();
-		TxtAlly.setText("Ca ne va pas ce passer comme ca ! ");
-	}
-	public void moitierAlly() {
-		afficherBulleAlly();
-		TxtAlly.setText("Je me battrerai jusqu'au bout");
-	}
-	public void troiquartAlly() {
-		afficherBulleAlly();
-		TxtAlly.setText("Je triompherai de l'abysse quoi qu'il en coute");
-	}
-	public void meursAlly() {
-		afficherBulleAlly();
-		TxtAlly.setText("Je n'abonerai pas ");
-	}
-	
-	public void dialogueEffet() {
-		
-		if(parentController.getAllyPv() == 3000 && parentController.getEnnemyPv()== 3000) {
-			commencementAlly();
-	    	commencementEnnemy();
-		}
+
+	public void dialogueCommencement() {
+
+		if (parentController.getAllyPv() == 3000 && parentController.getEnnemyPv() == 3000) {
+			afficherBulleEnnemy(0);
+
 			new Thread(new Runnable() {
 
-	            @Override
-	            public void run() {
-	                try {
-	                	
-	                    Thread.sleep(2950);
-	                   
-	                    Platform.runLater(new Runnable() {
-	                    
-	                        @Override
-	                        public void run() {
-	                        	
-	                        	cacherBulleAlly();
-	         	        		cacherBullyEnnemy();
-	                           
-	                        }
-	                    });
-	                    
-	                } catch (InterruptedException e) {
-	                    e.printStackTrace();
-	                }
-	        		
-	            }
-	        }).start();
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBullyEnnemy();
+							afficherBulleAlly(1);
+
+						}
+					});
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					cacherBulleAlly();
+
+				}
+			}).start();
+
 		}
+		if(parentController.getAllyPv() < 2251 && hideA == 0) {
+			parlerA = true;
+			afficherBulleAlly(3);
+			new Thread(new Runnable() {
 
+				@Override
+				public void run() {
+					try {
 
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBulleAlly();
+
+						}
+					});
+
+				}
+			}).start();
+			hideA = 1;
+		}
+		if(parentController.getEnnemyPv() < 2251 && hideE == 0) {
+			parlerE = true;
+			afficherBulleEnnemy(2);
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBullyEnnemy();
+
+						}
+					});
+
+				}
+			}).start();
+			hideE = 1;
+		}
+		if(parentController.getEnnemyPv() < 1500 && hideE == 1) {
+			parlerE = true;
+			afficherBulleEnnemy(4);
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBullyEnnemy();
+
+						}
+					});
+
+				}
+			}).start();
+			hideE = 2;
+		}
+		if(parentController.getAllyPv() < 1500 && hideA == 1) {
+			parlerA = true;
+			afficherBulleAlly(5);
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBulleAlly();
+
+						}
+					});
+
+				}
+			}).start();
+			hideA = 2;
+		}
+		if(parentController.getEnnemyPv() < 750 && hideE == 2) {
+			parlerE = true;
+			afficherBulleEnnemy(6);
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBullyEnnemy();
+
+						}
+					});
+
+				}
+			}).start();
+			hideE = 3;
+		}
+		if(parentController.getAllyPv() < 750 && hideA == 2) {
+			parlerA = true;
+			afficherBulleAlly(7);
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBulleAlly();
+
+						}
+					});
+
+				}
+			}).start();
+			hideA = 3;
+		}
+		if(parentController.getEnnemyPv() == 0 && hideE == 3) {
+			parlerE = true;
+			afficherBulleEnnemy(8);
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBullyEnnemy();
+
+						}
+					});
+
+				}
+			}).start();
+			hideE = 4;
+		}
+		if(parentController.getAllyPv() == 0 && hideA == 3) {
+			parlerA = true;
+			afficherBulleAlly(9);
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(2500);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+
+							cacherBulleAlly();
+
+						}
+					});
+
+				}
+			}).start();
+			hideA = 4;
+		}
+	}
 }

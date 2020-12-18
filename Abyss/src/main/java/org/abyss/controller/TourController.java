@@ -46,6 +46,7 @@ public class TourController implements Initializable {
 	@FXML
 	private void next(ActionEvent event) {
 		stade();
+		parentController.getDialogueController().dialogueCommencement();
 	}
 	
 	public Phase getTour() {
@@ -66,7 +67,6 @@ public class TourController implements Initializable {
 	
 	public void stade() {
 
-		parentController.getDialogueController().dialogueEffet();
 		switch (tour) {
 
 		case TourEnnemi:

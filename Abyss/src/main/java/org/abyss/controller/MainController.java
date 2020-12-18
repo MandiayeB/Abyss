@@ -184,6 +184,10 @@ public class MainController implements Initializable {
 		defeat.toBack();
 		allyPv = 3000;
 		ennemyPv = 3000;
+		dialogueController.setHideA(0);
+		dialogueController.setHideE(0);
+		dialogueController.setParlerA(true);
+		dialogueController.setParlerE(true);
 		afficherHp();
 		boardController.setAllyBoard(CardsUtils.fillBoard(5));
 		boardController.setEnnemyBoard(CardsUtils.fillBoard(5));
@@ -205,7 +209,6 @@ public class MainController implements Initializable {
 		tourController.setTour(Phase.TourEnnemi);
 		tourController.setOrder(false);
 		tourController.changeButton();
-    	dialogueController.dialogueEffet();
 		
 	}
 
