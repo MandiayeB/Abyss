@@ -102,7 +102,7 @@ public class DialogueController implements Initializable {
 		}
 	}
 
-	public void cacherBullyEnnemy() {
+	public void cacherBullyEnnemy(int id) {
 
 		new Thread(new Runnable() {
 
@@ -110,7 +110,7 @@ public class DialogueController implements Initializable {
 			public void run() {
 				try {
 
-					Thread.sleep(2500);
+					Thread.sleep(id);
 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -139,7 +139,7 @@ public class DialogueController implements Initializable {
 		}
 	}
 
-	public void cacherBulleAlly() {
+	public void cacherBulleAlly(int id) {
 		
 		new Thread(new Runnable() {
 
@@ -147,7 +147,7 @@ public class DialogueController implements Initializable {
 			public void run() {
 				try {
 
-					Thread.sleep(2500);
+					Thread.sleep(id);
 
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -189,7 +189,7 @@ public class DialogueController implements Initializable {
 						@Override
 						public void run() {
 
-							cacherBullyEnnemy();
+							cacherBullyEnnemy(50);
 							afficherBulleAlly(1);
 
 						}
@@ -201,7 +201,7 @@ public class DialogueController implements Initializable {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					cacherBulleAlly();
+					cacherBulleAlly(1000);
 
 				}
 			}).start();
@@ -210,49 +210,49 @@ public class DialogueController implements Initializable {
 		if(parentController.getAllyPv() < 2251 && hideA == 0) {
 			parlerA = true;
 			afficherBulleAlly(3);
-			cacherBulleAlly();
+			cacherBulleAlly(2500);
 			hideA = 1;
 		}
 		if(parentController.getEnnemyPv() < 2251 && hideE == 0) {
 			parlerE = true;
 			afficherBulleEnnemy(2);
-			cacherBullyEnnemy();
+			cacherBullyEnnemy(2500);
 			hideE = 1;
 		}
 		if(parentController.getEnnemyPv() < 1501 && hideE == 1) {
 			parlerE = true;
 			afficherBulleEnnemy(4);
-			cacherBullyEnnemy();
+			cacherBullyEnnemy(2500);
 			hideE = 2;
 		}
 		if(parentController.getAllyPv() < 1501 && hideA == 1) {
 			parlerA = true;
 			afficherBulleAlly(5);
-			cacherBulleAlly();
+			cacherBulleAlly(2500);
 			hideA = 2;
 		}
 		if(parentController.getEnnemyPv() < 751 && hideE == 2) {
 			parlerE = true;
 			afficherBulleEnnemy(6);
-			cacherBullyEnnemy();
+			cacherBullyEnnemy(2500);
 			hideE = 3;
 		}
 		if(parentController.getAllyPv() < 751 && hideA == 2) {
 			parlerA = true;
 			afficherBulleAlly(7);
-			cacherBulleAlly();
+			cacherBulleAlly(2500);
 			hideA = 3;
 		}
 		if(parentController.getEnnemyPv() == 0 && hideE == 3) {
 			parlerE = true;
 			afficherBulleEnnemy(8);
-			cacherBullyEnnemy();
+			cacherBullyEnnemy(2500);
 			hideE = 4;
 		}
 		if(parentController.getAllyPv() == 0 && hideA == 3) {
 			parlerA = true;
 			afficherBulleAlly(9);
-			cacherBulleAlly();
+			cacherBulleAlly(2500);
 			hideA = 4;
 		}
 	}
