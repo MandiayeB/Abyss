@@ -219,25 +219,25 @@ public class DialogueController implements Initializable {
 			cacherBullyEnnemy();
 			hideE = 1;
 		}
-		if(parentController.getEnnemyPv() < 1500 && hideE == 1) {
+		if(parentController.getEnnemyPv() < 1501 && hideE == 1) {
 			parlerE = true;
 			afficherBulleEnnemy(4);
 			cacherBullyEnnemy();
 			hideE = 2;
 		}
-		if(parentController.getAllyPv() < 1500 && hideA == 1) {
+		if(parentController.getAllyPv() < 1501 && hideA == 1) {
 			parlerA = true;
 			afficherBulleAlly(5);
 			cacherBulleAlly();
 			hideA = 2;
 		}
-		if(parentController.getEnnemyPv() < 750 && hideE == 2) {
+		if(parentController.getEnnemyPv() < 751 && hideE == 2) {
 			parlerE = true;
 			afficherBulleEnnemy(6);
 			cacherBullyEnnemy();
 			hideE = 3;
 		}
-		if(parentController.getAllyPv() < 750 && hideA == 2) {
+		if(parentController.getAllyPv() < 751 && hideA == 2) {
 			parlerA = true;
 			afficherBulleAlly(7);
 			cacherBulleAlly();
