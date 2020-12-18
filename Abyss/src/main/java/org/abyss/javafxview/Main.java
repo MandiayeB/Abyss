@@ -33,7 +33,7 @@ public class Main extends Application {
 		try {
 
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
-					new File("C:\\Users\\allan\\git\\Abyss\\Abyss\\src\\main\\resources\\resources\\Sounds\\accueil.wav"));
+					new File("C:\\Users\\Mandiaye\\git\\Abyss\\Abyss\\src\\main\\resources\\resources\\Sounds\\accueil.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.loop(Clip.LOOP_CONTINUOUSLY);

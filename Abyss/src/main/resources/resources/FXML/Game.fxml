@@ -60,20 +60,20 @@
 				<ImageView fx:id="defeat" fitHeight="1000.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
 				<BorderPane prefHeight="1000.0" prefWidth="1920.0">
 					<center>
-						<StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="452.0" prefWidth="1127.0" BorderPane.alignment="CENTER">
+						<StackPane id="stade" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="452.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
 							<children>
-
-								<HBox>
-
-									<!-- BOARD -->
-									<fx:include fx:id="board" source="Board.fxml" />
-									<!-- BOARD -->
-
-									<!-- SPELL -->
-									<fx:include fx:id="spell" source="Spell.fxml" />
-									<!-- SPELL -->
-
-								</HBox>
+                  
+                  								<HBox id="terrain">
+                  
+                  									<!-- BOARD -->
+                  									<fx:include fx:id="board" source="Board.fxml" />
+                  									<!-- BOARD -->
+                  
+                  									<!-- SPELL -->
+                  									<fx:include fx:id="spell" source="Spell.fxml" />
+                  									<!-- SPELL -->
+                  
+                  								</HBox>
 
 
 								<!-- ANIMATION -->
