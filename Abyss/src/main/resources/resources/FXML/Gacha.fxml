@@ -17,7 +17,7 @@
          <children>
             <ImageView fx:id="pak1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/eau2.png" />
+                  <Image url="@../Images/Ennemy.png" />
                </image>
             </ImageView>
             <Button fx:id="pack1" mnemonicParsing="false" onAction="#invoc1" prefHeight="153.0" prefWidth="207.0" style="-fx-background-color: Transparent;" />
@@ -39,74 +39,74 @@
          <children>
             <ImageView fx:id="carte1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image>
             </ImageView>
             <ImageView fx:id="carte2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte5" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte6" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte7" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte8" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte9" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte10" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte11" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte12" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte13" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte14" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte15" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
             <ImageView fx:id="carte16" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../Images/dos.jpg" />
+                  <Image url="@../Images/Ice.png" />
                </image></ImageView>
          </children>
       </GridPane>
       <ImageView fx:id="drop1" fitHeight="150.0" fitWidth="200.0" layoutX="1428.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/dos.jpg" />
+            <Image url="@../Images/Ice.png" />
          </image>
       </ImageView>
       <Label fx:id="affichedrop" layoutX="1392.0" layoutY="74.0" prefHeight="57.0" prefWidth="175.0" />

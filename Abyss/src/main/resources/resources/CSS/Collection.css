@@ -1,10 +1,4 @@
-#pack {
-	-fx-height: 100%;
-	-fx-background-image : url("../Images/ennemy.png");
-	-fx-background-position: center;
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover;
-}
+
 #collectionb {
 	-fx-height: 100%;
 	-fx-background-image : url("../Images/gachaback.png");
