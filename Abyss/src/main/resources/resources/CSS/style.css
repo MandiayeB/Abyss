@@ -1,6 +1,6 @@
 #background {
 	-fx-height: 100%;
-	-fx-background-image : url("../Images/background.jpg");
+	-fx-background-image : url("../Images/bgr.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover;
@@ -8,6 +8,11 @@
 
 #phase {
 	-fx-background-image : url("../Images/button2.png");
+}
+
+#stade {
+	-fx-background-image : url("../Images/board.png");
+	-fx-background-repeat: no-repeat;
 }
 
 #mainDeck {
