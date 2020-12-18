@@ -14,6 +14,7 @@ public class AccueilController implements Initializable  {
 
 
 	HashMap<String, Scene> listScene;
+
 	
 	public HashMap<String, Scene> getListScene() {
 		return listScene;
@@ -41,6 +42,7 @@ public class AccueilController implements Initializable  {
 	public void commencement() {
 
 		stage.setScene(listScene.get("game"));
+		
 	}
 	public void collection() {
 		stage.setScene(listScene.get("collection"));

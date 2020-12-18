@@ -242,7 +242,7 @@ public class CollectionController implements Initializable  {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(0);
+                    Thread.sleep(1250);
                     Platform.runLater(new Runnable() {
 
                         @Override
@@ -265,7 +265,7 @@ public class CollectionController implements Initializable  {
 								mettreVisible2();
 								
 							}
-							else {
+							if(quelleCarte==17) {
 								mettreVisible2();
 							}
                 			

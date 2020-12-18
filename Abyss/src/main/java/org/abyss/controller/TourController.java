@@ -66,6 +66,7 @@ public class TourController implements Initializable {
 	
 	public void stade() {
 
+		parentController.getDialogueController().dialogueEffet();
 		switch (tour) {
 
 		case TourEnnemi:

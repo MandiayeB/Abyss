@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,7 +57,6 @@ public class MainController implements Initializable {
 
 	private int allyPv;
 	private int ennemyPv;
-	private boolean restart = false;
 	static Stage popupwindow;
 	static Stage stage;
 	static Scene scene;
@@ -122,6 +122,9 @@ public class MainController implements Initializable {
 	public SpellController getSpellController() {
 		return spellController;
 	}
+	 public DialogueController getDialogueController() {
+		return dialogueController;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -129,6 +132,8 @@ public class MainController implements Initializable {
 		allyPv = 3000;
 		ennemyPv = 3000;
 		afficherHp();
+		dialogueController.cacherBulleAlly();
+		dialogueController.cacherBullyEnnemy();
 		ennemyHero.setImage(new Image("/resources/Images/Ennemy.png"));
 		allyHero.setImage(new Image("/resources/Images/hero1.png"));
 		boardController.setParentController(this);
@@ -149,7 +154,7 @@ public class MainController implements Initializable {
 	public void mort() {
 
 		if (allyPv <= 0 || ennemyPv <= 0) {
-			setRestart(true);
+
 			defeat.toFront();
 			defeat.setImage(new Image("/resources/Images/end.gif"));
 			defeat.setVisible(true);
@@ -159,15 +164,6 @@ public class MainController implements Initializable {
 			tourController.stade();
 		}
 
-	}
-
-	public boolean getRestart() {
-		return restart;
-	}
-
-
-	public void setRestart(boolean restart) {
-		this.restart = restart;
 	}
 
 	public void leave(ActionEvent e) {
@@ -209,6 +205,7 @@ public class MainController implements Initializable {
 		tourController.setTour(Phase.TourEnnemi);
 		tourController.setOrder(false);
 		tourController.changeButton();
+    	dialogueController.dialogueEffet();
 		
 	}
 
