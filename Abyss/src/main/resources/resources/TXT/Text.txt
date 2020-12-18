@@ -6,10 +6,9 @@ Fin de tour
 reset
 Combat
 Dégâts reçus : 170
-Dégâts reçus : 50
-Dégâts infligés : -260
-Dégâts reçus : -20
-Dégâts infligés : -40
-Dégâts reçus : 0
+Dégâts reçus : 90
+Dégâts reçus : 150
+Dégâts reçus : 100
+Dégâts reçus : 150
 Nouveau tour 
 Vous pouvez jouer
