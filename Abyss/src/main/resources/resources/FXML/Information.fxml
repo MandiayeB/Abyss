@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -10,15 +11,23 @@
 <StackPane id="information" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="300.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.InformationController">
 
 	<children>
-		<ImageView fx:id="imageZoom" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="cadreNotif" fitHeight="450.0" fitWidth="262.0" layoutX="30.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Bond.png" />
+         </image>
+         <StackPane.margin>
+            <Insets right="70.0" />
+         </StackPane.margin>
+      </ImageView>
 		<Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0" prefWidth="300.0" textFill="#40f5e9" wrapText="true">
 			<font>
 				<Font size="18.0" />
 			</font>
          <StackPane.margin>
-            <Insets />
+            <Insets left="40.0" right="50.0" />
          </StackPane.margin>
 		</Label>
+		<ImageView fx:id="imageZoom" fitHeight="450.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
 		<Label fx:id="cardAtt" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="130.0" textFill="#364ad1">
 			<font>
 				<Font name="Fjalla One" size="40.0" />

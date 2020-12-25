@@ -38,6 +38,8 @@ public class InformationController implements Initializable {
 	private Label spellDetails;
 	@FXML
 	private Label cardName;
+	@FXML
+	private ImageView cardreNotif;
 
 	private MainController parentController;
 	private boolean nouveau;
