@@ -18,6 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainController implements Initializable {
 	
@@ -127,7 +128,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		allyPv = 3000;
+		allyPv = 000;
 		ennemyPv = 3000;
 		afficherHp();
 		dialogueController.BulleAlly.setVisible(false);
@@ -215,8 +216,9 @@ public class MainController implements Initializable {
 	public void display() {
 
 		popupwindow = new Stage();
-		popupwindow.initModality(Modality.APPLICATION_MODAL);
+		popupwindow.initStyle(StageStyle.TRANSPARENT);
 		popupwindow.setTitle("Fin de la partie");
+		
 
 		Label label1 = new Label("La partie est terminée !");
 		Button button0 = new Button("Rejouer");
@@ -234,6 +236,7 @@ public class MainController implements Initializable {
 
 		Scene scene1 = new Scene(layout, 300, 250);
 
+		scene1.getStylesheets().add(getClass().getResource("/resources/CSS/Popup.css").toExternalForm());
 		popupwindow.setScene(scene1);
 		popupwindow.showAndWait();
 	}

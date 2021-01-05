@@ -24,3 +24,8 @@
 	-fx-background-image : url("../Images/Ice.png");
 	-fx-background-size: cover;
 }
+.root {
+	-fx-background-image : url("../Images/board.png");
+	-fx-background-repeat: no-repeat;
+
+}
