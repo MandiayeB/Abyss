@@ -299,6 +299,7 @@ public class CollectionController implements Initializable  {
 		System.out.println(random);
 		animation(url.get(random),url.get(random),random);
 		drop1.setImage(new Image ("/resources/Images/invocation.gif"));
+		
 	}
 	public void invoc1() {
 		invoc(16,0);
