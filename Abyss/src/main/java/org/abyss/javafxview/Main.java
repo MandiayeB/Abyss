@@ -59,9 +59,13 @@ public class Main extends Application {
 			FXMLLoader loaderCollection = new FXMLLoader(getClass().getResource("/resources/FXML/Collection.fxml"));
 			FXMLLoader loaderGacha = new FXMLLoader(getClass().getResource("/resources/FXML/Gacha.fxml"));
 			FXMLLoader loaderGacha2 = new FXMLLoader(getClass().getResource("/resources/FXML/Gacha2.fxml"));
+			FXMLLoader loaderChargement = new FXMLLoader(getClass().getResource("/resources/FXML/Chargement.fxml"));
 
 			Parent accueil = loaderAccueil.load();
 			Scene sceneAccueil = new Scene(accueil);
+			
+			Parent chargement = loaderChargement.load();
+			Scene sceneChargement = new Scene(chargement);
 
 			Parent collection = loaderCollection.load();
 			Scene sceneCollection = new Scene(collection);
@@ -81,6 +85,7 @@ public class Main extends Application {
 			listScene.put("collection", sceneCollection);
 			listScene.put("accueil", sceneAccueil);
 			listScene.put("gacha", sceneGacha);
+			listScene.put("chargement", sceneChargement);
 			
 			
 			//CSS

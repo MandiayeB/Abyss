@@ -18,8 +18,8 @@
     -fx-padding: 10 20 10 20;
 }
 .label { 
-	-fx-font-size: 20px;
-	-fx-font-familly: "Arial";
+	-fx-font-size: 25px;
+	-fx-font-family: "American Typewriter";
 	-fx-fill: #818181;
 	-fx-effect : innershadow( three-pass-box, rgba(0,0,0,0,7) , 6,0.0,0,2);
 }

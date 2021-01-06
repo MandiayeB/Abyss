@@ -90,7 +90,7 @@ public class DialogueController implements Initializable {
 		dialogue.add("Je triompherai \n de l'Abyss quoi \n qu'il en coûte !");
 
 		dialogue.add("Arggggg...");// 5
-		dialogue.add("Je n'abandonnerai pas !");
+		dialogue.add("Je \n n'abandonnerai \n pas !");
 	}
 
 	public void afficherBulleEnnemy(int id) {

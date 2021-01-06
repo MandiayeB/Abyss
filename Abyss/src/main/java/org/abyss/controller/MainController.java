@@ -16,7 +16,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -128,7 +127,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		allyPv = 000;
+		allyPv = 3000;
 		ennemyPv = 3000;
 		afficherHp();
 		dialogueController.BulleAlly.setVisible(false);
