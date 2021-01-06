@@ -213,19 +213,29 @@ public class CollectionController implements Initializable  {
 	}
 	
 	public void retour() {
+		stage.setMaximized(false);
 		stage.setScene(listScene.get("accueil"));
+		stage.setMaximized(true);
 	}
 	public void gacha1() {
+		stage.setMaximized(false);
 		stage.setScene(listScene.get("gacha"));
+		stage.setMaximized(true);
 	}
 	public void gacha2() {
+		stage.setMaximized(false);
 		stage.setScene(listScene.get("gacha2"));
+		stage.setMaximized(true);
 	}
 	public void back() {
+		stage.setMaximized(false);
 		stage.setScene(listScene.get("collection"));
+		stage.setMaximized(true);
 	}
 	public void back2() {
+		stage.setMaximized(false);
 		stage.setScene(listScene.get("collection"));
+		stage.setMaximized(true);
 	}
 	
 	public void mettreVisible1() {

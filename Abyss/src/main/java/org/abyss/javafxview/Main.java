@@ -13,12 +13,14 @@ import org.abyss.controller.CollectionController;
 import org.abyss.controller.MainController;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -32,8 +34,8 @@ public class Main extends Application {
 
 		try {
 
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(
-					new File("C:\\Users\\allan\\git\\Abyss\\Abyss\\src\\main\\resources\\resources\\Sounds\\accueil.wav"));
+			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(
+					"C:\\Users\\allan\\git\\Abyss\\Abyss\\src\\main\\resources\\resources\\Sounds\\accueil.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -63,7 +65,7 @@ public class Main extends Application {
 
 			Parent accueil = loaderAccueil.load();
 			Scene sceneAccueil = new Scene(accueil);
-			
+
 			Parent chargement = loaderChargement.load();
 			Scene sceneChargement = new Scene(chargement);
 
@@ -75,10 +77,10 @@ public class Main extends Application {
 
 			Parent gacha = loaderGacha.load();
 			Scene sceneGacha = new Scene(gacha);
-			
+
 			Parent gacha2 = loaderGacha2.load();
 			Scene sceneGacha2 = new Scene(gacha2);
-			
+
 			HashMap<String, Scene> listScene = new HashMap<>();
 			listScene.put("game", sceneGame);
 			listScene.put("gacha2", sceneGacha2);
@@ -86,12 +88,12 @@ public class Main extends Application {
 			listScene.put("accueil", sceneAccueil);
 			listScene.put("gacha", sceneGacha);
 			listScene.put("chargement", sceneChargement);
-			
-			
-			//CSS
+
+			// CSS
 			accueil.getStylesheets().add(getClass().getResource("/resources/CSS/Accueil.css").toExternalForm());
 			sceneGame.getStylesheets().add(getClass().getResource("/resources/CSS/style.css").toExternalForm());
-			sceneCollection.getStylesheets().add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
+			sceneCollection.getStylesheets()
+					.add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
 			sceneGacha.getStylesheets().add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
 			sceneGacha2.getStylesheets().add(getClass().getResource("/resources/CSS/Collection.css").toExternalForm());
 
@@ -105,18 +107,17 @@ public class Main extends Application {
 			CollectionController collectionController = (CollectionController) loaderCollection.getController();
 			collectionController.setListScene(listScene);
 			collectionController.setStage(primaryStage);
-			
-			
-			//Bouton pour retourner a la scene d'accueil a la fin de la partie
+
+			// Bouton pour retourner a la scene d'accueil a la fin de la partie
 			MainController mainController = (MainController) loaderMain.getController();
 			mainController.setListScene(listScene);
 			mainController.setStage(primaryStage);
-			
+
 			//
 			CollectionController back = (CollectionController) loaderGacha.getController();
 			back.setListScene(listScene);
 			back.setStage(primaryStage);
-			
+
 			CollectionController back2 = (CollectionController) loaderGacha2.getController();
 			back2.setListScene(listScene);
 			back2.setStage(primaryStage);
@@ -125,13 +126,42 @@ public class Main extends Application {
 			Image image = new Image("/resources/Images/curseur.png");
 			sceneGame.setCursor(new ImageCursor(image));
 			sceneAccueil.setCursor(new ImageCursor(image));
+			sceneChargement.setCursor(new ImageCursor(image));
+			sceneGacha.setCursor(new ImageCursor(image));
+			sceneGacha2.setCursor(new ImageCursor(image));
+			sceneCollection.setCursor(new ImageCursor(image));
 
 			// On affiche la scene Accueil
 			primaryStage.setTitle("Abyss");
 			primaryStage.getIcons().add(new Image("/resources/Images/logo.png"));
-			primaryStage.setScene(sceneAccueil);
-			makeSound();
+			primaryStage.setScene(sceneChargement);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+
+						Thread.sleep(3000);
+
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+
+						@Override
+						public void run() {
+							primaryStage.setScene(sceneAccueil);
+							primaryStage.setMaximized(true);
+							makeSound();
+						}
+						
+					});
+				}
+				
+			}).start();
+
 
 		} catch (Exception e) {
 

@@ -40,12 +40,16 @@ public class AccueilController implements Initializable  {
 
 	
 	public void commencement() {
-
+		stage.setMaximized(false);
 		stage.setScene(listScene.get("game"));
-		
+		stage.setMaximized(true);
+
 	}
 	public void collection() {
+		stage.setMaximized(false);
 		stage.setScene(listScene.get("collection"));
+		stage.setMaximized(true);
+
 	}
 	
 	public void quitter() {

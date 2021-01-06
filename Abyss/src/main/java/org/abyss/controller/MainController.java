@@ -127,7 +127,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		allyPv = 3000;
+		allyPv = 0000;
 		ennemyPv = 3000;
 		afficherHp();
 		dialogueController.BulleAlly.setVisible(false);
@@ -174,12 +174,16 @@ public class MainController implements Initializable {
 		
 		reset(e);
 		stage.setScene(listScene.get("accueil"));
+		stage.setMaximized(false);
+		stage.setMaximized(true);
+
 
 	}
 	
 	public void reset(ActionEvent e) {
-		
+		stage.setMaximized(false);
 		popupwindow.close();
+		stage.setMaximized(true);
 		defeat.setVisible(false);
 		defeat.toBack();
 		allyPv = 3000;
@@ -234,9 +238,10 @@ public class MainController implements Initializable {
 		layout.setAlignment(Pos.CENTER);
 
 		Scene scene1 = new Scene(layout, 300, 250);
-
+		
 		scene1.getStylesheets().add(getClass().getResource("/resources/CSS/Popup.css").toExternalForm());
 		popupwindow.setScene(scene1);
+		popupwindow.setMaximized(true);
 		popupwindow.showAndWait();
 	}
 

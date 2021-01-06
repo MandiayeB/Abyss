@@ -1,44 +1,4 @@
+
 Tour ennemi
 Fin de tour
-Vous pouvez jouer
-Fin de tour
-reset
-Combat
-Dégâts infligés : -50
-Dégâts reçus : 0
-Dégâts infligés : 0
-Dégâts reçus : -110
-Dégâts infligés : -70
-Dégâts reçus : -30
-Dégâts infligés : -40
-Dégâts reçus : 0
-Dégâts infligés : 150
-Nouveau tour 
-Vous pouvez jouer
-Fin de tour
-Tour ennemi
-Fin de tour
-reset
-Combat
-Dégâts infligés : -160
-Dégâts reçus : -100
-Dégâts infligés : -160
-Dégâts reçus : -70
-Dégâts infligés : -230
-Dégâts reçus : -90
-Nouveau tour 
-Tour ennemi
-Fin de tour
-Vous pouvez jouer
-Fin de tour
-reset
-Combat
-Dégâts infligés : -50
-Dégâts reçus : -10
-Dégâts infligés : -80
-Dégâts reçus : -100
-Dégâts infligés : -90
-Dégâts reçus : -80
-Dégâts reçus : 150
-Nouveau tour 
 Vous pouvez jouer
