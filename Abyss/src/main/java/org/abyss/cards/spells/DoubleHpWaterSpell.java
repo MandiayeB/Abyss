@@ -23,5 +23,12 @@ public class DoubleHpWaterSpell extends Sorts {
 			}
 		}
 	}
+
+	@Override
+	public boolean isDodgeable(MainController parentController) {
+		
+		return searchElement(parentController.getBoardController().getEnnemyBoard(),
+				"water") < 2;
+	}
 	
 }

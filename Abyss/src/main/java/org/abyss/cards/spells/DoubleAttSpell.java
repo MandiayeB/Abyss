@@ -21,4 +21,10 @@ public class DoubleAttSpell extends Sorts{
 			}
 		}
 	}
+
+	@Override
+	public boolean isDodgeable(MainController parentController) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

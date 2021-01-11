@@ -19,7 +19,6 @@ public class AccueilController implements Initializable  {
 
 	Stage stage;
 	Stage popupwindow;
-
 	HashMap<String, Scene> listScene;
 
 	

@@ -1,5 +1,9 @@
 package org.abyss.cards;
 
+import java.util.List;
+
+import org.abyss.controller.MainController;
+
 import javafx.scene.image.Image;
 
 public abstract class Cards {
@@ -26,6 +30,20 @@ public abstract class Cards {
 		this.name = name;
 		this.image = image;
 
+	}
+	
+	public abstract boolean isDodgeable(MainController parentController);
+	
+	public int searchElement(List<Cards> board, String element) {
+		int nbElement = 0;
+		for (int i = 0; i < board.size(); i++) {
+			if (board.get(i) != null) {
+				if (((Combattant) board.get(i)).getElement() == element) {
+					nbElement++;
+				}
+			}
+		}
+		return nbElement;
 	}
 
 }
