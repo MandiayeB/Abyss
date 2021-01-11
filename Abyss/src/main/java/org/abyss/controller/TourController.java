@@ -72,8 +72,7 @@ public class TourController implements Initializable {
 		case TourEnnemi:
 			System.out.println(tour);
 			System.out.println("-----------------------");
-			Ennemy e = new Ennemy(parentController);
-			e.play();
+			parentController.selectedDifficulty(parentController).play();
 			break;
 
 		case PhaseDeStrategie:

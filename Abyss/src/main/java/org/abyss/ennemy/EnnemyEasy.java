@@ -1,4 +1,4 @@
-package org.abyss.controller;
+package org.abyss.ennemy;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,14 +7,17 @@ import java.util.Map.Entry;
 import org.abyss.cards.Cards;
 import org.abyss.cards.Combattant;
 import org.abyss.cards.spells.Sorts;
+import org.abyss.controller.Element;
+import org.abyss.controller.MainController;
+import org.abyss.controller.Phase;
 
 import javafx.application.Platform;
 
-public class Ennemy {
-
+public class EnnemyEasy implements IEnnemy {
+	
 	private MainController parentController;
 
-	public Ennemy(MainController parent) {
+	public EnnemyEasy(MainController parent) {
 		parentController = parent;
 	}
 
@@ -27,9 +30,7 @@ public class Ennemy {
 		parentController.getTourController().visible(false);
 		HashMap<Integer, Sorts> sorts = new HashMap<>();
 
-		new Thread(new Runnable() {
-			public void run() {
-
+		
 				int index = 0;
 				for (Cards c : parentController.getEnnemyHandController().getEnnemyHand()) {
 
@@ -104,13 +105,9 @@ public class Ennemy {
 					}
 				});
 			}
-		}).start();
-
-	}
 
 	public int searchBoard(List<Cards> board) {
-		// Cherche une place sur le terrain pour l'ennemi (Ou dans la méthode pioche
-		// pour arrêter de piocher)
+
 		int location = 0;
 		for (int i = 0; i < board.size(); i++) {
 			if (board.get(i) == null) {
@@ -120,19 +117,6 @@ public class Ennemy {
 		}
 		return location;
 
-	}
-
-	public boolean searchElement(List<Cards> board, String element) {
-		boolean bool = false;
-		for (int i = 0; i < board.size(); i++) {
-			if (board.get(i) != null) {
-				if (((Combattant) board.get(i)).getElement() == element) {
-					bool = true;
-					break;
-				}
-			}
-		}
-		return bool;
 	}
 
 }

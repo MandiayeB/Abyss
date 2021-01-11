@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 public class AccueilController implements Initializable  {
 
 	Stage stage;
-
-
 	HashMap<String, Scene> listScene;
 
 	
