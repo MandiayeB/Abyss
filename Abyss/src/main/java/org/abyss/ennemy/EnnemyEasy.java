@@ -30,7 +30,9 @@ public class EnnemyEasy implements IEnnemy {
 		parentController.getTourController().visible(false);
 		HashMap<Integer, Sorts> sorts = new HashMap<>();
 
-		
+		new Thread(new Runnable() {
+			public void run() {
+				
 				int index = 0;
 				for (Cards c : parentController.getEnnemyHandController().getEnnemyHand()) {
 
@@ -105,6 +107,9 @@ public class EnnemyEasy implements IEnnemy {
 					}
 				});
 			}
+		}).start();
+		
+	}
 
 	public int searchBoard(List<Cards> board) {
 

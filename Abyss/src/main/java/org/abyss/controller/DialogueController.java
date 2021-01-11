@@ -83,7 +83,7 @@ public class DialogueController implements Initializable {
 		dialogue.add("Si tu penses que \n cela va suffir, \n tu te mets le \n doigt dans l'oeil...");// 2
 		dialogue.add("Ça ne va pas \n se passer \n comme ça !");
 
-		dialogue.add("Ce n'est une \n égratinure.");// 3
+		dialogue.add("Ce n'est qu'une \n égratinure.");// 3
 		dialogue.add("Je me batterai \n jusqu'au bout !");
 
 		dialogue.add("Passons aux \n choses sérieuses !");// 4

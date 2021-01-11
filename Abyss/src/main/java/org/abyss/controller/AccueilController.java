@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import org.abyss.javafxview.Main;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,7 +37,6 @@ public class AccueilController implements Initializable  {
 		this.listScene = listScene;
 	}
 
-
 	public Stage getStage() {
 		return stage;
 	}
@@ -54,8 +55,8 @@ public class AccueilController implements Initializable  {
 		stage.setMaximized(false);
 		stage.setMaximized(true);
 		popupChoice();
-		
 	}
+	
 	public void popupChoice() {
 
 		popupwindow = new Stage();
@@ -66,7 +67,7 @@ public class AccueilController implements Initializable  {
 		Label label1 = new Label("Choisir une difficulté");
 		Button button0 = new Button("Facile");
 		Button button1 = new Button("Moyen");
-		Button button2 = new Button("Dur");
+		Button button2 = new Button("Difficile");
 
 		button0.setOnAction(e -> closeWindow(e,"easy"));
 		button1.setOnAction(e -> closeWindow(e,"average"));
@@ -87,6 +88,7 @@ public class AccueilController implements Initializable  {
 	
 	public void closeWindow(ActionEvent e, String choice) {
 		
+		Main.getMainController().setDifficulty(choice);
 		stage.setMaximized(false);
 		popupwindow.close();
 		stage.setMaximized(true);
@@ -97,7 +99,6 @@ public class AccueilController implements Initializable  {
 		stage.setMaximized(false);
 		stage.setScene(listScene.get("collection"));
 		stage.setMaximized(true);
-
 	}
 	
 	public void quitter() {

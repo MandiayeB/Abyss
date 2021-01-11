@@ -72,6 +72,10 @@ public class MainController implements Initializable {
 		return listScene;
 	}
 
+	public void setDifficulty(String difficulty) {
+		this.difficulty = difficulty;
+	}
+	
 	public void setListScene(HashMap<String, Scene> listScene) {
 		this.listScene = listScene;
 	}
@@ -127,14 +131,15 @@ public class MainController implements Initializable {
 	public SpellController getSpellController() {
 		return spellController;
 	}
+	
 	 public DialogueController getDialogueController() {
 		return dialogueController;
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		allyPv = 0000;
-		ennemyPv = 3000;
+		allyPv = 1500;
+		ennemyPv = 1500;
 		afficherHp();
 		difficulty = "easy";
 		dialogueController.BulleAlly.setVisible(false);
@@ -218,8 +223,8 @@ public class MainController implements Initializable {
 		stage.setMaximized(true);
 		defeat.setVisible(false);
 		defeat.toBack();
-		allyPv = 3000;
-		ennemyPv = 3000;
+		allyPv = 1500;
+		ennemyPv = 1500;
 		dialogueController.setHideA(0);
 		dialogueController.setHideE(0);
 		dialogueController.setParlerA(true);
@@ -257,7 +262,7 @@ public class MainController implements Initializable {
 
 		Label label1 = new Label("La partie est terminée !");
 		Button button0 = new Button("Rejouer");
-		Button button1 = new Button("Retour a l'accueil");
+		Button button1 = new Button("Retour à l'accueil");
 		Button button2 = new Button("Quitter la partie");
 
 		button0.setOnAction(e -> reset(e));
