@@ -23,13 +23,19 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
+	
+	private static MainController GameController;
 
 	public static void main(String[] args) {
 
 		launch(args);
 
 	}
-
+	
+	public static MainController getMainController() {
+		return GameController;
+	}
+	
 	public void makeSound() {
 
 		try {
@@ -73,6 +79,7 @@ public class Main extends Application {
 			Scene sceneCollection = new Scene(collection);
 
 			Parent game = loaderMain.load();
+			GameController = loaderMain.getController();
 			Scene sceneGame = new Scene(game);
 
 			Parent gacha = loaderGacha.load();
