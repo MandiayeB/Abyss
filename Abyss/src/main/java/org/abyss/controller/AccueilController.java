@@ -80,8 +80,9 @@ public class AccueilController implements Initializable  {
 
 		Scene scene1 = new Scene(layout, 300, 250);
 		
-		scene1.getStylesheets().add(getClass().getResource("/resources/CSS/Popup.css").toExternalForm());
+		scene1.getStylesheets().add(getClass().getResource("/resources/CSS/Choice.css").toExternalForm());
 		popupwindow.setScene(scene1);
+		popupwindow.setMaximized(true);
 		popupwindow.showAndWait();
 	}
 	
