@@ -4,6 +4,11 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import org.abyss.ennemy.EnnemyAverage;
+import org.abyss.ennemy.EnnemyDifficult;
+import org.abyss.ennemy.EnnemyEasy;
+import org.abyss.ennemy.IEnnemy;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -54,6 +59,7 @@ public class MainController implements Initializable {
 
 	private int allyPv;
 	private int ennemyPv;
+	private String difficulty;
 	private boolean restart = false;
 	static Stage popupwindow;
 	static Stage stage;
@@ -125,6 +131,7 @@ public class MainController implements Initializable {
 
 		allyPv = 1500;
 		ennemyPv = 1500;
+		difficulty = "difficult";
 		afficherHp();
 		ennemyHero.setImage(new Image("/resources/Images/Ennemy.png"));
 		allyHero.setImage(new Image("/resources/Images/hero1.png"));
@@ -150,11 +157,10 @@ public class MainController implements Initializable {
 			defeat.setImage(new Image("/resources/Images/end.gif"));
 			defeat.setVisible(true);
 			display();
-		}
-		else {
+		} else {
 			tourController.stade();
 		}
-
+		
 	}
 
 	public boolean getRestart() {
@@ -175,6 +181,30 @@ public class MainController implements Initializable {
 		reset(e);
 		stage.setScene(listScene.get("accueil"));
 
+	}
+	
+	public IEnnemy selectedDifficulty(MainController parentController) {
+		
+		IEnnemy ennemy = null;
+		
+		switch (difficulty) {
+			
+			case "easy":
+				ennemy = new EnnemyEasy(parentController);
+				break;
+			
+			case "average":
+				ennemy = new EnnemyAverage(parentController);
+				break;
+				
+			case "difficult":
+				ennemy = new EnnemyDifficult(parentController);
+				break;
+		
+		}
+		
+		return ennemy;
+		
 	}
 	
 	public void reset(ActionEvent e) {

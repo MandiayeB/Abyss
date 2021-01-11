@@ -1,5 +1,7 @@
 package org.abyss.cards;
 
+import org.abyss.controller.MainController;
+
 import javafx.scene.image.Image;
 
 public class Combattant extends Cards {
@@ -64,6 +66,12 @@ public class Combattant extends Cards {
 		
 		}
 		
+	}
+
+	@Override
+	public boolean isDodgeable(MainController parentController) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }

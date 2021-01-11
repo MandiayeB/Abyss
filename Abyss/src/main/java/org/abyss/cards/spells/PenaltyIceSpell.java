@@ -21,5 +21,12 @@ public class PenaltyIceSpell extends Sorts {
 			}
 		}
 	}
+	
+	public boolean isDodgeable(MainController parentController) {
+		
+		return !parentController.getTourController().getOrder();
+		// On joue la carte si l'adversaire joue en 2ème
+		
+	}
 
 }

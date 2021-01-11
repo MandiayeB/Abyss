@@ -23,4 +23,5 @@ public abstract class Sorts extends Cards {
 	}
 	
 	public abstract void applySpell(List<Cards> list, List<Cards> list2, MainController parentController);
+	
 }
