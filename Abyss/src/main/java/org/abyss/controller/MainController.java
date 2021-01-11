@@ -8,8 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -126,7 +128,6 @@ public class MainController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
 		allyPv = 0000;
 		ennemyPv = 3000;
 		afficherHp();
@@ -144,6 +145,7 @@ public class MainController implements Initializable {
 		dialogueController.setParentController(this);
 	}
 
+	
 	public void afficherHp() {
 
 		allyHp.setText(Integer.toString(allyPv));

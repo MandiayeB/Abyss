@@ -1,4 +1,9 @@
-
 Tour ennemi
 Fin de tour
 Vous pouvez jouer
+Fin de tour
+reset
+Combat
+Dégâts reçus : 400
+Dégâts reçus : 200
+Dégâts reçus : 90
