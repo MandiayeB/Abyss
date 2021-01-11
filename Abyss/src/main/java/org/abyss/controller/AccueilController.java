@@ -5,18 +5,23 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class AccueilController implements Initializable  {
 
+	@FXML
+	private AnchorPane background;
+	
 	Stage stage;
 	Stage popupwindow;
 	HashMap<String, Scene> listScene;

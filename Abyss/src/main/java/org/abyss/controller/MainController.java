@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
@@ -137,6 +136,7 @@ public class MainController implements Initializable {
 		allyPv = 0000;
 		ennemyPv = 3000;
 		afficherHp();
+		difficulty = "easy";
 		dialogueController.BulleAlly.setVisible(false);
 		dialogueController.BulleEnnemy.setVisible(false);
 		dialogueController.TxtAlly.setVisible(false);
@@ -164,8 +164,9 @@ public class MainController implements Initializable {
 		if (allyPv <= 0 || ennemyPv <= 0) {
 
 			defeat.toFront();
-			defeat.setImage(new Image("/resources/Images/end.gif"));
 			defeat.setVisible(true);
+			GaussianBlur blur = new GaussianBlur(20);
+			background.setEffect(blur);
 			display();
 		} else {
 			tourController.stade();
@@ -267,13 +268,14 @@ public class MainController implements Initializable {
 
 		layout.getChildren().addAll(label1, button0, button1, button2);
 		layout.setAlignment(Pos.CENTER);
+		
 
 		Scene scene1 = new Scene(layout, 300, 250);
 		
 		scene1.getStylesheets().add(getClass().getResource("/resources/CSS/Popup.css").toExternalForm());
 		popupwindow.setScene(scene1);
-		popupwindow.setMaximized(true);
 		popupwindow.showAndWait();
+		background.setEffect(null);
 	}
 
 }
