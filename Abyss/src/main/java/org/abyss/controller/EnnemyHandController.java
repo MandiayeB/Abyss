@@ -28,6 +28,7 @@ public class EnnemyHandController implements Initializable {
 	private List<Cards> ennemyHand;
 	private List<Cards> ennemyDeck;
 	private ArrayList<ImageView> listImage2;
+	private String cardBackside;
 	
 	public List<Cards> getEnnemyHand() {
 		return ennemyHand;
@@ -49,6 +50,14 @@ public class EnnemyHandController implements Initializable {
 		return listImage2;
 	}
 	
+	public String getCardBackside() {
+		return cardBackside;
+	}
+	
+	public void setCardBackside(String cardBackside) {
+		this.cardBackside = cardBackside;
+	}
+	
 	public EnnemyHandController() {
 		ennemyDeck = CardsUtils.getEnnemyCards();
 		ennemyHand = CardsUtils.fillBoard(5);
@@ -57,6 +66,7 @@ public class EnnemyHandController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
+		cardBackside = "/resources/Images/Ice.png";
 		listImage2 = new ArrayList<>();
 		listImage2.add(ennemyCard0);
 		listImage2.add(ennemyCard1);
@@ -88,7 +98,7 @@ public class EnnemyHandController implements Initializable {
 
 			if (ennemyHand.get(index) != null) {
 
-				w.setImage(new Image("/resources/Images/Ice.png")); // Pareil pour l'ennemi
+				w.setImage(new Image(cardBackside)); // Pareil pour l'ennemi
 
 			} else {
 

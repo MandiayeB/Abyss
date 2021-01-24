@@ -16,37 +16,12 @@ public class TourController implements Initializable {
 	@FXML
 	private Label afficherTour;
 	
+	private MainController parentController;
 	private Phase tour;
 	private Boolean order;
 
-
-	private MainController parentController;
-	
-	public void setParentController(MainController parentController) {
-		this.parentController = parentController;
-	}
-	
-	public TourController() {
-		tour = Phase.TourEnnemi;
-		order = false;
-	}
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-			
-	}
-	
-	public void changeButton() {
-		
-		phase.setVisible(true);
-		phase.setText("Start");
-		afficherTour.setText("Appuyez sur Start");
-	}
-	
-	@FXML
-	private void next(ActionEvent event) {
-		stade();
-		parentController.getDialogueController().dialogueCommencement();
+	public Button getPhase() {
+		return phase;
 	}
 	
 	public Phase getTour() {
@@ -65,50 +40,141 @@ public class TourController implements Initializable {
 		this.order = order;
 	}
 	
+	public void setParentController(MainController parentController) {
+		this.parentController = parentController;
+	}
+	
+	public TourController() {
+		tour = Phase.TourEnnemi;
+		order = false;
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+			
+	}
+	
+	@FXML
+	private void next(ActionEvent event) {
+		phase.setText("Fin de tour");
+		if (parentController.getMulti()) {
+			parentController.getEnnemyController().getTourController().getPhase().setText("Fin de tour");
+		} else {
+			parentController.getDialogueController().dialogueCommencement();
+		}
+		stade();
+	}
+	
 	public void stade() {
 
 		switch (tour) {
 
 		case TourEnnemi:
-			System.out.println(tour);
-			System.out.println("-----------------------");
-			parentController.selectedDifficulty(parentController).play();
+			
+			if (!parentController.getMulti()) {
+				parentController.selectedDifficulty(parentController).play();
+			}
 			break;
 
 		case PhaseDeStrategie:
-			parentController.getInformationController().ecrire("Vous pouvez jouer");
-			parentController.getInformationController().lireLigne();
-			System.out.println(tour);
-			System.out.println("-----------------------");
+			
+			if (parentController.getMulti()) {
+				parentController.getEnnemyController().getTourController().afficherTour.setText("Tour ennemi");
+				parentController.getEnnemyController().getInformationController()
+				.ecrire("Nouveau tour " + parentController.getGame().getCurrentPlayer().getName());
+				parentController.getEnnemyController().getInformationController().lireLigne();
+				
+				parentController.getInformationController().ecrire("Nouveau tour " + parentController.getGame().getCurrentPlayer().getName());
+				parentController.getInformationController().lireLigne();
+			} else {
+				parentController.getInformationController().ecrire("Vous pouvez jouer");
+				parentController.getInformationController().lireLigne();
+			}
+			
 			afficherTour.setText("Tour de Stratégie");
 			tour = Phase.Transition;
 			break;
 
 		case Transition:
-			parentController.getInformationController().ecrire("Fin de tour");
-			parentController.getInformationController().lireLigne();
+			
+			if (parentController.getMulti()) {
+				
+				parentController.getInformationController().ecrire("Fin de tour " + parentController.getGame().getCurrentPlayer().getName());
+				parentController.getInformationController().lireLigne();
+				
+				parentController.getEnnemyController().getInformationController()
+				.ecrire("Fin de tour " + parentController.getGame().getCurrentPlayer().getName());
+				parentController.getEnnemyController().getInformationController().lireLigne();
+				
+			} else {
+				
+				parentController.getInformationController().ecrire("Fin de tour");
+				parentController.getInformationController().lireLigne();
+			}
+			
 			if (order) {
+				
 				afficherTour.setText("Tour Ennemi");
 				tour = Phase.TourEnnemi;
-			} else if (!order) {
+				if (parentController.getMulti()) {
+					
+					parentController.getGame().changeTurn();
+					
+					parentController.getInformationController().ecrire("Nouveau tour " + parentController.getGame().getCurrentPlayer().getName());
+					parentController.getInformationController().lireLigne();
+					
+					parentController.getEnnemyController().getInformationController()
+					.ecrire("Nouveau tour " + parentController.getGame().getCurrentPlayer().getName());
+					parentController.getEnnemyController().getInformationController().lireLigne();
+					
+					parentController.getEnnemyController().getTourController().afficherTour.setText("Phase de Stratégie");
+					parentController.getEnnemyController().getTourController().setTour(Phase.Transition);
+					parentController.getEnnemyController().getTourController().visible(true);
+					visible(false);
+				}
+			} else {
+				
 				afficherTour.setText("Phase de Combat");
 				tour = Phase.PhaseDeCombat;
+				if (parentController.getMulti()) {
+					
+					parentController.getInformationController().ecrire("Fin de tour " + parentController.getGame().getCurrentPlayer().getName());
+					parentController.getInformationController().lireLigne();
+					
+					parentController.getEnnemyController().getInformationController()
+					.ecrire("Fin de tour " + parentController.getGame().getCurrentPlayer().getName());
+					parentController.getEnnemyController().getInformationController().lireLigne();
+					
+					parentController.getEnnemyController().getTourController().afficherTour.setText("Phase de Combat");
+					parentController.getEnnemyController().getTourController().setTour(Phase.PhaseDeCombat);
+					parentController.getEnnemyController().getTourController().visible(false);
+					visible(false);
+				}
+				
 			}
-			stade();
+			if (!parentController.getMulti()) {
+				stade();
+			} else if (!order) {
+				stade();
+			}
 			break;
 
 		case PhaseDeCombat:
-			System.out.println(tour);
-			System.out.println("-----------------------");
+			
 			parentController.getAnimationController().bringUpSpark();
+			if (parentController.getMulti()) {
+				parentController.getEnnemyController().getAnimationController().bringUpSpark();
+			}
 			Combat c = new Combat(parentController);
 			c.fight();
 			break;
 
 		case PhaseDeRetrait:
-			System.out.println(tour);
-			System.out.println("-----------------------");
+			
 			parentController.getAnimationController().bringDownSpark();
+			if (parentController.getMulti()) {
+				parentController.getEnnemyController().getAnimationController().bringDownSpark();
+			}
 			parentController.getBoardController().retrait();
 			break;
 

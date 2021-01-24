@@ -65,13 +65,27 @@ public class InformationController implements Initializable {
 
 		if (parentController.getTourController().getTour() == Phase.Transition) {
 			// Effet autour des cartes
-
+			Color color1;
+			Color color2;
+			
+			if (parentController.getMulti()) {
+				if (parentController.getPlayer().getName() == "Joueur 1") {
+					color1 = Color.YELLOW;
+					color2 = Color.BLUE;
+				} else {
+					color1 = Color.BLUE;
+					color2 = Color.YELLOW;
+				}
+			} else {
+				color1 = Color.YELLOW;
+				color2 = Color.BLUE;
+			}
 			DropShadow borderGlow = new DropShadow();
 			borderGlow.setOffsetY(0f);
 			borderGlow.setOffsetX(0f);
 			borderGlow.setWidth(70);
 			borderGlow.setHeight(70);
-			borderGlow.setColor(Color.YELLOW);
+			borderGlow.setColor(color1);
 
 			if (id.contains("allyCard")) {
 				parentController.getAllyHandController().effect(borderGlow, id, number);
@@ -80,10 +94,10 @@ public class InformationController implements Initializable {
 			} else if (id.contains("ally")) {
 				parentController.getBoardController().effect(borderGlow, id, number);
 			} else if (id.contains("ennemySpell")) {
-				borderGlow.setColor(Color.BLUE);
+				borderGlow.setColor(color2);
 				parentController.getSpellController().effect(borderGlow, false);
 			} else {
-				borderGlow.setColor(Color.BLUE);
+				borderGlow.setColor(color2);
 				parentController.getBoardController().effect(borderGlow, id, number);
 			}
 
@@ -97,7 +111,7 @@ public class InformationController implements Initializable {
 			notif.setVisible(false);
 
 			if (id.contains("allySpell")) {
-				spellDetails.setText((((Sorts) parentController.getSpellController().getSpell1().get(0)).getEffect()));
+				spellDetails.setText((((Sorts) parentController.getSpellController().getSpell1()).getEffect()));
 			} else if (id.contains("ally")) {
 
 				if (id.contains("Card")
@@ -122,7 +136,7 @@ public class InformationController implements Initializable {
 
 				if (id.contains("ennemySpell")) {
 					spellDetails
-							.setText((((Sorts) parentController.getSpellController().getSpell2().get(0)).getEffect()));
+							.setText((((Sorts) parentController.getSpellController().getSpell2()).getEffect()));
 				} else if (parentController.getBoardController().getEnnemyBoard().get(number) != null) {
 					cardAtt.setText(Integer
 							.toString(((Combattant) parentController.getBoardController().getEnnemyBoard().get(number))
@@ -161,8 +175,19 @@ public class InformationController implements Initializable {
 	}
 
 	public void ecrire(String content) {
-		File fichier = new File("src/main/resources/resources/TXT/Text.txt");
-
+		
+		File fichier;
+		
+		if (parentController.getMulti()) {
+			if (parentController.getPlayer().getName() == "Joueur 2") {
+				fichier = new File("src/main/resources/resources/TXT/Text2.txt");
+			} else {
+				fichier = new File("src/main/resources/resources/TXT/Text.txt");
+			}
+		} else {
+			fichier = new File("src/main/resources/resources/TXT/Text.txt");
+		}
+		
 		if (nouveau == true) {
 			try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fichier))) {
 				bufferedWriter.write("");
@@ -174,9 +199,19 @@ public class InformationController implements Initializable {
 		}
 
 		try {
-			FileWriter fw = new FileWriter("src/main/resources/resources/TXT/Text.txt", true);
+			FileWriter fw;
+			if (parentController.getMulti()) {
+				if (parentController.getPlayer().getName() == "Joueur 2") {
+					fw = new FileWriter("src/main/resources/resources/TXT/Text2.txt", true);
+				} else {
+					fw = new FileWriter("src/main/resources/resources/TXT/Text.txt", true);
+				}
+			} else {
+				fw = new FileWriter("src/main/resources/resources/TXT/Text.txt", true);
+			}
 			fw.write(content + "\n");
 			fw.close();
+			
 		} catch (IOException ioe) {
 			System.out.println("Impossible d'écrire");
 		}
@@ -186,7 +221,16 @@ public class InformationController implements Initializable {
 
 		BufferedReader in;
 		try {
-			in = new BufferedReader(new FileReader("src/main/resources/resources/TXT/Text.txt"));
+			
+			if (parentController.getMulti()) {
+				if (parentController.getPlayer().getName() == "Joueur 2") {
+					in = new BufferedReader(new FileReader("src/main/resources/resources/TXT/Text2.txt"));
+				} else {
+					in = new BufferedReader(new FileReader("src/main/resources/resources/TXT/Text.txt"));
+				}
+			} else {
+				in = new BufferedReader(new FileReader("src/main/resources/resources/TXT/Text.txt"));
+			}
 			String line;
 			notif.setText("");
 			while ((line = in.readLine()) != null) {

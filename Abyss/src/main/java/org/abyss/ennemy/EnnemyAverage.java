@@ -52,7 +52,7 @@ public class EnnemyAverage implements IEnnemy {
 
 							} else {
 								
-								if (parentController.getSpellController().getSpell2().get(0) == null) {
+								if (parentController.getSpellController().getSpell2() == null) {
 									
 									if (c.isDodgeable(parentController)) {
 										
@@ -67,7 +67,7 @@ public class EnnemyAverage implements IEnnemy {
 										e.printStackTrace();
 									}
 									
-									parentController.getSpellController().getSpell2().set(0, c);
+									parentController.getSpellController().setSpell2(c);
 									parentController.getEnnemyHandController().getEnnemyHand().set(index, null);
 									parentController.getSpellController().afficherSpells();
 									((Sorts) c).applySpell(parentController.getBoardController().getEnnemyBoard(),

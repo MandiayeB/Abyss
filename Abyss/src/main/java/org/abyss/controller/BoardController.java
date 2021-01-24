@@ -132,6 +132,11 @@ public class BoardController implements Initializable {
 
 	public void afficherBoard() {
 
+		if (parentController.getMulti()) {
+			ennemyBoard = parentController.getEnnemyController().getBoardController().getAllyBoard();
+			parentController.getEnnemyController().getBoardController().setEnnemyBoard(allyBoard);
+		}
+		
 		for (int i = 0; i < allyBoard.size(); i++) {
 
 			if (allyBoard.get(i) != null) {
@@ -160,7 +165,10 @@ public class BoardController implements Initializable {
 	}
 
 	public void retrait() {
-		parentController.getDialogueController().dialogueCommencement();
+		
+		if (!parentController.getMulti()) {
+			parentController.getDialogueController().dialogueCommencement();
+		}
 		new Thread(new Runnable() {
 			public void run() {
 				for (int i = 0; i < allyBoard.size() + 1; i++) {
@@ -170,28 +178,42 @@ public class BoardController implements Initializable {
 						if (allyBoard.get(i) != null) {
 
 							((Combattant) allyBoard.get(i)).setAppliedElement(false);
-							parentController.getAllyHandController().getAllyDeck().add(allyBoard.get(i)); // On remet la
-																											// carte
-																											// dans le
-																											// deck
-							allyBoard.set(i, null); // On supprime la carte du terrain
-
+							parentController.getAllyHandController().getAllyDeck().add(allyBoard.get(i));
+							
+							if (parentController.getMulti()) {
+								parentController.getEnnemyController().getEnnemyHandController().
+								getEnnemyDeck().add(allyBoard.get(i));
+								parentController.getEnnemyController().getBoardController().getEnnemyBoard().set(i, null);
+							}
+							
+							allyBoard.set(i, null);
+							
 						}
 
 						if (ennemyBoard.get(i) != null) {
 
 							((Combattant) ennemyBoard.get(i)).setAppliedElement(false);
-							parentController.getEnnemyHandController().getEnnemyDeck().add(ennemyBoard.get(i)); // Pareil
-																												// pour
-																												// l'ennemi
+							parentController.getEnnemyHandController().getEnnemyDeck().add(ennemyBoard.get(i));
+							
+							if (parentController.getMulti()) {
+								parentController.getEnnemyController().getAllyHandController().
+								getAllyDeck().add(ennemyBoard.get(i));
+								parentController.getEnnemyController().getBoardController().getAllyBoard().set(i, null);
+								parentController.getEnnemyController().getBoardController().tornadoOn(i);
+							}
+							
 							ennemyBoard.set(i, null);
-
+						
 						}
 
-						listImage3.get(i).setImage(new Image("/resources/Images/tornade.gif"));
-						listImage4.get(i).setImage(new Image("/resources/Images/tornade.gif"));
+						tornadoOn(i);
+						
 					} else {
+						
 						parentController.getSpellController().cacherSpells();
+						if (parentController.getMulti()) {
+							parentController.getEnnemyController().getSpellController().cacherSpells();
+						}
 					}
 
 					try {
@@ -201,31 +223,74 @@ public class BoardController implements Initializable {
 					}
 
 					if (i < allyBoard.size()) {
-						listImage3.get(i).setImage(null);
-						listImage4.get(i).setImage(null);
+						tornadoOff(i);
+						if (parentController.getMulti()) {
+							parentController.getEnnemyController().getBoardController().tornadoOff(i);
+						}
 					} else {
 						parentController.getSpellController().clean();
+						if (parentController.getMulti()) {
+							parentController.getEnnemyController().getSpellController().clean();
+						}
 					}
 
 				}
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						parentController.getAllyHandController().piocher();
-						parentController.getEnnemyHandController().piocher();
-						afficherBoard();
-						parentController.getTourController().visible(true);
+
 						if (parentController.getTourController().getOrder()) {
 							parentController.getTourController().setTour(Phase.TourEnnemi);
+							parentController.getTourController().afficherTour("Tour ennemi");
+							if (parentController.getMulti()) {
+								parentController.getEnnemyController().getTourController().setTour(Phase.Transition);
+								parentController.getEnnemyController().getTourController().visible(true);
+								parentController.getEnnemyController().getTourController().setOrder(true);
+								parentController.getEnnemyController().getTourController().afficherTour("Phase de stratégie");
+							}
 							parentController.getTourController().setOrder(false);
+							parentController.getTourController().visible(false);
 						} else {
-							parentController.getTourController().setTour(Phase.PhaseDeStrategie);
+							
+							if (parentController.getMulti()) {
+								parentController.getTourController().setTour(Phase.Transition);
+								parentController.getTourController().afficherTour("Phase de stratégie");
+								parentController.getEnnemyController().getTourController().setTour(Phase.TourEnnemi);
+								parentController.getEnnemyController().getTourController().visible(false);
+								parentController.getEnnemyController().getTourController().setOrder(false);
+								parentController.getEnnemyController().getTourController().afficherTour("Tour Ennemi");
+							} else {
+								parentController.getTourController().setTour(Phase.PhaseDeStrategie);
+							}
+							
 							parentController.getTourController().setOrder(true);
 							parentController.getTourController().visible(true);
+							
 						}
-						parentController.getInformationController().ecrire("Nouveau tour ");
-						parentController.getInformationController().lireLigne();
-						parentController.getTourController().stade();
+						
+						if (!parentController.getMulti()) {
+							
+							parentController.getInformationController().ecrire("Nouveau tour");
+							parentController.getInformationController().lireLigne();
+							parentController.getTourController().stade();
+							parentController.getEnnemyHandController().piocher();
+							
+						} else {
+							
+							parentController.getInformationController().ecrire("Nouveau tour " + parentController.getGame().getCurrentPlayer().getName());
+							parentController.getInformationController().lireLigne();
+							
+							parentController.getEnnemyController().getInformationController()
+							.ecrire("Nouveau tour " + parentController.getGame().getCurrentPlayer().getName());
+							parentController.getEnnemyController().getInformationController().lireLigne();
+							
+							parentController.getEnnemyController().getAllyHandController().piocher();
+							parentController.getEnnemyController().getBoardController().afficherBoard();
+						}
+						
+						parentController.getAllyHandController().piocher();
+						afficherBoard();
+						
 					}
 				});
 			}
@@ -250,9 +315,16 @@ public class BoardController implements Initializable {
 
 		if (event.getDragboard().hasImage() && allyBoard.get(carteVerif(event)) == null
 				&& parentController.getAllyHandController().getDraggedCard() instanceof Combattant) {
-
-			((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
-			// Image pour indiquer où va se dérouler le transfert
+			
+			if (parentController.getMulti()) {
+				if (parentController.getPlayer().getName() == "Joueur 2") {
+					((ImageView) event.getSource()).setImage(new Image("/resources/Images/Ice.png"));
+				} else {
+					((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
+				}
+			} else {
+				((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
+			}
 
 		}
 
@@ -286,6 +358,9 @@ public class BoardController implements Initializable {
 			e.applyElement(carteVerif(event), allyBoard);
 			parentController.getAllyHandController().afficherHand();
 			afficherBoard();
+			if (parentController.getEnnemyController().getMulti()) {
+				parentController.getEnnemyController().getBoardController().afficherBoard();
+			}
 			success = true;
 
 		}
@@ -320,6 +395,16 @@ public class BoardController implements Initializable {
 			listImage4.get(number).setEffect(glow);
 		}
 
+	}
+	
+	public void tornadoOn(int i) {
+		listImage3.get(i).setImage(new Image("/resources/Images/tornade.gif"));
+		listImage4.get(i).setImage(new Image("/resources/Images/tornade.gif"));
+	}
+	
+	public void tornadoOff(int i) {
+		listImage3.get(i).setImage(null);
+		listImage4.get(i).setImage(null);
 	}
 
 }

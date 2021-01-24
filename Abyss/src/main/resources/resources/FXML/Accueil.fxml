@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="accueil" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.AccueilController">
    <children>
@@ -12,17 +13,25 @@
          <image>
             <Image url="@../Images/logo.png" />
          </image></ImageView>
-      <Button fx:id="jouer" layoutX="875.0" layoutY="342.0" mnemonicParsing="false" onAction="#commencement" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: Transparent;" text="Jouer" textAlignment="CENTER" textFill="WHITE">
-         <padding>
-            <Insets top="15.0" />
-         </padding></Button>
-      <Button fx:id="collection" layoutX="875.0" layoutY="492.0" mnemonicParsing="false" onAction="#collection" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: Transparent;" text="Collection" textAlignment="CENTER" textFill="WHITE">
-         <padding>
-            <Insets top="15.0" />
-         </padding></Button>
-      <Button fx:id="quiter" layoutX="875.0" layoutY="642.0" mnemonicParsing="false" onAction="#quitter" prefHeight="67.0" prefWidth="199.0" style="-fx-background-color: Transparent;" text="Quitter" textAlignment="CENTER" textFill="WHITE">
-         <padding>
-            <Insets top="15.0" />
-         </padding></Button>
+      <VBox layoutX="875.0" layoutY="342.0">
+         <children>
+            <Button fx:id="jouer" mnemonicParsing="false" onAction="#commencement" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: Transparent;" text="Jouer" textAlignment="CENTER" textFill="WHITE" />
+            <Button fx:id="multi" mnemonicParsing="false" onAction="#multiplayer" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: Transparent;" text="Multijoueur" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="collection" mnemonicParsing="false" onAction="#collection" prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: Transparent;" text="Collection" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="quiter" mnemonicParsing="false" onAction="#quitter" prefHeight="67.0" prefWidth="199.0" style="-fx-background-color: Transparent;" text="Quitter" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

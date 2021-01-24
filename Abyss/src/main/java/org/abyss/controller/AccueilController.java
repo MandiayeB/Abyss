@@ -4,7 +4,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import org.abyss.javafxview.Main;
+import org.abyss.javafxview.Game;
+import org.abyss.javafxview.SecondStage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,23 +24,28 @@ public class AccueilController implements Initializable  {
 	@FXML
 	private AnchorPane background;
 	
-	Stage stage;
-	Stage popupwindow;
-	HashMap<String, Scene> listScene;
+	private Game game;
+	private MainController parentController;
+	private Stage stage;
+	private Stage popupwindow;
+	private HashMap<String, Scene> listScene;
 
+	public Game getGame() {
+		return game;
+	}
 	
 	public HashMap<String, Scene> getListScene() {
 		return listScene;
 	}
 
+	public void setParentController(MainController parentController) {
+		this.parentController = parentController;
+	}
+	
 	public void setListScene(HashMap<String, Scene> listScene) {
 		this.listScene = listScene;
 	}
-
-	public Stage getStage() {
-		return stage;
-	}
-
+	
 	public void setStage(Stage stage) {
 		this.stage = stage;
 	}
@@ -50,10 +56,26 @@ public class AccueilController implements Initializable  {
 	}
 
 	public void commencement() {
+		popupChoice();
 		stage.setScene(listScene.get("game"));
 		stage.setMaximized(false);
 		stage.setMaximized(true);
-		popupChoice();
+	}
+	
+	public void multiplayer() {
+		stage.setScene(listScene.get("game"));
+		stage.setTitle("Abyss ['Joueur 1']");
+		new SecondStage(new Stage(), parentController);
+		game = new Game(parentController.getPlayer(), parentController.getEnnemyController().getPlayer());
+
+		parentController.setGame(game);
+		parentController.reset();
+		parentController.setMulti(true);
+		parentController.getEnnemyController().setGame(game);
+		parentController.getTourController().setTour(Phase.PhaseDeStrategie);
+		parentController.getTourController().setOrder(true);
+		parentController.getEnnemyController().getTourController().setTour(Phase.TourEnnemi);
+		parentController.getEnnemyController().getTourController().afficherTour("");
 	}
 	
 	public void popupChoice() {
@@ -62,7 +84,6 @@ public class AccueilController implements Initializable  {
 		popupwindow.initStyle(StageStyle.TRANSPARENT);
 		popupwindow.setTitle("Choisir une difficulté");
 		
-
 		Label label1 = new Label("Choisir une difficulté");
 		Button button0 = new Button("Facile");
 		Button button1 = new Button("Moyen");
@@ -88,7 +109,7 @@ public class AccueilController implements Initializable  {
 	
 	public void closeWindow(ActionEvent e, String choice) {
 		
-		Main.getMainController().setDifficulty(choice);
+		parentController.setDifficulty(choice);
 		stage.setMaximized(false);
 		popupwindow.close();
 		stage.setMaximized(true);
@@ -105,4 +126,5 @@ public class AccueilController implements Initializable  {
 		System.out.println("cya");
 		System.exit(0);
 	}
+
 }

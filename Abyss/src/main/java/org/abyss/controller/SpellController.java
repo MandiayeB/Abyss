@@ -1,7 +1,6 @@
 package org.abyss.controller;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.abyss.cards.Cards;
@@ -26,22 +25,22 @@ public class SpellController implements Initializable {
 	private ImageView ennemySpell;
 
 	private MainController parentController;
-	private List<Cards> spell1;
-	private List<Cards> spell2;
+	private Cards spell1;
+	private Cards spell2;
 
-	public void setSpell1(List<Cards> spell1) {
+	public void setSpell1(Cards spell1) {
 		this.spell1 = spell1;
 	}
 
-	public void setSpell2(List<Cards> spell2) {
+	public void setSpell2(Cards spell2) {
 		this.spell2 = spell2;
 	}
 
-	public List<Cards> getSpell1() {
+	public Cards getSpell1() {
 		return spell1;
 	}
 	
-	public List<Cards> getSpell2() {
+	public Cards getSpell2() {
 		return spell2;
 	}
 	
@@ -50,8 +49,8 @@ public class SpellController implements Initializable {
 	}
 
 	public SpellController() {
-		spell1 = CardsUtils.fillBoard(1);
-		spell2 = CardsUtils.fillBoard(1);
+		spell1 = null;
+		spell2 = null;
 	}
 
 	@Override
@@ -60,27 +59,35 @@ public class SpellController implements Initializable {
 	}
 
 	public void afficherSpells() {
-		if (spell1.get(0) != null) {
-			allySpell.setImage(spell1.get(0).getImage());
+		
+		if (spell1 != null) {
+			allySpell.setImage(spell1.getImage());
+			if (parentController.getMulti()) {parentController.getEnnemyController().getSpellController().ennemySpell.setImage(spell1.getImage());}
 		} else {
-			allySpell.setImage(null);  
+			allySpell.setImage(null);
+			if (parentController.getMulti()) {parentController.getEnnemyController().getSpellController().ennemySpell.setImage(null);}
 		}
-		if (spell2.get(0) != null) {
-			ennemySpell.setImage(spell2.get(0).getImage());
-		}else {
-			ennemySpell.setImage(null);  
+		
+		if (!parentController.getMulti()) {
+			if (spell2 != null) {
+				ennemySpell.setImage(spell2.getImage());
+			} else {
+				ennemySpell.setImage(null);  
+			}
 		}
+		
 	}
 	
 	public void cacherSpells() {
+		
 		allySpell.setImage(new Image("/resources/Images/tornade.gif"));
-		if (spell1.get(0) != null) {
-			parentController.getAllyHandController().getAllyDeck().add(spell1.get(0));
-			spell1.set(0, null);
+		if (spell1 != null) {
+			parentController.getAllyHandController().getAllyDeck().add(spell1);
+			spell1 = null;
 		}
 		ennemySpell.setImage(new Image("/resources/Images/tornade.gif"));
-		parentController.getEnnemyHandController().getEnnemyDeck().add(spell2.get(0));
-		spell2.set(0, null);
+		parentController.getEnnemyHandController().getEnnemyDeck().add(spell2);
+		spell2 = null;
 	}
 	
 	public void clean() {
@@ -94,11 +101,11 @@ public class SpellController implements Initializable {
 		Image image = ((ImageView) node).getImage();
 		String name = "";
 		if (node.getId().contains("ally")) {
-			if (spell1.get(0) != null)
-				name = spell1.get(0).getName();
+			if (spell1 != null)
+				name = spell1.getName();
 		} else {
-			if (spell2.get(0) != null)
-				name = spell2.get(0).getName();
+			if (spell2 != null)
+				name = spell2.getName();
 		}
 		parentController.getInformationController().afficherCarte(image, 0, node.getId(), name);
 
@@ -113,7 +120,7 @@ public class SpellController implements Initializable {
 
 	public void dragOver(DragEvent event) { // J'annonce que je veux transporter la carte
 
-		if (event.getDragboard().hasImage() && spell1.get(0) == null
+		if (event.getDragboard().hasImage() && spell1 == null
 				&& parentController.getAllyHandController().getDraggedCard() instanceof Sorts) {
 
 			event.acceptTransferModes(TransferMode.COPY_OR_MOVE); // On annonce quelle case va gérer le transfert
@@ -126,7 +133,7 @@ public class SpellController implements Initializable {
 
 	public void dragEntered(DragEvent event) { // Je montre sur quelle case il s'apprête à poser la carte
 
-		if (event.getDragboard().hasImage() && spell1.get(0) == null
+		if (event.getDragboard().hasImage() && spell1 == null
 				&& parentController.getAllyHandController().getDraggedCard() instanceof Sorts) {
 
 			((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
@@ -140,7 +147,7 @@ public class SpellController implements Initializable {
 
 	public void dragExited(DragEvent event) { // Je supprime l'image si l'utilisateur quitte la case
 
-		if (!event.isDropCompleted() && spell1.get(0) == null) {
+		if (!event.isDropCompleted() && spell1 == null) {
 
 			((ImageView) event.getSource()).setImage(null);
 			event.consume();
@@ -154,10 +161,10 @@ public class SpellController implements Initializable {
 		Dragboard db = event.getDragboard();
 		boolean success = false;
 		
-		if (db.hasImage() && spell1.get(0) == null
+		if (db.hasImage() && spell1 == null
 				&& parentController.getAllyHandController().getDraggedCard() instanceof Sorts) {
 
-			spell1.set(0, parentController.getAllyHandController().getDraggedCard());
+			spell1 = parentController.getAllyHandController().getDraggedCard();
 			parentController.getAllyHandController().getAllyHand()
 					.set(parentController.getAllyHandController().getDraggedNumber(), null);
 			Sorts myCard = (Sorts) parentController.getAllyHandController().getDraggedCard();
@@ -167,6 +174,11 @@ public class SpellController implements Initializable {
 			parentController.getAllyHandController().afficherHand();
 			parentController.getBoardController().afficherBoard();
 			afficherSpells();
+			
+			if (parentController.getMulti()) {
+				parentController.getEnnemyController().getBoardController().afficherBoard();
+				parentController.getEnnemyController().getSpellController().afficherSpells();
+			}
 
 		}
 

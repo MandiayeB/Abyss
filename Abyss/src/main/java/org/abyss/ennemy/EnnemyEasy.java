@@ -71,9 +71,9 @@ public class EnnemyEasy implements IEnnemy {
 				}
 
 				for (Entry<Integer, Sorts> s : sorts.entrySet()) {
-					if (parentController.getSpellController().getSpell2().get(0) == null) {
+					if (parentController.getSpellController().getSpell2() == null) {
 						if (s.getValue() != null) {
-							parentController.getSpellController().getSpell2().set(0, s.getValue());
+							parentController.getSpellController().setSpell2(s.getValue());
 							parentController.getEnnemyHandController().getEnnemyHand().set(s.getKey(), null);
 							parentController.getSpellController().afficherSpells();
 							s.getValue().applySpell(parentController.getBoardController().getEnnemyBoard(),

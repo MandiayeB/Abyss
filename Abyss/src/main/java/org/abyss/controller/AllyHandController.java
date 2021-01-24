@@ -43,11 +43,11 @@ public class AllyHandController implements Initializable {
 	public List<Cards> getAllyHand() {
 		return allyHand;
 	}
-	
+
 	public void setAllyHand(List<Cards> allyHand) {
 		this.allyHand = allyHand;
 	}
-	
+
 	public List<Cards> getAllyDeck() {
 		return allyDeck;
 	}
@@ -55,7 +55,7 @@ public class AllyHandController implements Initializable {
 	public void setAllyDeck(List<Cards> allyDeck) {
 		this.allyDeck = allyDeck;
 	}
-	
+
 	public Cards getDraggedCard() {
 		return draggedCard;
 	}
@@ -69,8 +69,10 @@ public class AllyHandController implements Initializable {
 	}
 
 	public AllyHandController() {
+		
 		allyDeck = CardsUtils.getCardsGame();
 		allyHand = CardsUtils.fillBoard(5);
+	
 	}
 
 	@Override
@@ -88,12 +90,16 @@ public class AllyHandController implements Initializable {
 
 	public void afficherCarte(MouseEvent event) {
 
-		Node node = (Node) event.getSource();
-		Image image = ((ImageView) node).getImage();
-		String source = node.getId().toString();
-		int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
-		String name = allyHand.get(number).getName();
-		parentController.getInformationController().afficherCarte(image, number, node.getId(), name);
+		try {
+			Node node = (Node) event.getSource();
+			Image image = ((ImageView) node).getImage();
+			String source = node.getId().toString();
+			int number = Integer.parseInt(String.valueOf(source.charAt(source.length() - 1)));
+			String name = allyHand.get(number).getName();
+			parentController.getInformationController().afficherCarte(image, number, node.getId(), name);
+		} catch (Exception e) {
+
+		}
 
 	}
 
@@ -146,6 +152,7 @@ public class AllyHandController implements Initializable {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	public void dragDetected(MouseEvent event) { // Je commence à transporter la carte
 
 		if (parentController.getTourController().getTour() == Phase.Transition) {
@@ -166,7 +173,7 @@ public class AllyHandController implements Initializable {
 			// On annonce au proggramme qu'on veut transporter la carte
 
 			ClipboardContent content = new ClipboardContent();
-			content.putImage(draggedCard.getImage());
+			content.putImage(new Image(draggedCard.getImage().impl_getUrl(), 150, 225, false, false));
 			// On donne l'image qu'on veut voir pendant le drag & drop
 			db.setContent(content);
 

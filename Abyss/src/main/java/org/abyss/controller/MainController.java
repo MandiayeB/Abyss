@@ -8,7 +8,10 @@ import org.abyss.ennemy.EnnemyAverage;
 import org.abyss.ennemy.EnnemyDifficult;
 import org.abyss.ennemy.EnnemyEasy;
 import org.abyss.ennemy.IEnnemy;
+import org.abyss.javafxview.Game;
+import org.abyss.javafxview.Player;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,8 +23,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -48,7 +51,7 @@ public class MainController implements Initializable {
 	@FXML
 	private ImageView mainDeck;
 	@FXML
-	private Pane opponentDeck;
+	private ImageView opponentDeck;
 	@FXML
 	private Label allyHp;
 	@FXML
@@ -59,19 +62,65 @@ public class MainController implements Initializable {
 	private ImageView ennemyHero;
 	@FXML
 	private ImageView allyHero;
+	@FXML
+	private Button allyPet;
 
+	private MainController ennemyController;
+	private Player player;
+	private Game game;
+	private boolean multi;
 	private int allyPv;
 	private int ennemyPv;
 	private String difficulty;
-	static Stage popupwindow;
-	static Stage stage;
-	static Scene scene;
+	private Stage popupwindow;
+	private Stage stage;
 	HashMap<String, Scene> listScene;
+	private boolean petReversed;
+	
+	public MainController getEnnemyController() {
+		return ennemyController;
+	}
+	
+	public void setEnnemyController(MainController ennemyController) {
+		this.ennemyController = ennemyController;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+	
+	public Game getGame() {
+		return game;
+	}
+	
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
+	public boolean getMulti() {
+		return multi;
+	}
+	
+	public void setMulti(boolean multi) {
+		this.multi = multi;
+	}
 	
 	public HashMap<String, Scene> getListScene() {
 		return listScene;
 	}
+	
+	public Stage getStage() {
+		return stage;
+	}
 
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	
 	public void setDifficulty(String difficulty) {
 		this.difficulty = difficulty;
 	}
@@ -94,14 +143,6 @@ public class MainController implements Initializable {
 	
 	public void setEnnemyPv(int ennemyPv) {
 		this.ennemyPv = ennemyPv;
-	}
-	
-	public Stage getStage() {
-		return stage;
-	}
-
-	public void setStage(Stage stage) {
-		MainController.stage = stage;
 	}
 	
 	public InformationController getInformationController() {
@@ -132,16 +173,16 @@ public class MainController implements Initializable {
 		return spellController;
 	}
 	
-	 public DialogueController getDialogueController() {
+	public DialogueController getDialogueController() {
 		return dialogueController;
 	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		allyPv = 1500;
 		ennemyPv = 1500;
 		afficherHp();
-		difficulty = "easy";
 		dialogueController.BulleAlly.setVisible(false);
 		dialogueController.BulleEnnemy.setVisible(false);
 		dialogueController.TxtAlly.setVisible(false);
@@ -154,11 +195,22 @@ public class MainController implements Initializable {
 		tourController.setParentController(this);
 		spellController.setParentController(this);
 		dialogueController.setParentController(this);
+		allyPet.setGraphic(new ImageView(new Image("/resources/Images/allyPet.gif")));
+		mainDeck.setImage(new Image("/resources/Images/Jade.png"));
+		opponentDeck.setImage(new Image("/resources/Images/Ice.png"));
+		
 	}
 
 	
 	public void afficherHp() {
-
+		
+		if (getMulti()) {
+			getEnnemyController().setAllyPv(ennemyPv);
+			getEnnemyController().setEnnemyPv(allyPv);
+			getEnnemyController().allyHp.setText(Integer.toString(ennemyPv));
+			getEnnemyController().ennemyHp.setText(Integer.toString(allyPv));
+		}
+		
 		allyHp.setText(Integer.toString(allyPv));
 		ennemyHp.setText(Integer.toString(ennemyPv));
 
@@ -167,7 +219,6 @@ public class MainController implements Initializable {
 	public void mort() {
 
 		if (allyPv <= 0 || ennemyPv <= 0) {
-
 			defeat.toFront();
 			defeat.setVisible(true);
 			GaussianBlur blur = new GaussianBlur(20);
@@ -178,18 +229,86 @@ public class MainController implements Initializable {
 		}
 		
 	}
+	
+	public void updateGui() {
+		tourController.visible(false);
+	}
+	
+	public void player2Heroes() {
+		
+		allyHero.setImage(new Image("/resources/Images/Ennemy.png"));
+		ennemyHero.setImage(new Image("/resources/Images/hero1.png"));
+		allyHp.setTextFill(Color.web("#36c4d1"));
+		ennemyHp.setTextFill(Color.web("#ffff00"));
+		allyHp.setTranslateY(265);
+		ennemyHp.setTranslateY(-265);
+		allyPet.setGraphic(new ImageView(new Image("/resources/Images/ennemyPetReversed.gif")));
+		allyPet.setTranslateY(-30);
+		mainDeck.setImage(new Image("/resources/Images/Ice.png"));
+		opponentDeck.setImage(new Image("/resources/Images/Jade.png"));
+	}
+	
+	public void flip(ActionEvent event) {
 
-	public void leave(ActionEvent e) {
+		new Thread(new Runnable() {
+			public void run() {
+			for (int i = 0; i < 10; i++) {
+				
+				if (!petReversed) {
+					allyPet.setTranslateX(allyPet.getTranslateX() - 110);
+					
+				} else {
+					allyPet.setTranslateX(allyPet.getTranslateX() + 110);
+				}
+				
+				try {
+					Thread.sleep(350);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						
+						if (petReversed) {
+							if (!getMulti() || getPlayer().getName() == "Joueur 1") {
+								allyPet.setGraphic(new ImageView(new Image("/resources/Images/allyPet.gif")));
+							} else if (getPlayer().getName() == "Joueur 2") {
+								allyPet.setGraphic(new ImageView(new Image("/resources/Images/ennemyPetReversed.gif")));
+							}
+							petReversed = false;
+						} else {
+							if (!getMulti() || getPlayer().getName() == "Joueur 1") {
+								allyPet.setGraphic(new ImageView(new Image("/resources/Images/allyPetReversed.gif")));
+							} else if (getPlayer().getName() == "Joueur 2") {
+								allyPet.setGraphic(new ImageView(new Image("/resources/Images/ennemyPet.gif")));
+							}
+							petReversed = true;
+						}
+					}
+				});
+			}
+		}).start();
+	}
+
+	public void leave() {
 		System.exit(0);
 	}
 
-	public void retourAccueil(ActionEvent e) {
+	public void retourAccueil() {
 		
-		reset(e);
-		stage.setScene(listScene.get("accueil"));
-		stage.setMaximized(false);
-		stage.setMaximized(true);
-
+		if (getPlayer().getName() == "Joueur 2") {
+			popupwindow.close();
+			stage.close();
+			getEnnemyController().retourAccueil();
+		} else {
+			reset();
+			stage.setTitle("Abyss");
+			stage.setScene(listScene.get("accueil"));
+			stage.setMaximized(false);
+			stage.setMaximized(true);
+		}
 
 	}
 	
@@ -217,10 +336,12 @@ public class MainController implements Initializable {
 		
 	}
 	
-	public void reset(ActionEvent e) {
-		stage.setMaximized(false);
-		popupwindow.close();
-		stage.setMaximized(true);
+	public void reset() {
+		
+		if (popupwindow != null) {
+			popupwindow.close();
+		}
+		setMulti(false);
 		defeat.setVisible(false);
 		defeat.toBack();
 		allyPv = 1500;
@@ -236,8 +357,8 @@ public class MainController implements Initializable {
 		allyHandController.setAllyHand(CardsUtils.fillBoard(5));
 		ennemyHandController.setEnnemyDeck(CardsUtils.getEnnemyCards());
 		ennemyHandController.setEnnemyHand(CardsUtils.fillBoard(5));
-		spellController.setSpell1(CardsUtils.fillBoard(1));
-		spellController.setSpell2(CardsUtils.fillBoard(1));
+		spellController.setSpell1(null);
+		spellController.setSpell2(null);
 		allyHandController.afficherHand();
 		ennemyHandController.afficherHand();
 		boardController.afficherBoard();
@@ -249,8 +370,9 @@ public class MainController implements Initializable {
 		informationController.lireLigne();
 		tourController.setTour(Phase.TourEnnemi);
 		tourController.setOrder(false);
-		tourController.changeButton();
-		
+		tourController.visible(true);
+		tourController.getPhase().setText("Start");
+		tourController.afficherTour("Appuyez sur start");
 	}
 
 	public void display() {
@@ -265,9 +387,9 @@ public class MainController implements Initializable {
 		Button button1 = new Button("Retour à l'accueil");
 		Button button2 = new Button("Quitter la partie");
 
-		button0.setOnAction(e -> reset(e));
-		button1.setOnAction(e -> retourAccueil(e));
-		button2.setOnAction(e -> leave(e));
+		button0.setOnAction(e -> reset());
+		button1.setOnAction(e -> retourAccueil());
+		button2.setOnAction(e -> leave());
 
 		VBox layout = new VBox(10);
 
@@ -281,6 +403,7 @@ public class MainController implements Initializable {
 		popupwindow.setScene(scene1);
 		popupwindow.showAndWait();
 		background.setEffect(null);
+		
 	}
 
 }
