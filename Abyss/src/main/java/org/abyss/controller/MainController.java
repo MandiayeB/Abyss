@@ -181,7 +181,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		allyPv = 2;
+		allyPv = 2000;
 		ennemyPv = 2000;
 		afficherHp();
 		dialogueController.BulleAlly.setVisible(false);
