@@ -15,6 +15,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -180,8 +181,8 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		allyPv = 1500;
-		ennemyPv = 1500;
+		allyPv = 2;
+		ennemyPv = 2000;
 		afficherHp();
 		dialogueController.BulleAlly.setVisible(false);
 		dialogueController.BulleEnnemy.setVisible(false);
@@ -215,15 +216,48 @@ public class MainController implements Initializable {
 		ennemyHp.setText(Integer.toString(ennemyPv));
 
 	}
-
+	
+	public void endGame(String url) {
+		defeat.toFront();
+		defeat.setVisible(true);
+		defeat.setImage(new Image(url));
+	}
+	
 	public void mort() {
 
 		if (allyPv <= 0 || ennemyPv <= 0) {
 			defeat.toFront();
 			defeat.setVisible(true);
-			GaussianBlur blur = new GaussianBlur(20);
-			background.setEffect(blur);
-			display();
+			if (allyPv > ennemyPv) {
+				defeat.setImage(new Image("/resources/Images/victory.png"));
+				if (getMulti()) {
+					getEnnemyController().endGame("/resources/Images/defeat.png");
+				}
+			} else {
+				defeat.setImage(new Image("/resources/Images/defeat.png"));
+				if (getMulti()) {
+					getEnnemyController().endGame("/resources/Images/victory.png");
+				}
+			}
+			new Thread(new Runnable() {
+				public void run() {
+					try {
+						Thread.sleep(600);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							GaussianBlur blur = new GaussianBlur(20);
+							background.setEffect(blur);
+							display();
+						}
+					});
+				}
+			}).start();
+			
+			
 		} else {
 			tourController.stade();
 		}
@@ -296,18 +330,25 @@ public class MainController implements Initializable {
 		System.exit(0);
 	}
 
+	public void close() {
+		stage.close();
+	}
 	public void retourAccueil() {
 		
 		if (getPlayer().getName() == "Joueur 2") {
 			popupwindow.close();
 			stage.close();
 			getEnnemyController().retourAccueil();
+		} else if (getMulti()){
+			popupwindow.close();
+			getEnnemyController().close();
+			reset();
+			stage.setTitle("Abyss");
+			stage.setScene(listScene.get("accueil"));
 		} else {
 			reset();
 			stage.setTitle("Abyss");
 			stage.setScene(listScene.get("accueil"));
-			stage.setMaximized(false);
-			stage.setMaximized(true);
 		}
 
 	}
@@ -344,8 +385,8 @@ public class MainController implements Initializable {
 		setMulti(false);
 		defeat.setVisible(false);
 		defeat.toBack();
-		allyPv = 1500;
-		ennemyPv = 1500;
+		allyPv = 2000;
+		ennemyPv = 2000;
 		dialogueController.setHideA(0);
 		dialogueController.setHideE(0);
 		dialogueController.setParlerA(true);
@@ -387,17 +428,25 @@ public class MainController implements Initializable {
 		Button button1 = new Button("Retour à l'accueil");
 		Button button2 = new Button("Quitter la partie");
 
+		label1.setTextFill(Color.web("#FFFFFF"));
+		label1.setPadding(new Insets(0,0,50,0));
 		button0.setOnAction(e -> reset());
 		button1.setOnAction(e -> retourAccueil());
 		button2.setOnAction(e -> leave());
+		button0.setPrefWidth(200);
+		button0.setPrefHeight(60);
+		button1.setPrefWidth(200);
+		button1.setPrefHeight(60);
+		button2.setPrefWidth(200);
+		button2.setPrefHeight(60);
 
-		VBox layout = new VBox(10);
+		VBox layout = new VBox(30);
 
 		layout.getChildren().addAll(label1, button0, button1, button2);
 		layout.setAlignment(Pos.CENTER);
 		
 
-		Scene scene1 = new Scene(layout, 300, 250);
+		Scene scene1 = new Scene(layout, 600, 500);
 		
 		scene1.getStylesheets().add(getClass().getResource("/resources/CSS/Popup.css").toExternalForm());
 		popupwindow.setScene(scene1);

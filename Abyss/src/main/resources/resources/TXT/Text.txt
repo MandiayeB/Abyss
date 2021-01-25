@@ -1,1 +1,14 @@
+Tour ennemi
+Fin de tour
+Vous pouvez jouer
+Fin de tour
+reset
+Combat
+Dégâts reçus : 150
+Dégâts reçus : 120
+Dégâts reçus : 150
+Dégâts reçus : 200
+Dégâts reçus : 250
+reset
 
+Phase de retrait

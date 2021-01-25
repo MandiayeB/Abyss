@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 public class TourController implements Initializable {
 	
@@ -15,6 +16,8 @@ public class TourController implements Initializable {
 	private Button phase;
 	@FXML
 	private Label afficherTour;
+	@FXML
+	private ImageView infoSquare;
 	
 	private MainController parentController;
 	private Phase tour;
@@ -32,6 +35,10 @@ public class TourController implements Initializable {
 		this.tour = tour;
 	}
 
+	public ImageView getInfoSquare() {
+		return infoSquare;
+	}
+	
 	public Boolean getOrder() {
 		return order;
 	}
@@ -59,6 +66,7 @@ public class TourController implements Initializable {
 		phase.setText("Fin de tour");
 		if (parentController.getMulti()) {
 			parentController.getEnnemyController().getTourController().getPhase().setText("Fin de tour");
+			parentController.getEnnemyController().getTourController().getInfoSquare().setVisible(true);
 		} else {
 			parentController.getDialogueController().dialogueCommencement();
 		}
@@ -79,7 +87,7 @@ public class TourController implements Initializable {
 		case PhaseDeStrategie:
 			
 			if (parentController.getMulti()) {
-				parentController.getEnnemyController().getTourController().afficherTour.setText("Tour ennemi");
+				parentController.getEnnemyController().getTourController().afficherTour.setText("   Tour ennemi");
 				parentController.getEnnemyController().getInformationController()
 				.ecrire("Nouveau tour " + parentController.getGame().getCurrentPlayer().getName());
 				parentController.getEnnemyController().getInformationController().lireLigne();
@@ -91,7 +99,7 @@ public class TourController implements Initializable {
 				parentController.getInformationController().lireLigne();
 			}
 			
-			afficherTour.setText("Tour de Stratégie");
+			afficherTour.setText("Phase de Stratégie");
 			tour = Phase.Transition;
 			break;
 
@@ -114,7 +122,7 @@ public class TourController implements Initializable {
 			
 			if (order) {
 				
-				afficherTour.setText("Tour Ennemi");
+				afficherTour.setText("   Tour Ennemi");
 				tour = Phase.TourEnnemi;
 				if (parentController.getMulti()) {
 					
@@ -134,7 +142,7 @@ public class TourController implements Initializable {
 				}
 			} else {
 				
-				afficherTour.setText("Phase de Combat");
+				afficherTour.setText(" Phase de Combat");
 				tour = Phase.PhaseDeCombat;
 				if (parentController.getMulti()) {
 					
@@ -145,7 +153,7 @@ public class TourController implements Initializable {
 					.ecrire("Fin de tour " + parentController.getGame().getCurrentPlayer().getName());
 					parentController.getEnnemyController().getInformationController().lireLigne();
 					
-					parentController.getEnnemyController().getTourController().afficherTour.setText("Phase de Combat");
+					parentController.getEnnemyController().getTourController().afficherTour.setText(" Phase de Combat");
 					parentController.getEnnemyController().getTourController().setTour(Phase.PhaseDeCombat);
 					parentController.getEnnemyController().getTourController().visible(false);
 					visible(false);

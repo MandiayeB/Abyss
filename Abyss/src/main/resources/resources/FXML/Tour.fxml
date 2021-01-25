@@ -3,23 +3,41 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox id="tour" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.abyss.controller.TourController">
-
-	<Label fx:id="afficherTour" prefHeight="87.0" prefWidth="180.0" text="Appuyez sur start" textAlignment="CENTER" textFill="#f51212">
-		<VBox.margin>
-			<Insets left="10.0" />
-		</VBox.margin>
-		<font>
-			<Font name="Calibri Bold" size="20.0" />
-		</font>
-	</Label>
+   <StackPane>
+      <VBox.margin>
+         <Insets />
+      </VBox.margin>
+      <children>
+         <ImageView fx:id="infoSquare" fitHeight="70.0" fitWidth="226.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../Images/plate.png" />
+            </image>
+         </ImageView>
+      
+            	<Label fx:id="afficherTour" prefHeight="87.0" prefWidth="180.0" text=" Appuyez sur start" textAlignment="CENTER" textFill="WHITE">
+      		<font>
+      			<Font name="Titillium WebSemiBold" size="20.0" />
+      		</font>
+            <StackPane.margin>
+               <Insets left="20.0" />
+            </StackPane.margin>
+      	</Label>
+      </children>
+   </StackPane>
 	<Button id="phase" fx:id="phase" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#next" prefHeight="75.0" prefWidth="200.0" style="-fx-background-color: Transparent;" stylesheets="@../CSS/style.css" text="Start" textFill="WHITE">
 		<VBox.margin>
 			<Insets top="30.0" />
 		</VBox.margin>
+      <font>
+         <Font name="Titillium WebSemiBold" size="19.0" />
+      </font>
 	</Button>
 	<padding>
 		<Insets bottom="20.0" right="100.0" />

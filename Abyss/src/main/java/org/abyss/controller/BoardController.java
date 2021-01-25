@@ -241,7 +241,7 @@ public class BoardController implements Initializable {
 
 						if (parentController.getTourController().getOrder()) {
 							parentController.getTourController().setTour(Phase.TourEnnemi);
-							parentController.getTourController().afficherTour("Tour ennemi");
+							parentController.getTourController().afficherTour("  Tour ennemi");
 							if (parentController.getMulti()) {
 								parentController.getEnnemyController().getTourController().setTour(Phase.Transition);
 								parentController.getEnnemyController().getTourController().visible(true);
@@ -258,7 +258,7 @@ public class BoardController implements Initializable {
 								parentController.getEnnemyController().getTourController().setTour(Phase.TourEnnemi);
 								parentController.getEnnemyController().getTourController().visible(false);
 								parentController.getEnnemyController().getTourController().setOrder(false);
-								parentController.getEnnemyController().getTourController().afficherTour("Tour Ennemi");
+								parentController.getEnnemyController().getTourController().afficherTour("  Tour Ennemi");
 							} else {
 								parentController.getTourController().setTour(Phase.PhaseDeStrategie);
 							}
@@ -358,7 +358,7 @@ public class BoardController implements Initializable {
 			e.applyElement(carteVerif(event), allyBoard);
 			parentController.getAllyHandController().afficherHand();
 			afficherBoard();
-			if (parentController.getEnnemyController().getMulti()) {
+			if (parentController.getMulti()) {
 				parentController.getEnnemyController().getBoardController().afficherBoard();
 			}
 			success = true;

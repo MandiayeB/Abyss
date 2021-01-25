@@ -38,6 +38,7 @@ public class SecondStage extends Stage {
 			mainController.getAllyHandController().setAllyDeck(CardsUtils.getEnnemyCards());
 			mainController.getAllyHandController().piocher();
 			ennemyController.setEnnemyController(mainController);
+			mainController.getTourController().getInfoSquare().setVisible(false);
 			mainController.updateGui();
 			
 			secondStage.setTitle("Abyss ['Joueur 2']");

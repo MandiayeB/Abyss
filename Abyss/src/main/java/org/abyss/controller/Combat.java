@@ -199,13 +199,13 @@ public class Combat {
 						parentController.getInformationController().ecrire("reset"+"\n");
 						parentController.getInformationController().ecrire("Phase de retrait");
 						parentController.getInformationController().lireLigne();
-						parentController.getTourController().afficherTour("Phase de retrait");
+						parentController.getTourController().afficherTour(" Phase de retrait");
 						parentController.getTourController().setTour(Phase.PhaseDeRetrait);
 						if (parentController.getMulti()) {
 							parentController.getEnnemyController().getInformationController().ecrire("reset"+"\n");
 							parentController.getEnnemyController().getInformationController().ecrire("Phase de retrait");
 							parentController.getEnnemyController().getInformationController().lireLigne();
-							parentController.getEnnemyController().getTourController().afficherTour("Phase de retrait");
+							parentController.getEnnemyController().getTourController().afficherTour(" Phase de retrait");
 							parentController.getEnnemyController().getTourController().setTour(Phase.PhaseDeRetrait);
 						}
 						parentController.mort();

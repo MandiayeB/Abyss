@@ -24,7 +24,7 @@ public class EnnemyDifficult implements IEnnemy {
 		parentController.getInformationController().ecrire("Tour ennemi");
 		parentController.getInformationController().setNouveau(false);
 		parentController.getInformationController().lireLigne();
-		parentController.getTourController().afficherTour("Tour Ennemi");
+		parentController.getTourController().afficherTour("   Tour Ennemi");
 		parentController.getTourController().visible(false);
 
 		new Thread(new Runnable() {

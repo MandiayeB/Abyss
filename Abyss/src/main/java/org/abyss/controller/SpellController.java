@@ -136,9 +136,15 @@ public class SpellController implements Initializable {
 		if (event.getDragboard().hasImage() && spell1 == null
 				&& parentController.getAllyHandController().getDraggedCard() instanceof Sorts) {
 
-			((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
-			// Image pour indiquer où va se dérouler le transfert
-
+			if (parentController.getMulti()) {
+				if (parentController.getPlayer().getName() == "Joueur 2") {
+					((ImageView) event.getSource()).setImage(new Image("/resources/Images/Ice.png"));
+				} else {
+					((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
+				}
+			} else {
+				((ImageView) event.getSource()).setImage(new Image("/resources/Images/Jade.png"));
+			}
 		}
 
 		event.consume();

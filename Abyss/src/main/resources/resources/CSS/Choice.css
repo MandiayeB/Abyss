@@ -1,6 +1,8 @@
 .root {
-	-fx-background-image: url("../Images/Choice.jpg");;
-	-fx-background-repeat: no-repeat;
+    -fx-background-image: url('../Images/standing.gif');
+    -fx-background-color: #063166;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: bottom 10px right 500px;
 }
 .button {
 	-fx-background-color: 
@@ -12,14 +14,13 @@
     -fx-background-insets: 0,1,2,0;
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-    -fx-font-family: "Arial";
+    -fx-font-family: "American Typewriter";
     -fx-text-fill: linear-gradient(white, #d0d0d0);
-    -fx-font-size: 12px;
+    -fx-font-size: 20px;
     -fx-padding: 10 20 10 20;
 }
 .label { 
-	-fx-font-size: 25px;
+	-fx-font-size: 40px;
 	-fx-font-family: "American Typewriter";
-	-fx-fill: #818181;
 	-fx-effect : innershadow( three-pass-box, rgba(0,0,0,0,7) , 6,0.0,0,2);
 }

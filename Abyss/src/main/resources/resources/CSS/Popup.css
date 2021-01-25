@@ -1,5 +1,5 @@
 .root {
-	-fx-background-color : transparent;
+    -fx-background-color: #063166;
 	-fx-background-repeat: no-repeat;
 }
 .button {
@@ -14,12 +14,11 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     -fx-font-family: "Arial";
     -fx-text-fill: linear-gradient(white, #d0d0d0);
-    -fx-font-size: 12px;
+    -fx-font-size: 20px;
     -fx-padding: 10 20 10 20;
 }
 .label { 
-	-fx-font-size: 25px;
+	-fx-font-size: 40px;
 	-fx-font-family: "American Typewriter";
-	-fx-fill: #818181;
 	-fx-effect : innershadow( three-pass-box, rgba(0,0,0,0,7) , 6,0.0,0,2);
 }

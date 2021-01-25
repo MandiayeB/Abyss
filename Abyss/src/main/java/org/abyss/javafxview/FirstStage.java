@@ -98,7 +98,7 @@ public class FirstStage extends Stage {
 			back2.setStage(primaryStage);
 
 			// On change le curseur
-			Image image = new Image("/resources/Images/curseur.png");
+			Image image = new Image("/resources/Images/cursor.png");
 			sceneGame.setCursor(new ImageCursor(image));
 			sceneAccueil.setCursor(new ImageCursor(image));
 			sceneChargement.setCursor(new ImageCursor(image));

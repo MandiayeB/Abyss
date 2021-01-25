@@ -170,7 +170,7 @@ public class DialogueController implements Initializable {
 	
 	public void dialogueCommencement() {
 
-		if (parentController.getAllyPv() == 1500 && parentController.getEnnemyPv() == 1500) {
+		if (parentController.getAllyPv() == 2000 && parentController.getEnnemyPv() == 2000) {
 			afficherBulleEnnemy(0);
 
 			new Thread(new Runnable() {
@@ -207,49 +207,49 @@ public class DialogueController implements Initializable {
 			}).start();
 
 		}
-		if(parentController.getAllyPv() < 1301 && hideA == 0) {
+		if(parentController.getAllyPv() < 1801 && hideA == 0) {
 			parlerA = true;
 			afficherBulleAlly(3);
 			cacherBulleAlly(2500);
 			hideA = 1;
 		}
-		if(parentController.getEnnemyPv() < 1301 && hideE == 0) {
+		if(parentController.getEnnemyPv() < 1801 && hideE == 0) {
 			parlerE = true;
 			afficherBulleEnnemy(2);
 			cacherBullyEnnemy(2500);
 			hideE = 1;
 		}
-		if(parentController.getEnnemyPv() < 1001 && hideE == 1) {
+		if(parentController.getEnnemyPv() < 1501 && hideE == 1) {
 			parlerE = true;
 			afficherBulleEnnemy(4);
 			cacherBullyEnnemy(2500);
 			hideE = 2;
 		}
-		if(parentController.getAllyPv() < 1001 && hideA == 1) {
+		if(parentController.getAllyPv() < 1501 && hideA == 1) {
 			parlerA = true;
 			afficherBulleAlly(5);
 			cacherBulleAlly(2500);
 			hideA = 2;
 		}
-		if(parentController.getEnnemyPv() < 501 && hideE == 2) {
+		if(parentController.getEnnemyPv() < 1001 && hideE == 2) {
 			parlerE = true;
 			afficherBulleEnnemy(6);
 			cacherBullyEnnemy(2500);
 			hideE = 3;
 		}
-		if(parentController.getAllyPv() < 501 && hideA == 2) {
+		if(parentController.getAllyPv() < 1001 && hideA == 2) {
 			parlerA = true;
 			afficherBulleAlly(7);
 			cacherBulleAlly(2500);
 			hideA = 3;
 		}
-		if(parentController.getEnnemyPv() == 101 && hideE == 3) {
+		if(parentController.getEnnemyPv() < 501 && hideE == 3) {
 			parlerE = true;
 			afficherBulleEnnemy(8);
 			cacherBullyEnnemy(2500);
 			hideE = 4;
 		}
-		if(parentController.getAllyPv() == 101 && hideA == 3) {
+		if(parentController.getAllyPv() < 501 && hideA == 3) {
 			parlerA = true;
 			afficherBulleAlly(9);
 			cacherBulleAlly(2500);

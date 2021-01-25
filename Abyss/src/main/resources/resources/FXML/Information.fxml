@@ -19,9 +19,9 @@
             <Insets right="80.0" />
          </StackPane.margin>
       </ImageView>
-		<Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0" prefWidth="300.0" textFill="#40f5e9" wrapText="true">
+		<Label fx:id="notif" graphicTextGap="0.0" prefHeight="450.0" prefWidth="300.0" textFill="#64f542" wrapText="true">
 			<font>
-				<Font size="18.0" />
+				<Font name="Source Sans Pro Black" size="18.0" />
 			</font>
          <StackPane.margin>
             <Insets left="20.0" />
@@ -71,6 +71,6 @@
       </Label>
 	</children>
 	<padding>
-		<Insets left="20.0" right="20.0" />
+		<Insets right="20.0" />
 	</padding>
 </StackPane>
