@@ -6,10 +6,42 @@ Fin de tour Joueur 2
 Fin de tour Joueur 2
 reset
 Combat
-Dégâts reçus : 100
-Dégâts reçus : -110
-Dégâts infligés : -50
+Dégâts reçus : -90
+Dégâts infligés : -80
+Dégâts reçus : -80
+Dégâts infligés : -100
+Dégâts reçus : 0
+Dégâts infligés : -80
+Dégâts reçus : -20
+Dégâts infligés : -70
+Dégâts infligés : 200
 reset
 
 Phase de retrait
 Nouveau tour Joueur 2
+Fin de tour Joueur 2
+Nouveau tour Joueur 1
+Fin de tour Joueur 1
+Fin de tour Joueur 1
+reset
+Combat
+Dégâts infligés : 200
+Dégâts infligés : 340
+Dégâts infligés : 300
+Dégâts infligés : 300
+reset
+
+Phase de retrait
+Nouveau tour Joueur 1
+Fin de tour Joueur 1
+Nouveau tour Joueur 2
+Fin de tour Joueur 2
+Fin de tour Joueur 2
+reset
+Combat
+Dégâts infligés : 150
+Dégâts infligés : 40
+Dégâts infligés : 200
+reset
+
+Phase de retrait

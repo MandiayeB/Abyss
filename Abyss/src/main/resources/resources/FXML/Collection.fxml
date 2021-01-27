@@ -20,7 +20,7 @@
             <Button fx:id="pack" mnemonicParsing="false" onAction="#gacha1" prefHeight="520.0" prefWidth="344.0" style="-fx-background-color: Transparent;" text="    " textFill="#4a1616" />
          </children>
       </StackPane>
-      <Label layoutX="753.0" layoutY="70.0" prefHeight="151.0" prefWidth="431.0" text="Bienvenue dans la collection. :)" textAlignment="CENTER" textFill="#eb3535">
+      <Label layoutX="753.0" layoutY="70.0" prefHeight="151.0" prefWidth="463.0" text="Bienvenue dans la collection !" textAlignment="CENTER" textFill="#eb3535">
          <font>
             <Font name="Arial" size="32.0" />
          </font>

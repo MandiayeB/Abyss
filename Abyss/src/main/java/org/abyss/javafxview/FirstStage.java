@@ -149,7 +149,7 @@ public class FirstStage extends Stage {
 		try {
 
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(
-					"C:\\Users\\allan\\git\\Abyss\\Abyss\\src\\main\\resources\\resources\\Sounds\\accueil.wav"));
+					"C:\\Users\\Mandiaye\\git\\Abyss\\Abyss\\src\\main\\resources\\resources\\Sounds\\accueil.wav"));
 			Clip clip = AudioSystem.getClip();
 			clip.open(audioInputStream);
 			clip.loop(Clip.LOOP_CONTINUOUSLY);

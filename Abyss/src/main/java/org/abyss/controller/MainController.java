@@ -335,16 +335,18 @@ public class MainController implements Initializable {
 	}
 	public void retourAccueil() {
 		
-		if (getPlayer().getName() == "Joueur 2") {
-			popupwindow.close();
-			stage.close();
-			getEnnemyController().retourAccueil();
-		} else if (getMulti()){
-			popupwindow.close();
-			getEnnemyController().close();
-			reset();
-			stage.setTitle("Abyss");
-			stage.setScene(listScene.get("accueil"));
+		if (getMulti()) {
+			if (getPlayer().getName() == "Joueur 2") {
+				popupwindow.close();
+				stage.close();
+				getEnnemyController().retourAccueil();
+			} else {
+				popupwindow.close();
+				getEnnemyController().close();
+				reset();
+				stage.setTitle("Abyss");
+				stage.setScene(listScene.get("accueil"));
+			} 
 		} else {
 			reset();
 			stage.setTitle("Abyss");
